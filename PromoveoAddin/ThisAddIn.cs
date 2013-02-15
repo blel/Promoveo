@@ -15,6 +15,7 @@ namespace PromoveoAddin
         {
             SingletonVisioApp.GetCurrentVisioInstance().VisioApp.BeforeDocumentSave += VisioApp_BeforeDocumentSave;
             SingletonVisioApp.GetCurrentVisioInstance().VisioApp.BeforeDocumentSaveAs += VisioApp_BeforeDocumentSaveAs;
+            
 
         }
 
