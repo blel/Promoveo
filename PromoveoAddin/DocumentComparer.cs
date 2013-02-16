@@ -15,12 +15,26 @@ namespace PromoveoAddin
         private Visio.Document _documentB;
         private Visio.Document _resultingDocument;
         private Visio.Application _app;
+        private List<string> _guidsOfNilPages = new List<string>();
 
         public DocumentComparer(Visio.Application app, Visio.Document documentA, Visio.Document documentB)
         {
             _documentA = documentA;
             _documentB = documentB;
             _resultingDocument = app.Documents.Add("");
+
+            //visio creates an initial (I call it "nil") page
+            //just in case there are any more, give the same a guid name
+            //these pages are removed at the end.
+            if (_resultingDocument.Pages.Count > 0)
+            {
+                foreach (Visio.Page page in _resultingDocument.Pages)
+                {
+                    page.Name = Guid.NewGuid().ToString();
+                    _guidsOfNilPages.Add(page.Name);
+                }
+            }
+
             _app = app;
         }
 
@@ -37,7 +51,15 @@ namespace PromoveoAddin
                 SetupDestinationPage(page, resultPage);
                 //Now compare the content of the page....
                 PageComparer pageComparer = new PageComparer(_app, _documentA.Pages[page.Name], _documentB.Pages[page.Name], resultPage);
+                pageComparer.ComparePages();
             }
+
+            //remove nil pages
+            foreach (string guid in _guidsOfNilPages)
+            {
+                _resultingDocument.Pages[guid].Delete(Convert.ToInt16(false));
+            }
+
         }
 
         /// <summary>
