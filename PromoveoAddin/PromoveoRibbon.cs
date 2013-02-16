@@ -24,8 +24,8 @@ namespace PromoveoAddin
             string NameFile2 = OpenFile().FileName;
             string OutputDoc = app.Documents.AddEx("").Name;
 
-            FileComparer comparer = new FileComparer();
-            comparer.ComparePages(app.Documents[NameFile1].Pages[1], app.Documents[NameFile2].Pages[1], app.Documents[OutputDoc].Pages.Add());
+            PageComparer comparer = new PageComparer(app,app.Documents[NameFile1].Pages[1], app.Documents[NameFile2].Pages[1], app.Documents[OutputDoc].Pages.Add());
+            comparer.ComparePages();
         }
 
 
@@ -46,6 +46,20 @@ namespace PromoveoAddin
                 }
             }
             return fileDialog;
+        }
+
+        private void btnTest_Click(object sender, RibbonControlEventArgs e)
+        {
+            Visio.Application app = SingletonVisioApp.GetCurrentVisioInstance().VisioApp;
+            OpenFile();
+            Visio.Document Doc1 = app.ActiveDocument;
+            OpenFile();
+            Visio.Document Doc2 = app.ActiveDocument;
+            DocumentComparer docComparer = new DocumentComparer(app, Doc1, Doc2);
+            docComparer.CompareDocuments();
+            
+       
+            
         }
 
     }

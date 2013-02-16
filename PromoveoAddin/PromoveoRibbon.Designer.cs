@@ -37,6 +37,7 @@
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.btnCompareDocuments = this.Factory.CreateRibbonButton();
+            this.btnTest = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             // 
@@ -50,6 +51,7 @@
             // group1
             // 
             this.group1.Items.Add(this.btnCompareDocuments);
+            this.group1.Items.Add(this.btnTest);
             this.group1.Label = "Test";
             this.group1.Name = "group1";
             // 
@@ -58,6 +60,12 @@
             this.btnCompareDocuments.Label = "Compare Documents";
             this.btnCompareDocuments.Name = "btnCompareDocuments";
             this.btnCompareDocuments.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnCompareDocuments_Click);
+            // 
+            // btnTest
+            // 
+            this.btnTest.Label = "Test";
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnTest_Click);
             // 
             // PromoveoRibbon
             // 
@@ -77,6 +85,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnCompareDocuments;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnTest;
     }
 
     partial class ThisRibbonCollection
