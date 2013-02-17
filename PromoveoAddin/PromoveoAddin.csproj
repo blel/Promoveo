@@ -207,6 +207,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ShapeUIDEqualityComparer.cs" />
     <Compile Include="SingletonVisioApp.cs" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>

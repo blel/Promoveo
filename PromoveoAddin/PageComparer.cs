@@ -27,79 +27,131 @@ namespace PromoveoAddin
         public void ComparePages()
         {
             _app.EventsEnabled = Convert.ToInt16(false);
-            GetMissingShapesOnPage2();
-            GetAdditionalShapesOnPage2();
-            GetModifiedShapes();
-            GetConnectors();
+            //Get normal shapes either on page 1 or 2
+            GetShapesOnXExceptY(_page1, _page2, "RGB(255,0,0)", false);
+            GetShapesOnXExceptY(_page2, _page1, "RGB(0,255,0)", false);
+
+            //Get shapes on both pages  - if the shape has been modified, mark it
+            GetIntersectionShapes("RGB(0,0,255)", false);
+
+            //Get connectors either on page 1 or on page 2
+            GetShapesOnXExceptY(_page1, _page2, "RGB(255,0,0)", true);
+            GetShapesOnXExceptY(_page2, _page1, "RGB(0,255,0)", true);
+            
+            //Get Connectors on both pages - if the connector has been modified, mark it
+            GetIntersectionShapes("RGB(0,0,255)", true);
+
             _app.EventsEnabled = Convert.ToInt16(true);
         }
 
-        public void GetMissingShapesOnPage2()
+        private void GetShapesOnXExceptY(Visio.Page pageX, Visio.Page pageY, string Color, bool isConnector)
         {
-            var normalShapes = from cc in _page1.Shapes.Cast<Visio.Shape>()
-                               where Convert.ToBoolean(cc.OneD) == false
-                               select cc;
-            foreach (Visio.Shape shape in normalShapes)
+            //Get all shapes 
+            try
             {
-                if (string.IsNullOrEmpty(shape.get_UniqueID((short)Visio.VisUniqueIDArgs.visGetGUID)))
+                var ShapesOnXExceptY = (from cc in pageX.Shapes.Cast<Visio.Shape>()
+                                        where Convert.ToBoolean(cc.OneD) == isConnector
+                                        select cc).Except(from ccc in pageY.Shapes.Cast<Visio.Shape>()
+                                                          where Convert.ToBoolean(ccc.OneD) == isConnector
+                                                          select ccc, new ShapeUIDEqualityComparer());
+                foreach (Visio.Shape shape in ShapesOnXExceptY)
                 {
-                    MessageBox.Show("Shape without Unique ID found. Comparing this shape is not possible.");
+                    Visio.Shape resultShape = DropShapeOnPage(shape, _resultPage);
+                    String originalUID = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                    resultShape.Cells["LineColor"].FormulaU = Color;
+                    resultShape.Data1 = originalUID;
+                    if (isConnector)
+                    {
+                        string uidShapeFrom = shape.Connects[1].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                        string uidShapeTo = shape.Connects[2].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                        Visio.Shape fromShape = GetResultpageShape(uidShapeFrom);
+                        Visio.Shape toShape = GetResultpageShape(uidShapeTo);
+                        resultShape.Cells["BeginX"].GlueTo(fromShape.Cells["PinX"]);
+                        resultShape.Cells["EndX"].GlueTo(toShape.Cells["PinX"]);
+                    }
                 }
-                else
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Promoveo For Visio");
+            }
+        }
+
+
+
+        private void GetIntersectionShapes(string color, bool isConnector)
+        {
+            try
+            {
+                var intersectionShapes = (from cc in _page1.Shapes.Cast<Visio.Shape>()
+                                          where Convert.ToBoolean(cc.OneD) == isConnector
+                                          select cc).Intersect(from ccc in _page2.Shapes.Cast<Visio.Shape>()
+                                                               where Convert.ToBoolean(ccc.OneD) == isConnector
+                                                               select ccc, new ShapeUIDEqualityComparer());
+                foreach (Visio.Shape shape in intersectionShapes)
                 {
-                    if (_page2.Shapes.ItemFromUniqueID[shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]].UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID] !=
-                        shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID])
-                    {                       
-                        Visio.Shape resultShape = DropShapeOnPage(shape, _resultPage);
-                        String originalUID = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
-                        resultShape.Cells["LineColor"].FormulaU = "RGB(255,0,0)";
-                        resultShape.Data1 = originalUID;
+                    if (!isConnector)
+                    {
+                        Visio.Shape comparedShape = _page2.Shapes.ItemFromUniqueID[shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]];
+                        if (IsShapeModified(shape, comparedShape))
+                        {
+                            Visio.Shape resultShape = DropShapeOnPage(comparedShape, _resultPage);
+                            resultShape.Cells["LineColor"].FormulaU = color;
+                            String originalUID = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                            resultShape.Data1 = originalUID;
+                        }
+                        else
+                        {
+                            Visio.Shape resultShape = DropShapeOnPage(shape, _resultPage);
+                            String originalUID = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                            resultShape.Data1 = originalUID;
+                        }
                     }
                     else
                     {
-                          //  Visio.Shape resultShape = DropShapeOnPage(shape, resultPage);
-                        //}
+                        Visio.Shape connector2 = _page2.Shapes.ItemFromUniqueID[shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]];
+                        Visio.Shape resultShape = DropShapeOnPage(connector2, _resultPage);
+                        string uID = connector2.Connects[1].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                        Visio.Shape fromShape = GetResultpageShape(uID);
+                        Visio.Shape toShape = GetResultpageShape(connector2.Connects[2].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]);
+                        resultShape.Cells["BeginX"].GlueTo(fromShape.Cells["PinX"]);
+                        resultShape.Cells["EndX"].GlueTo(toShape.Cells["PinX"]);
+                        if (!AreEqual(shape, connector2))
+                        {
+                            resultShape.Cells["LineColor"].FormulaU = "RGB(0,255,0)";
+                            resultShape = DropShapeOnPage(shape, _resultPage);
+                            uID = shape.Connects[1].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                            fromShape = GetResultpageShape(uID);
+                            toShape = GetResultpageShape(shape.Connects[2].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]);
+                            resultShape.Cells["BeginX"].GlueTo(fromShape.Cells["PinX"]);
+                            resultShape.Cells["EndX"].GlueTo(toShape.Cells["PinX"]);
+                            resultShape.Cells["LineColor"].FormulaU = "RGB(255,0,0)";
+                        }
                     }
 
-
                 }
-
             }
-
-        }
-
-        public void GetAdditionalShapesOnPage2()
-        {
-            var normalShapes = from cc in _page2.Shapes.Cast<Visio.Shape>()
-                               where Convert.ToBoolean(cc.OneD) == false
-                               select cc;
-            
-            foreach (Visio.Shape shape in normalShapes)
+            catch (Exception ex)
             {
-                if (string.IsNullOrEmpty(shape.get_UniqueID((short)Visio.VisUniqueIDArgs.visGetGUID)))
-                {
-                    MessageBox.Show("Shape without Unique ID found. Comparing this shape is not possible.");
-                }
-                else
-                {
-                    if (_page1.Shapes.ItemFromUniqueID[shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]].UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID] !=
-                        shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID])
-                    {
-
-                        Visio.Shape resultShape = DropShapeOnPage(shape, _resultPage);
-                        resultShape.Cells["LineColor"].FormulaU = "RGB(0,255,0)";
-                        String originalUID = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
-                        resultShape.Data1 = originalUID;
-
-
-                    }
-
-                }
-
+                MessageBox.Show(string.Format("Error: {0}", ex.Message), "Promoveo For Visio");
             }
         }
 
-        public void GetConnectors()
+        private bool IsShapeModified(Visio.Shape shape1, Visio.Shape shape2)
+        {
+            bool result = false;
+            //X position
+            result = shape1.Cells["PinX"].Result[(short)Visio.VisUnitCodes.visInches] != shape2.Cells["PinX"].Result[(short)Visio.VisUnitCodes.visInches] ?
+                 true : result;
+            //y position
+            result = shape1.Cells["PinY"].Result[(short)Visio.VisUnitCodes.visInches] != shape2.Cells["PinY"].Result[(short)Visio.VisUnitCodes.visInches] ?
+                 true : result;
+            //text
+            result = shape1.Text != shape2.Text ? true : result;
+            return result;
+        }
+
+        private void GetConnectors()
         {
             var connectorShapes = from cc in _page1.Shapes.Cast<Visio.Shape>()
                                  where Convert.ToBoolean(cc.OneD) == true
@@ -141,13 +193,12 @@ namespace PromoveoAddin
 
         }
 
-        private Visio.Shape GetResultpageShape(string uID)
+         private Visio.Shape GetResultpageShape(string uID)
         {
             return (from cc in _resultPage.Shapes.Cast<Visio.Shape>()
                     where cc.Data1 == uID
                     select cc).FirstOrDefault();
         }
-
 
         public void GetFromToShapes( Visio.Shape inShape, out Visio.Shape fromShape, out Visio.Shape toShape)
         {
@@ -161,9 +212,7 @@ namespace PromoveoAddin
             else
             {
                 fromShape = inShape.Connects[1].ToSheet;
-                MessageBox.Show(fromShape.Name);
                 toShape = inShape.Connects[2].ToSheet;
-                MessageBox.Show(toShape.Name);
             }
         }
 
@@ -181,46 +230,6 @@ namespace PromoveoAddin
             return result;
         }
 
-        public void GetModifiedShapes()
-        {
-            var normalShapes = from cc in _page1.Shapes.Cast<Visio.Shape>()
-                               where Convert.ToBoolean(cc.OneD) == false
-                               select cc;
-            foreach (Visio.Shape shape in normalShapes)
-            {
-                if (string.IsNullOrEmpty(shape.get_UniqueID((short)Visio.VisUniqueIDArgs.visGetGUID)))
-                {
-                    MessageBox.Show("Shape without Unique ID found. Comparing this shape is not possible.");
-                }
-                else
-                {
-                    Visio.Shape comparedShape = _page2.Shapes.ItemFromUniqueID[shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]];
-
-                    if (comparedShape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID] ==
-                        shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID])
-                    {
-                        if (IsShapeModified(shape, comparedShape))
-                        {
-                            Visio.Shape resultShape = DropShapeOnPage(comparedShape, _resultPage);
-                            resultShape.Cells["LineColor"].FormulaU = "RGB(0,0,255)";
-                            String originalUID = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
-                            resultShape.Data1 = originalUID;
-                        }
-                        else
-                        {
-                            Visio.Shape resultShape = DropShapeOnPage(shape, _resultPage);
-                            String originalUID = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
-                            resultShape.Data1 = originalUID;
-                        }
-
-
-                    }
-
-                }
-
-            }
-        }
-
         private Visio.Shape DropShapeOnPage(Visio.Shape shape, Visio.Page resultPage)
         {
             double X;
@@ -231,22 +240,5 @@ namespace PromoveoAddin
             Y = Convert.ToDouble(shape.Cells["PinY"].Result[Visio.VisUnitCodes.visInches]);
             return resultPage.Drop(shape, X, Y);
         }
-
-        private bool IsShapeModified(Visio.Shape shape1, Visio.Shape shape2)
-        {
-            bool result = false;
-
-            result = shape1.Cells["PinX"].Result[(short)Visio.VisUnitCodes.visInches] != shape2.Cells["PinX"].Result[(short)Visio.VisUnitCodes.visInches] ?
-                 true: result;
-
-            result = shape1.Cells["PinY"].Result[(short)Visio.VisUnitCodes.visInches] != shape2.Cells["PinY"].Result[(short)Visio.VisUnitCodes.visInches] ?
-                 true : result;
-            return result;
- 
-
-
-        }
-
-
     }
 }
