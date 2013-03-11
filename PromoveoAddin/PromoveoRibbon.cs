@@ -16,50 +16,61 @@ namespace PromoveoAddin
 
         }
 
-        private void btnCompareDocuments_Click(object sender, RibbonControlEventArgs e)
-        {
-            
-            Visio.Application app = SingletonVisioApp.GetCurrentVisioInstance().VisioApp;
-            string NameFile1 = OpenFile().FileName;
-            string NameFile2 = OpenFile().FileName;
-            string OutputDoc = app.Documents.AddEx("").Name;
 
-            PageComparer comparer = new PageComparer(app,app.Documents[NameFile1].Pages[1], app.Documents[NameFile2].Pages[1], app.Documents[OutputDoc].Pages.Add());
-            comparer.ComparePages();
-        }
-
-
-        private OpenFileDialog OpenFile()
-        {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "All Visio Documents|*.vsd";
-            DialogResult result = fileDialog.ShowDialog();
-            if (result != DialogResult.Cancel)
-            {
-                try
-                {
-                    SingletonVisioApp.GetCurrentVisioInstance().VisioApp.Documents.Open(fileDialog.FileName);
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show("Error: " + Ex.Message);
-                }
-            }
-            return fileDialog;
-        }
 
         private void btnTest_Click(object sender, RibbonControlEventArgs e)
         {
             Visio.Application app = SingletonVisioApp.GetCurrentVisioInstance().VisioApp;
-            OpenFile();
+            FileHelper.OpenFile();
             Visio.Document Doc1 = app.ActiveDocument;
-            OpenFile();
+            FileHelper.OpenFile();
             Visio.Document Doc2 = app.ActiveDocument;
             DocumentComparer docComparer = new DocumentComparer(app, Doc1, Doc2);
             docComparer.CompareDocuments();
-            
-       
-            
+        }
+
+        private void btnWebService_Click(object sender, RibbonControlEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SingletonVisioApp.GetCurrentVisioInstance().WorkflowAddress) ||
+                string.IsNullOrWhiteSpace(SingletonVisioApp.GetCurrentVisioInstance().WorkflowName))
+            {
+                MessageBox.Show("No Workflow Service Data setup. Please setup the data in the configuration tab.", "Promoveo For Visio");
+            }
+            else
+            {
+                ServiceClient.WorkflowCommunicator workflowCommunicator =
+                    new ServiceClient.WorkflowCommunicator(SingletonVisioApp.GetCurrentVisioInstance().WorkflowAddress,
+                                                           SingletonVisioApp.GetCurrentVisioInstance().WorkflowName);
+                try
+                {
+                    InputBox inputBox = new InputBox();
+                    workflowCommunicator.StartSPDefaultApprovalWorkflow(inputBox.ShowInputBox("Enter the item on which you want to start the workflow:"), null);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        
+        }
+
+        private void button1_Click(object sender, RibbonControlEventArgs e)
+        {
+            SingletonVisioApp singleton = SingletonVisioApp.GetCurrentVisioInstance();
+            WorkflowConfiguration workflowConfig = new WorkflowConfiguration();
+            workflowConfig.Show();
+        }
+
+        private void btnPublish_Click(object sender, RibbonControlEventArgs e)
+        {
+            CustomPublisher publisher = new CustomPublisher(SingletonVisioApp.GetCurrentVisioInstance().VisioApp);
+            publisher.StartPublish(true);
+        }
+
+        private void btnMerge_Click(object sender, RibbonControlEventArgs e)
+        {
+            MergeVisioFiles mergeVisioFiles = new MergeVisioFiles();
+            mergeVisioFiles.Show();
         }
 
     }

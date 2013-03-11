@@ -34,7 +34,7 @@
     <PublishUrl>publish\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.15</ApplicationVersion>
+    <ApplicationVersion>1.0.0.36</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -132,6 +132,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -174,9 +176,24 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="CustomPublisher.cs" />
     <Compile Include="DocumentComparer.cs" />
+    <Compile Include="FileHelper.cs" />
+    <Compile Include="InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MergeVisioFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MergeVisioFiles.Designer.cs">
+      <DependentUpon>MergeVisioFiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="PageNameEqualityComparer.cs" />
     <Compile Include="PageComparer.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="PromoveoRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -186,6 +203,21 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Workflow.cs" />
+    <Compile Include="WorkflowCommunicator.cs" />
+    <Compile Include="WorkflowConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkflowConfiguration.Designer.cs">
+      <DependentUpon>WorkflowConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowDataXmlOperator.cs" />
+    <EmbeddedResource Include="InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MergeVisioFiles.resx">
+      <DependentUpon>MergeVisioFiles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PromoveoRibbon.resx">
       <DependentUpon>PromoveoRibbon.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,7 +230,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WorkflowConfiguration.resx">
+      <DependentUpon>WorkflowConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="PromoveoAddin_TemporaryKey.pfx" />
+    <None Include="Properties\DataSources\System.Xml.Linq.XElement.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -219,6 +256,20 @@
       <DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
     </Compile>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Interop.Visio.SaveAsWeb">
+      <Guid>{50603AED-99E4-4F88-A4EA-3D4C06EC4346}</Guid>
+      <VersionMajor>4</VersionMajor>
+      <VersionMinor>14</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

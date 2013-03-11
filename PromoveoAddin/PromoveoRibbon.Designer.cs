@@ -36,36 +36,68 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.btnCompareDocuments = this.Factory.CreateRibbonButton();
             this.btnTest = this.Factory.CreateRibbonButton();
+            this.btnWebService = this.Factory.CreateRibbonButton();
+            this.group2 = this.Factory.CreateRibbonGroup();
+            this.button1 = this.Factory.CreateRibbonButton();
+            this.btnPublish = this.Factory.CreateRibbonButton();
+            this.btnMerge = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
+            this.group2.SuspendLayout();
             // 
             // tab1
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.tab1.Groups.Add(this.group1);
+            this.tab1.Groups.Add(this.group2);
             this.tab1.Label = "Promoveo";
             this.tab1.Name = "tab1";
             // 
             // group1
             // 
-            this.group1.Items.Add(this.btnCompareDocuments);
             this.group1.Items.Add(this.btnTest);
-            this.group1.Label = "Test";
+            this.group1.Items.Add(this.btnWebService);
+            this.group1.Items.Add(this.btnPublish);
+            this.group1.Items.Add(this.btnMerge);
+            this.group1.Label = "Prototype";
             this.group1.Name = "group1";
-            // 
-            // btnCompareDocuments
-            // 
-            this.btnCompareDocuments.Label = "Compare Documents";
-            this.btnCompareDocuments.Name = "btnCompareDocuments";
-            this.btnCompareDocuments.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnCompareDocuments_Click);
             // 
             // btnTest
             // 
-            this.btnTest.Label = "Test";
+            this.btnTest.Label = "Compare Models";
             this.btnTest.Name = "btnTest";
             this.btnTest.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnTest_Click);
+            // 
+            // btnWebService
+            // 
+            this.btnWebService.Label = "Start Workflow";
+            this.btnWebService.Name = "btnWebService";
+            this.btnWebService.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnWebService_Click);
+            // 
+            // group2
+            // 
+            this.group2.Items.Add(this.button1);
+            this.group2.Label = "Configuration";
+            this.group2.Name = "group2";
+            // 
+            // button1
+            // 
+            this.button1.Label = "Workflow Service";
+            this.button1.Name = "button1";
+            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            // 
+            // btnPublish
+            // 
+            this.btnPublish.Label = "Publish";
+            this.btnPublish.Name = "btnPublish";
+            this.btnPublish.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnPublish_Click);
+            // 
+            // btnMerge
+            // 
+            this.btnMerge.Label = "Merge";
+            this.btnMerge.Name = "btnMerge";
+            this.btnMerge.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnMerge_Click);
             // 
             // PromoveoRibbon
             // 
@@ -77,6 +109,8 @@
             this.tab1.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
+            this.group2.ResumeLayout(false);
+            this.group2.PerformLayout();
 
         }
 
@@ -84,8 +118,12 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnCompareDocuments;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnTest;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnWebService;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnPublish;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnMerge;
     }
 
     partial class ThisRibbonCollection

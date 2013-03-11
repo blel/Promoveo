@@ -15,6 +15,10 @@ namespace PromoveoAddin
 
         //Properties
         public Visio.Application VisioApp { get { return _visioApp; } }
+        public string WorkflowAddress { get; set; }
+        public string WorkflowName { get; set; }
+        public string ExportPath { get; set; }
+        public string PrintIcon { get; set; }
 
 
         //private Constructor
