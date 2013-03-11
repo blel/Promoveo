@@ -139,6 +139,8 @@ namespace PromoveoAddin
 
         private bool IsShapeModified(Visio.Shape shape1, Visio.Shape shape2)
         {
+            
+
             bool result = false;
             //X position
             result = shape1.Cells["PinX"].Result[(short)Visio.VisUnitCodes.visInches] != shape2.Cells["PinX"].Result[(short)Visio.VisUnitCodes.visInches] ?
