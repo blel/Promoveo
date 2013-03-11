@@ -191,8 +191,10 @@
     <Compile Include="MergeVisioFiles.Designer.cs">
       <DependentUpon>MergeVisioFiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelMerger.cs" />
     <Compile Include="PageNameEqualityComparer.cs" />
     <Compile Include="PageComparer.cs" />
+    <Compile Include="PagePreparer.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PromoveoRibbon.cs">
       <SubType>Component</SubType>

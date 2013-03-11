@@ -48,7 +48,8 @@ namespace PromoveoAddin
             foreach (Visio.Page page in GetIntersectionPages())
             {
                 Visio.Page resultPage = _resultingDocument.Pages.Add();
-                SetupDestinationPage(page, resultPage);
+                PagePreparer preparer = new PagePreparer(resultPage, page);
+                preparer.CopyFormatToDestinationPage();
                 //Now compare the content of the page....
                 PageComparer pageComparer = new PageComparer(_app, _documentA.Pages[page.Name], _documentB.Pages[page.Name], resultPage);
                 pageComparer.ComparePages();
@@ -76,7 +77,10 @@ namespace PromoveoAddin
             foreach (Visio.Page page in difference)
             {
                 Visio.Page resultPage = _resultingDocument.Pages.Add();
-                CopyPage(page, resultPage);
+                PagePreparer preparer = new PagePreparer(resultPage, page);
+                preparer.CopyFormatToDestinationPage();
+                preparer.CopyPage();
+
                 Visio.Shape resultRect = resultPage.DrawRectangle(0, 0, resultPage.PageSheet.Cells["PageWidth"].Result[Visio.VisUnitCodes.visInches], resultPage.PageSheet.Cells["PageHeight"].Result[Visio.VisUnitCodes.visInches]);
                 resultRect.SendToBack();
                 resultRect.Cells["FillForegnd"].FormulaU = RGBColor;
@@ -89,32 +93,33 @@ namespace PromoveoAddin
         /// </summary>
         /// <param name="fromPage">Source page</param>
         /// <param name="toPage">Destination page</param>
-        private void CopyPage(Visio.Page fromPage, Visio.Page toPage)
-        {
+        //private void CopyPage(Visio.Page fromPage, Visio.Page toPage)
+        //{
+        //    PagePreparer preparer = new PagePreparer(toPage, fromPage);
+        //    preparer.CopyFormatToDestinationPage();
+        //    //Copy shapes
+        //    fromPage.AddGuide((short)Visio.VisGuideTypes.visPoint, 0, 0);
+        //    Visio.Selection selection = fromPage.CreateSelection(Visio.VisSelectionTypes.visSelTypeAll);
+        //    selection.Copy();
+        //    toPage.Paste();
+        //    Visio.Selection resultSelection = toPage.CreateSelection(Visio.VisSelectionTypes.visSelTypeAll);
+        //    double origX, origY, newX, newY, dummy1, dummy2;
+        //    selection.BoundingBox(1, out origX, out origY, out dummy1, out dummy2);
+        //    resultSelection.BoundingBox(1, out newX, out newY, out dummy1, out dummy2);
+        //    double diffX = origX - newX;
+        //    double diffY = origY - newY;
+        //    resultSelection.Move(diffX, diffY);
+        //}
 
-            SetupDestinationPage(fromPage, toPage);
-            //Copy shapes
-            fromPage.AddGuide((short)Visio.VisGuideTypes.visPoint, 0, 0);
-            Visio.Selection selection = fromPage.CreateSelection(Visio.VisSelectionTypes.visSelTypeAll);
-            selection.Copy();
-            toPage.Paste();
-            Visio.Selection resultSelection = toPage.CreateSelection(Visio.VisSelectionTypes.visSelTypeAll);
-            double origX, origY, newX, newY, dummy1, dummy2;
-            selection.BoundingBox(1, out origX, out origY, out dummy1, out dummy2);
-            resultSelection.BoundingBox(1, out newX, out newY, out dummy1, out dummy2);
-            double diffX = origX - newX;
-            double diffY = origY - newY;
-            resultSelection.Move(diffX, diffY);
-        }
-
-        private void SetupDestinationPage(Visio.Page fromPage, Visio.Page toPage)
-        {
-            //Copy name and orientation
-            toPage.Name = fromPage.Name;
-            toPage.PageSheet.Cells["PageHeight"].FormulaU = fromPage.PageSheet.Cells["PageHeight"].get_ResultStr(Visio.VisUnitCodes.visInches);
-            toPage.PageSheet.Cells["PageWidth"].FormulaU = fromPage.PageSheet.Cells["PageWidth"].get_ResultStr(Visio.VisUnitCodes.visInches);
-            toPage.PageSheet.Cells["PrintPageOrientation"].FormulaU = fromPage.PageSheet.Cells["PrintPageOrientation"].get_ResultStrU(Visio.VisUnitCodes.visNumber);
-        }
+        //private void SetupDestinationPage(Visio.Page fromPage, Visio.Page toPage)
+        //{
+        //    //Copy name and orientation
+        //    toPage.Name = fromPage.Name;
+        //    toPage.PageSheet.Cells["PageHeight"].FormulaU = fromPage.PageSheet.Cells["PageHeight"].get_ResultStr(Visio.VisUnitCodes.visInches);
+        //    toPage.PageSheet.Cells["PageWidth"].FormulaU = fromPage.PageSheet.Cells["PageWidth"].get_ResultStr(Visio.VisUnitCodes.visInches);
+        //    toPage.PageSheet.Cells["PrintPageOrientation"].FormulaU = fromPage.PageSheet.Cells["PrintPageOrientation"].get_ResultStrU(Visio.VisUnitCodes.visNumber);
+            
+        //}
 
 
         public List<Visio.Page> GetIntersectionPages()

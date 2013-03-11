@@ -30,12 +30,14 @@ namespace PromoveoAddin
             {
                 foreach (var item in fileDialog.FileNames)
                 {
-                    lbFilesToMerge.Items.Add(item);
-                    //if ((from cc in lbFilesToMerge.Items.Cast<string>()
-                    //     select cc).First() != null)
-                    //{
-                    //    lbFilesToMerge.Items.Add(item);
-                    //}
+                    var equalItems = from cc in lbFilesToMerge.Items.Cast<string>()
+                                     where cc == item
+                                     select cc;
+
+                    if (equalItems.Count() == 0)
+                    {
+                        lbFilesToMerge.Items.Add(item);
+                    }
                 }
             }
 
@@ -51,7 +53,16 @@ namespace PromoveoAddin
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-
+            ModelMerger merger = new ModelMerger();
+            merger.FilesToMerge = lbFilesToMerge.Items.Cast<string>().ToList();
+            DialogResult result = MessageBox.Show("All open docs will be closed without saving. Do you want to continue?",
+                "Promoveo For Visio", MessageBoxButtons.YesNo);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                merger.StartMerge();
+            }
         }
+
+
     }
 }
