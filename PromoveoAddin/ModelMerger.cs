@@ -5,22 +5,38 @@ using System.Text;
 using Visio = Microsoft.Office.Interop.Visio;
 using Office = Microsoft.Office.Core;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace PromoveoAddin
 {
     public class ModelMerger
     {
+        #region fields
         SingletonVisioApp _app;
         Visio.Page _initialPageToRemove;
         Visio.Document _resultDoc;
+        #endregion
+
+        #region Properties
         public List<string> FilesToMerge { get; set; }
+        #endregion
 
-
+        #region constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public  ModelMerger()
         {
             _app = SingletonVisioApp.GetCurrentVisioInstance();
         }
+        #endregion
 
+        #region methods
+
+        /// <summary>
+        /// Closes all open files
+        /// Not sure if needed in future
+        /// </summary>
         private void CloseAllOpenFiles()
         {
             for (int i = _app.VisioApp.Documents.Count; i > 0; i--)
@@ -29,6 +45,12 @@ namespace PromoveoAddin
             }
         }
 
+
+        /// <summary>
+        /// Starts the merge operation
+        /// Files to merge must have been set before (TODO: should  
+        /// be passed as a parameter)
+        /// </summary>
         public void StartMerge()
         {
             CloseAllOpenFiles();
@@ -43,17 +65,45 @@ namespace PromoveoAddin
             LocalizeVisioHyperlinks();
         }
 
+        /// <summary>
+        /// merges the document with fileName to the _resultDoc
+        /// </summary>
+        /// <param name="fileName"></param>
         private void Merge(string fileName)
         {
-            Visio.Document docToMerge = _app.VisioApp.Documents.Open(fileName);
+            Visio.Document docToMerge = _app.VisioApp.Documents.OpenEx(fileName,(short)Visio.VisOpenSaveArgs.visOpenHidden + (short)Visio.VisOpenSaveArgs.visOpenDontList);
             foreach (Visio.Page pageToMerge in docToMerge.Pages)
             {
+                MakeAbsoluteLinks(pageToMerge, docToMerge.Path);
                 MergePage(pageToMerge);
             }
             docToMerge.Saved = true;
             docToMerge.Close();
         }
 
+        private void MakeAbsoluteLinks(Visio.Page page, string basePath)
+        {
+            Uri baseUri = new Uri(basePath);
+            foreach (Visio.Shape shape in page.Shapes)
+            {
+                foreach (Visio.Hyperlink hyperlink in shape.Hyperlinks)
+                {
+                    Uri uri = new Uri(hyperlink.Address);
+                    if (!uri.IsAbsoluteUri)
+                    {
+                        hyperlink.Address = new Uri(baseUri, hyperlink.Address).ToString();
+                    }
+                }
+
+            }
+
+        }
+
+        
+        /// <summary>
+        /// merges the page to the _resultdoc
+        /// </summary>
+        /// <param name="pageToMerge"></param>
         private void MergePage(Visio.Page pageToMerge)
         {
             Visio.Page resultPage = _resultDoc.Pages.Add();
@@ -62,7 +112,11 @@ namespace PromoveoAddin
             preparer.CopyPage();
         }
 
-
+        /// <summary>
+        /// Returns a list of hyperlinks in a page
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         private List<Visio.Hyperlink> GetHyperlinks(Visio.Page page)
         {
             List<Visio.Hyperlink> resultList = new List<Visio.Hyperlink>();
@@ -85,10 +139,12 @@ namespace PromoveoAddin
                         {
                             string FirstPageNameOfDoc = GetFirstPageNameOfDoc(link.Address);
                             if (IsPageAvailable(FirstPageNameOfDoc))
+                            {
                                 link.SubAddress = FirstPageNameOfDoc;
+                                link.Address = string.Empty;
+                            }
                             else
-                                MessageBox.Show("The Link Target is not available.");
-
+                                MessageBox.Show(string.Format("The Link Target is not available.\r\nLink: {0}\r\nPage: {1}", link.Address, link.SubAddress));
                         }
                         else
                         {
@@ -115,6 +171,13 @@ namespace PromoveoAddin
             return false;
         }
 
+        public bool IsRelativeLink(string fileName)
+        {
+            string prefix = fileName.Substring(0, 3);
+            Regex regex = new Regex(@"[a-z|A-Z]:\\");
+            return !regex.IsMatch(prefix);
+        }
+
         private string GetFirstPageNameOfDoc(string filename)
         {
             var document = _app.VisioApp.Documents.OpenEx(filename, (short)Visio.VisOpenSaveArgs.visOpenHidden + (short)Visio.VisOpenSaveArgs.visOpenDontList);
@@ -126,10 +189,9 @@ namespace PromoveoAddin
 
         private bool IsPageAvailable(string pageName)
         {
-            return _resultDoc.Pages.Cast<Visio.Page>().ToList().Find(cc =>cc.Name == pageName)!=null; 
-                  
+            return _resultDoc.Pages.Cast<Visio.Page>().ToList().Find(cc =>cc.Name == pageName)!=null;
+
         }
-
-
+        #endregion
     }
 }
