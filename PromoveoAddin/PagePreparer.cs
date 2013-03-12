@@ -12,30 +12,78 @@ namespace PromoveoAddin
     {
         private Visio.Page _destinationPage;
         private Visio.Page _sourcePage;
+        private Visio.Document  _resultDocument;
         
-        public PagePreparer(Visio.Page destinationPage, Visio.Page sourcePage)
+        public PagePreparer(Visio.Document doc, Visio.Page destinationPage, Visio.Page sourcePage)
         {
             _destinationPage = destinationPage;
             _sourcePage = sourcePage;
+            _resultDocument = doc;
         }
 
-        public void CopyFormatToDestinationPage()
+        public void CopyFormatToDestinationPage(bool replacePages)
         {
-            //Copy name and orientation
-            try
+            var pageWithSameName = _resultDocument.Pages.Cast<Visio.Page>().ToList().Find(cc => cc.Name == _sourcePage.Name);
+            if (pageWithSameName != null)
+            {
+                if (replacePages)
+                {
+                    string pageName = pageWithSameName.Name;
+                    _resultDocument.Pages[pageWithSameName.Name].Delete(Convert.ToInt16(false));
+                    _destinationPage.Name = pageName;
+
+                }
+                else
+                {
+                    _destinationPage.Name = Guid.NewGuid().ToString();
+                }
+            }
+            else
             {
                 _destinationPage.Name = _sourcePage.Name;
             }
-            catch (Exception ex)
-            {
-                //MessageBox.Show("Error: " + ex.Message);
 
-                _destinationPage.Name = Guid.NewGuid().ToString();
-            }
-
+            //copy properties from source to dstination page
             _destinationPage.PageSheet.Cells["PageHeight"].FormulaU = _sourcePage.PageSheet.Cells["PageHeight"].get_ResultStr(Visio.VisUnitCodes.visInches);
+
             _destinationPage.PageSheet.Cells["PageWidth"].FormulaU = _sourcePage.PageSheet.Cells["PageWidth"].get_ResultStr(Visio.VisUnitCodes.visInches);
+
             _destinationPage.PageSheet.Cells["PrintPageOrientation"].FormulaU = _sourcePage.PageSheet.Cells["PrintPageOrientation"].get_ResultStrU(Visio.VisUnitCodes.visNumber);
+
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPage, (short)Visio.VisCellIndices.visPageShdwOffsetX].FormulaU = 
+                _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPage, (short)Visio.VisCellIndices.visPageShdwOffsetX].FormulaU;
+
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPage, (short)Visio.VisCellIndices.visPageShdwOffsetY].FormulaU = 
+                _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPage, (short)Visio.VisCellIndices.visPageShdwOffsetY].FormulaU;
+
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOPlaceStyle].FormulaForceU = 
+                _sourcePage.PageSheet.CellsU["PlaceStyle"].FormulaU;
+            //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLORouteStyle].FormulaForceU = "6"
+            //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOLineToNodeX].FormulaForceU = "3.175 mm"
+            //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOLineToNodeY].FormulaForceU = "3.175 mm"
+            //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOBlockSizeX].FormulaForceU = "6.35 mm"
+            //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOBlockSizeY].FormulaForceU = "6.35 mm"
+            //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOAvenueSizeX].FormulaForceU = "15 mm"
+            //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOAvenueSizeY].FormulaForceU = "15 mm"
+            //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOLineToLineX].FormulaForceU = "3.175 mm"
+            //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOLineToLineY].FormulaForceU = "3.175 mm"
+            //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOSplit].FormulaForceU = "1"
+
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesLeftMargin].FormulaU = 
+                _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesLeftMargin].FormulaU;
+
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesRightMargin].FormulaU = 
+                _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesRightMargin].FormulaU;
+
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesTopMargin].FormulaU = 
+                _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesTopMargin].FormulaU;
+
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesBottomMargin].FormulaU = 
+                _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesTopMargin].FormulaU;
+
+            //_destinationPage.PageSheet.CellsSRC(visSectionUser, 0, visUserValue).FormulaForceU = "36"
+            //_destinationPage.PageSheet.CellsSRC(visSectionUser, 1, visUserValue).FormulaForceU = "16"
+            //_destinationPage.PageSheet.CellsSRC(visSectionUser, 2, visUserValue).FormulaForceU = "0"
 
         }
 

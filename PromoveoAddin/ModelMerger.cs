@@ -12,9 +12,21 @@ namespace PromoveoAddin
     public class ModelMerger
     {
         #region fields
+        
+        //the app
         SingletonVisioApp _app;
+        
+        //temp field for auto created inital page
         Visio.Page _initialPageToRemove;
+        
+        //name of the target file, if files should merged in to existing target file
+        string _targetFileName;
+
+        //the result doc
         Visio.Document _resultDoc;
+
+        //replace pages
+        bool _replacePages;
         #endregion
 
         #region Properties
@@ -25,10 +37,13 @@ namespace PromoveoAddin
         /// <summary>
         /// Constructor
         /// </summary>
-        public  ModelMerger()
+        public ModelMerger(string targetFileName, bool replacePages)
         {
+            _targetFileName = targetFileName;
+            _replacePages = replacePages;
             _app = SingletonVisioApp.GetCurrentVisioInstance();
         }
+
         #endregion
 
         #region methods
@@ -41,6 +56,7 @@ namespace PromoveoAddin
         {
             for (int i = _app.VisioApp.Documents.Count; i > 0; i--)
             {
+                _app.VisioApp.Documents[i].Saved = true;
                 _app.VisioApp.Documents[i].Close();
             }
         }
@@ -54,13 +70,25 @@ namespace PromoveoAddin
         public void StartMerge()
         {
             CloseAllOpenFiles();
-            _resultDoc = _app.VisioApp.Documents.Add("");
-            _initialPageToRemove = _resultDoc.Pages[1];
-            _initialPageToRemove.Name = Guid.NewGuid().ToString();
+            if (!string.IsNullOrWhiteSpace(_targetFileName))
+            {
+                _resultDoc = _app.VisioApp.Documents.Add(_targetFileName);
+            }
+            else
+            {
+                _resultDoc = _app.VisioApp.Documents.Add("");
+                _initialPageToRemove = _resultDoc.Pages[1];
+                _initialPageToRemove.Name = Guid.NewGuid().ToString();
+            }
+            
+            
             foreach (string fileName in FilesToMerge)
             {
+                _app.VisioApp.EventsEnabled = Convert.ToInt16( false);
                 Merge(fileName);
+                _app.VisioApp.EventsEnabled = Convert.ToInt16(true);
             }
+            if (_initialPageToRemove != null)
             _resultDoc.Pages[_initialPageToRemove.Name].Delete(Convert.ToInt16(false));
             LocalizeVisioHyperlinks();
         }
@@ -74,8 +102,10 @@ namespace PromoveoAddin
             Visio.Document docToMerge = _app.VisioApp.Documents.OpenEx(fileName,(short)Visio.VisOpenSaveArgs.visOpenHidden + (short)Visio.VisOpenSaveArgs.visOpenDontList);
             foreach (Visio.Page pageToMerge in docToMerge.Pages)
             {
-                MakeAbsoluteLinks(pageToMerge, docToMerge.Path);
-                MergePage(pageToMerge);
+
+                    MakeAbsoluteLinks(pageToMerge, docToMerge.Path);
+                    MergePage(pageToMerge);
+                
             }
             docToMerge.Saved = true;
             docToMerge.Close();
@@ -88,18 +118,13 @@ namespace PromoveoAddin
             {
                 foreach (Visio.Hyperlink hyperlink in shape.Hyperlinks)
                 {
-                    Uri uri = new Uri(hyperlink.Address);
-                    if (!uri.IsAbsoluteUri)
-                    {
+                    if (!string.IsNullOrWhiteSpace(hyperlink.Address ))
                         hyperlink.Address = new Uri(baseUri, hyperlink.Address).ToString();
-                    }
+                
                 }
-
             }
-
         }
 
-        
         /// <summary>
         /// merges the page to the _resultdoc
         /// </summary>
@@ -107,8 +132,8 @@ namespace PromoveoAddin
         private void MergePage(Visio.Page pageToMerge)
         {
             Visio.Page resultPage = _resultDoc.Pages.Add();
-            PagePreparer preparer = new PagePreparer(resultPage, pageToMerge);
-            preparer.CopyFormatToDestinationPage();
+            PagePreparer preparer = new PagePreparer(_resultDoc, resultPage, pageToMerge);
+            preparer.CopyFormatToDestinationPage(_replacePages);
             preparer.CopyPage();
         }
 
@@ -131,7 +156,7 @@ namespace PromoveoAddin
         {
             foreach (Visio.Page page in _resultDoc.Pages)
             {
-                foreach (Visio.Hyperlink link in GetHyperlinks(page))
+                foreach (Visio.Hyperlink link in GetHyperlinks(page).Where(cc=>!string.IsNullOrWhiteSpace(cc.Address)))
                 {
                     if (IsVisioFile(link.Address))
                     {

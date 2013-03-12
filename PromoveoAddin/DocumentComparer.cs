@@ -48,8 +48,8 @@ namespace PromoveoAddin
             foreach (Visio.Page page in GetIntersectionPages())
             {
                 Visio.Page resultPage = _resultingDocument.Pages.Add();
-                PagePreparer preparer = new PagePreparer(resultPage, page);
-                preparer.CopyFormatToDestinationPage();
+                PagePreparer preparer = new PagePreparer(_resultingDocument, resultPage, page);
+                preparer.CopyFormatToDestinationPage(false);
                 //Now compare the content of the page....
                 PageComparer pageComparer = new PageComparer(_app, _documentA.Pages[page.Name], _documentB.Pages[page.Name], resultPage);
                 pageComparer.ComparePages();
@@ -77,8 +77,8 @@ namespace PromoveoAddin
             foreach (Visio.Page page in difference)
             {
                 Visio.Page resultPage = _resultingDocument.Pages.Add();
-                PagePreparer preparer = new PagePreparer(resultPage, page);
-                preparer.CopyFormatToDestinationPage();
+                PagePreparer preparer = new PagePreparer(_resultingDocument, resultPage, page);
+                preparer.CopyFormatToDestinationPage(false);
                 preparer.CopyPage();
 
                 Visio.Shape resultRect = resultPage.DrawRectangle(0, 0, resultPage.PageSheet.Cells["PageWidth"].Result[Visio.VisUnitCodes.visInches], resultPage.PageSheet.Cells["PageHeight"].Result[Visio.VisUnitCodes.visInches]);

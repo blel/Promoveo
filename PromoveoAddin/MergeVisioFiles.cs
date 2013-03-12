@@ -14,6 +14,10 @@ namespace PromoveoAddin
         public MergeVisioFiles()
         {
             InitializeComponent();
+            this.rdbNewFile.Checked = true;
+            this.txtTarget.Enabled = false;
+            this.btnBrowse.Enabled = false;
+            this.chkReplacePages.Checked = true;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -53,7 +57,7 @@ namespace PromoveoAddin
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            ModelMerger merger = new ModelMerger();
+            ModelMerger merger = new ModelMerger(this.txtTarget.Text, this.chkReplacePages.Checked);
             merger.FilesToMerge = lbFilesToMerge.Items.Cast<string>().ToList();
             DialogResult result = MessageBox.Show("All open docs will be closed without saving. Do you want to continue?",
                 "Promoveo For Visio", MessageBoxButtons.YesNo);
@@ -61,6 +65,39 @@ namespace PromoveoAddin
             {
                 merger.StartMerge();
             }
+            this.Close();
+        }
+
+        private void rdbExistingFile_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbExistingFile.Checked)
+            {
+                this.txtTarget.Enabled = true;
+                this.btnBrowse.Enabled = true;
+            }
+            else
+            {
+                this.txtTarget.Enabled = false;
+                this.txtTarget.Text = string.Empty;
+                this.btnBrowse.Enabled = false;
+            }
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "All Visio Documents|*.vsd";
+            if (fileDialog.ShowDialog() != DialogResult.Cancel)
+            {
+                this.txtTarget.Text = fileDialog.FileName;
+            }
+
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
 
