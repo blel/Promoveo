@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="303c134e49f944d3a411b52a07c5e430" Name="Diagram1">
+        <EntityTypeShape EntityType="PromoveoDBModel.ProcessModel" Width="1.5" PointX="6.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PromoveoDBModel.ProcessModel_PublishingPlatformRole" Width="3.375" PointX="4.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PromoveoDBModel.PublishingPlatformRole" Width="3.375" PointX="0.625" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PromoveoDBModel.PublishingPlatformUser" Width="2.125" PointX="0.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PromoveoDBModel.PublishingPlatformUser_PublishingPlatformRole" Width="3.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="PromoveoDBModel.FK_ProcessModel_PublishingPlatformRole_ToProcessModel" ManuallyRouted="false" />
+        <AssociationConnector Association="PromoveoDBModel.FK_PublishingPlatformUser_PublishingPlatformRoleToPublishingPlatformRole" ManuallyRouted="false" />
+        <AssociationConnector Association="PromoveoDBModel.FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
