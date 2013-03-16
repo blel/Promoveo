@@ -41,6 +41,7 @@ namespace PromoveoAddin
             else
             {
                 _destinationPage.Name = _sourcePage.Name;
+               
             }
 
             //copy properties from source to dstination page
