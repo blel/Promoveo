@@ -38,10 +38,12 @@
             this.group1 = this.Factory.CreateRibbonGroup();
             this.btnTest = this.Factory.CreateRibbonButton();
             this.btnWebService = this.Factory.CreateRibbonButton();
-            this.group2 = this.Factory.CreateRibbonGroup();
-            this.button1 = this.Factory.CreateRibbonButton();
             this.btnPublish = this.Factory.CreateRibbonButton();
             this.btnMerge = this.Factory.CreateRibbonButton();
+            this.group2 = this.Factory.CreateRibbonGroup();
+            this.button1 = this.Factory.CreateRibbonButton();
+            this.btnRoles = this.Factory.CreateRibbonButton();
+            this.btnSerialize = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
@@ -75,18 +77,6 @@
             this.btnWebService.Name = "btnWebService";
             this.btnWebService.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnWebService_Click);
             // 
-            // group2
-            // 
-            this.group2.Items.Add(this.button1);
-            this.group2.Label = "Configuration";
-            this.group2.Name = "group2";
-            // 
-            // button1
-            // 
-            this.button1.Label = "Workflow Service";
-            this.button1.Name = "button1";
-            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
-            // 
             // btnPublish
             // 
             this.btnPublish.Label = "Publish";
@@ -98,6 +88,32 @@
             this.btnMerge.Label = "Merge";
             this.btnMerge.Name = "btnMerge";
             this.btnMerge.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnMerge_Click);
+            // 
+            // group2
+            // 
+            this.group2.Items.Add(this.button1);
+            this.group2.Items.Add(this.btnRoles);
+            this.group2.Items.Add(this.btnSerialize);
+            this.group2.Label = "Configuration";
+            this.group2.Name = "group2";
+            // 
+            // button1
+            // 
+            this.button1.Label = "Workflow Service";
+            this.button1.Name = "button1";
+            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            // 
+            // btnRoles
+            // 
+            this.btnRoles.Label = "Roles";
+            this.btnRoles.Name = "btnRoles";
+            this.btnRoles.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnRoles_Click);
+            // 
+            // btnSerialize
+            // 
+            this.btnSerialize.Label = "Serializer";
+            this.btnSerialize.Name = "btnSerialize";
+            this.btnSerialize.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnSerialize_Click);
             // 
             // PromoveoRibbon
             // 
@@ -124,6 +140,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnPublish;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnMerge;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnRoles;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnSerialize;
     }
 
     partial class ThisRibbonCollection

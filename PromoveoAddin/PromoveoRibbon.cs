@@ -73,5 +73,19 @@ namespace PromoveoAddin
             mergeVisioFiles.Show();
         }
 
+        private void btnRoles_Click(object sender, RibbonControlEventArgs e)
+        {
+            UserManagement.PublishingPlatformRole frmRoles = new UserManagement.PublishingPlatformRole();
+            frmRoles.Show();
+        }
+
+        private void btnSerialize_Click(object sender, RibbonControlEventArgs e)
+        {
+            UserManagement.PublishingPlatformSerializer serializer = new UserManagement.PublishingPlatformSerializer("D:\\tmp\\users.xml");
+            serializer.PrepareObjects();
+            serializer.SerializeModelUsers();
+            
+        }
+
     }
 }

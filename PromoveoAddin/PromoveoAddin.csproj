@@ -134,6 +134,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
@@ -183,6 +184,15 @@
   -->
   <ItemGroup>
     <Compile Include="CustomPublisher.cs" />
+    <Compile Include="Data\PromoveoDataSet.cs">
+      <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\PromoveoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DocumentComparer.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="InputBox.cs">
@@ -202,27 +212,6 @@
     <Compile Include="PageComparer.cs" />
     <Compile Include="PagePreparer.cs" />
     <Compile Include="Person.cs" />
-    <Compile Include="ProcessModel.cs">
-      <DependentUpon>PromoveoEntityData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessModel_PublishingPlatformRole.cs">
-      <DependentUpon>PromoveoEntityData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PromoveoEntityData.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PromoveoEntityData.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PromoveoEntityData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PromoveoEntityData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PromoveoEntityData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PromoveoEntityData.edmx</DependentUpon>
-    </Compile>
     <Compile Include="PromoveoRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -233,21 +222,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PublishingVersion.cs" />
-    <Compile Include="PublishingPlatformRole.cs">
-      <DependentUpon>PromoveoEntityData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PublishingPlatformUser.cs">
-      <DependentUpon>PromoveoEntityData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PublishingPlatformUser_PublishingPlatformRole.cs">
-      <DependentUpon>PromoveoEntityData.tt</DependentUpon>
-    </Compile>
+    <Compile Include="UserManagement\DALBaseClass.cs" />
+    <Compile Include="UserManagement\ProcessModelDAL.cs" />
     <Compile Include="UserManagement\PublishingPlatformRole.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserManagement\PublishingPlatformRole.Designer.cs">
       <DependentUpon>PublishingPlatformRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserManagement\PublishingPlatformRolesDAL.cs" />
+    <Compile Include="UserManagement\PublishingPlatformSerializer.cs" />
+    <Compile Include="UserManagement\RoleModelDAL.cs" />
+    <Compile Include="UserManagement\SerializableModelUser.cs" />
     <Compile Include="Workflow.cs" />
     <Compile Include="WorkflowCommunicator.cs" />
     <Compile Include="WorkflowConfiguration.cs">
@@ -282,25 +268,19 @@
       <DependentUpon>WorkflowConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Data\PromoveoDataSet.xsc">
+      <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Data\PromoveoDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PromoveoDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\PromoveoDataSet.xss">
+      <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="PromoveoAddin_TemporaryKey.pfx" />
-    <EntityDeploy Include="PromoveoEntityData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PromoveoEntityData.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="PromoveoEntityData.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PromoveoEntityData.edmx</DependentUpon>
-      <LastGenOutput>PromoveoEntityData.Context.cs</LastGenOutput>
-    </None>
-    <None Include="PromoveoEntityData.edmx.diagram">
-      <DependentUpon>PromoveoEntityData.edmx</DependentUpon>
-    </None>
-    <None Include="PromoveoEntityData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PromoveoEntityData.edmx</DependentUpon>
-      <LastGenOutput>PromoveoEntityData.cs</LastGenOutput>
-    </None>
     <None Include="Properties\DataSources\PromoveoDBEntities.datasource" />
     <None Include="Properties\DataSources\System.Xml.Linq.XElement.datasource" />
     <None Include="Properties\Settings.settings">
@@ -310,6 +290,7 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ShapeUIDEqualityComparer.cs" />
     <Compile Include="SingletonVisioApp.cs" />
