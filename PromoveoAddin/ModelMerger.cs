@@ -152,6 +152,8 @@ namespace PromoveoAddin
             return resultList;
         }
 
+
+
         private void LocalizeVisioHyperlinks()
         {
             foreach (Visio.Page page in _resultDoc.Pages)
@@ -187,7 +189,7 @@ namespace PromoveoAddin
             }
         }
 
-        private bool IsVisioFile(string fileName)
+        public static bool IsVisioFile(string fileName)
         {
             List<string> VisioExtensions = new List<string>() { ".vsd" };
             string extension = fileName.Substring(fileName.Length - 4, 4);

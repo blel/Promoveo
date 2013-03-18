@@ -222,6 +222,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PublishingVersion.cs" />
+    <Compile Include="Resources\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserManagement\DALBaseClass.cs" />
     <Compile Include="UserManagement\ProcessModelDAL.cs" />
     <Compile Include="UserManagement\PublishingPlatformRole.cs">
@@ -261,6 +266,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Resources\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserManagement\PublishingPlatformRole.resx">
       <DependentUpon>PublishingPlatformRole.cs</DependentUpon>
     </EmbeddedResource>
@@ -323,7 +332,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="UserManagement\FindUserInXml.js" />
+    <None Include="Resources\frameset.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_icon_tcm46-328106.jpg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

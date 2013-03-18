@@ -27,5 +27,19 @@ namespace PromoveoAddin
             }
             return fileDialog;
         }
+
+
+
+
+        public static string EnsureTailBackslash(string path)
+        {
+            return path.Last() == '\\' ? path : path + '\\';
+        }
+
+        public static string EnsureNoTailBackslash(string path)
+        {
+            return path.Last() == '\\' ? path.Substring(0,path.Length-1) : path;
+        }
+
     }
 }

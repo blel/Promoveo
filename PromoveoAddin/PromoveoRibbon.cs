@@ -63,8 +63,16 @@ namespace PromoveoAddin
 
         private void btnPublish_Click(object sender, RibbonControlEventArgs e)
         {
-            CustomPublisher publisher = new CustomPublisher(SingletonVisioApp.GetCurrentVisioInstance().VisioApp);
-            publisher.StartPublish(true);
+            SaveFileDialog fileDialog = new SaveFileDialog();
+            fileDialog.Filter = "Html Page (*.htm, *.html)|*.htm;*html";
+            fileDialog.FileName = System.IO.Path.GetFileNameWithoutExtension(SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument.Name);
+            DialogResult result = fileDialog.ShowDialog();
+            if (result != DialogResult.Cancel)
+            {
+                CustomPublisher publisher = new CustomPublisher(SingletonVisioApp.GetCurrentVisioInstance().VisioApp, 
+                    fileDialog.FileName);
+                publisher.StartPublish(true);
+            }
         }
 
         private void btnMerge_Click(object sender, RibbonControlEventArgs e)
