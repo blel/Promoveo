@@ -228,6 +228,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UserManagement\DALBaseClass.cs" />
+    <Compile Include="UserManagement\frmModelRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserManagement\frmModelRoles.Designer.cs">
+      <DependentUpon>frmModelRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserManagement\ProcessModelDAL.cs" />
     <Compile Include="UserManagement\PublishingPlatformRole.cs">
       <SubType>Form</SubType>
@@ -277,6 +283,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserManagement\frmModelRoles.resx">
+      <DependentUpon>frmModelRoles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserManagement\PublishingPlatformRole.resx">
       <DependentUpon>PublishingPlatformRole.cs</DependentUpon>
     </EmbeddedResource>
@@ -323,6 +332,7 @@
       <DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
     </Compile>
     <AppDesigner Include="Properties\" />
+    <None Include="Visio_Stencils\Promoveo.vss" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -346,6 +356,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\print_icon_tcm46-328106.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DB_Scripts\FullDBScript_201303191746.sql" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
