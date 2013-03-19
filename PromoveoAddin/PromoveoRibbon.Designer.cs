@@ -44,6 +44,7 @@
             this.button1 = this.Factory.CreateRibbonButton();
             this.btnRoles = this.Factory.CreateRibbonButton();
             this.btnSerialize = this.Factory.CreateRibbonButton();
+            this.btnUserManagement = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
@@ -94,6 +95,7 @@
             this.group2.Items.Add(this.button1);
             this.group2.Items.Add(this.btnRoles);
             this.group2.Items.Add(this.btnSerialize);
+            this.group2.Items.Add(this.btnUserManagement);
             this.group2.Label = "Configuration";
             this.group2.Name = "group2";
             // 
@@ -114,6 +116,12 @@
             this.btnSerialize.Label = "Serializer";
             this.btnSerialize.Name = "btnSerialize";
             this.btnSerialize.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnSerialize_Click);
+            // 
+            // btnUserManagement
+            // 
+            this.btnUserManagement.Label = "User Management";
+            this.btnUserManagement.Name = "btnUserManagement";
+            this.btnUserManagement.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnUserManagement_Click);
             // 
             // PromoveoRibbon
             // 
@@ -142,6 +150,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnMerge;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnRoles;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnSerialize;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnUserManagement;
     }
 
     partial class ThisRibbonCollection

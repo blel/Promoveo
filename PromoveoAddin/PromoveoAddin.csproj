@@ -237,8 +237,15 @@
     </Compile>
     <Compile Include="UserManagement\PublishingPlatformRolesDAL.cs" />
     <Compile Include="UserManagement\PublishingPlatformSerializer.cs" />
+    <Compile Include="UserManagement\PublishingPlatformUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserManagement\PublishingPlatformUser.Designer.cs">
+      <DependentUpon>PublishingPlatformUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserManagement\RoleModelDAL.cs" />
     <Compile Include="UserManagement\SerializableModelUser.cs" />
+    <Compile Include="UserManagement\UserRoleDAL.cs" />
     <Compile Include="Workflow.cs" />
     <Compile Include="WorkflowCommunicator.cs" />
     <Compile Include="WorkflowConfiguration.cs">
@@ -272,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserManagement\PublishingPlatformRole.resx">
       <DependentUpon>PublishingPlatformRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserManagement\PublishingPlatformUser.resx">
+      <DependentUpon>PublishingPlatformUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkflowConfiguration.resx">
       <DependentUpon>WorkflowConfiguration.cs</DependentUpon>

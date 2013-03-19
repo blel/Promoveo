@@ -95,5 +95,11 @@ namespace PromoveoAddin
             
         }
 
+        private void btnUserManagement_Click(object sender, RibbonControlEventArgs e)
+        {
+            UserManagement.PublishingPlatformUser frmPublishingPlatformUser = new UserManagement.PublishingPlatformUser();
+            frmPublishingPlatformUser.Show();
+        }
+
     }
 }
