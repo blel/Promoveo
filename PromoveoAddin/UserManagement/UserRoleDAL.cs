@@ -32,21 +32,16 @@ namespace PromoveoAddin.UserManagement
                 newUserRow.Shortname = row.Shortname;
                 newUserRow.Email = row["Email"] == DBNull.Value?null:row.Email;
                 userTable.AddPublishingPlatformUserRow(newUserRow);
-                
-
             }
-
             return userTable.AsEnumerable();
         }
 
         public IEnumerable<Data.PromoveoDataSet.PublishingPlatformUserRow> GetUnassignedUsers(int roleID)
         {
-             
             Data.PromoveoDataSet ds = new Data.PromoveoDataSet();
             Data.PromoveoDataSetTableAdapters.PublishingPlatformUserTableAdapter userAdapter = new Data.PromoveoDataSetTableAdapters.PublishingPlatformUserTableAdapter();
             userAdapter.Fill(ds.PublishingPlatformUser);
-            return ds.PublishingPlatformUser.Except(GetAssignedUsers(roleID), new UserEqualityComparer());
-                       
+            return ds.PublishingPlatformUser.Except(GetAssignedUsers(roleID), new UserEqualityComparer());        
         }
 
         public void AssignUser(int roleID, int userID)
@@ -84,13 +79,13 @@ namespace PromoveoAddin.UserManagement
                 assignedUser = null;
             return assignedUser != null;
         }
-
-
     }
 
+    /// <summary>
+    /// Conditions when thwo PublishingPlatformUserRows are equal
+    /// </summary>
     public class UserEqualityComparer : IEqualityComparer<Data.PromoveoDataSet.PublishingPlatformUserRow>
     {
-
         public bool Equals(PromoveoDataSet.PublishingPlatformUserRow x, PromoveoDataSet.PublishingPlatformUserRow y)
         {
             return x.Id == y.Id;
@@ -101,5 +96,4 @@ namespace PromoveoAddin.UserManagement
             return obj.Id.GetHashCode();
         }
     }
-
 }

@@ -6,7 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace PromoveoAddin.UserManagement
+namespace PromoveoAddin
 {
     public abstract class DALBaseClass:IDisposable
     {

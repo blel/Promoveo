@@ -28,6 +28,9 @@ namespace PromoveoAddin
             {
                 if (replacePages)
                 {
+                    
+
+
                     string pageName = pageWithSameName.Name;
                     _resultDocument.Pages[pageWithSameName.Name].Delete(Convert.ToInt16(false));
                     _destinationPage.Name = pageName;

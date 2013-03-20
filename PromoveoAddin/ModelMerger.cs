@@ -131,6 +131,22 @@ namespace PromoveoAddin
         /// <param name="pageToMerge"></param>
         private void MergePage(Visio.Page pageToMerge)
         {
+            //create a page with differences
+            //does not work currently - seems that guid is not preserved
+            if (_replacePages)
+            {
+                Visio.Page originalPage = _resultDoc.Pages.Cast<Visio.Page>().ToList().Find(cc => cc.Name == pageToMerge.Name);
+                if (originalPage != null)
+                {
+                    Visio.Page diffPage = _resultDoc.Pages.Add();
+                    diffPage.Name = pageToMerge.Name + "DiffResults";
+                    PageComparer pageComparer = new PageComparer(_app.VisioApp, originalPage, pageToMerge, diffPage);
+                    pageComparer.ComparePages();
+
+                }
+            }
+
+            //merge page
             Visio.Page resultPage = _resultDoc.Pages.Add();
             PagePreparer preparer = new PagePreparer(_resultDoc, resultPage, pageToMerge);
             preparer.CopyFormatToDestinationPage(_replacePages);

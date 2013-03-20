@@ -45,12 +45,17 @@
             this.btnRoles = this.Factory.CreateRibbonButton();
             this.btnSerialize = this.Factory.CreateRibbonButton();
             this.btnUserManagement = this.Factory.CreateRibbonButton();
+            this.btnShapeDataSource = this.Factory.CreateRibbonButton();
+            this.btnConfigurations = this.Factory.CreateRibbonButton();
             this.group3 = this.Factory.CreateRibbonGroup();
             this.btnModelUserRole = this.Factory.CreateRibbonButton();
+            this.group4 = this.Factory.CreateRibbonGroup();
+            this.btnProcessModels = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
             this.group3.SuspendLayout();
+            this.group4.SuspendLayout();
             // 
             // tab1
             // 
@@ -58,6 +63,7 @@
             this.tab1.Groups.Add(this.group1);
             this.tab1.Groups.Add(this.group2);
             this.tab1.Groups.Add(this.group3);
+            this.tab1.Groups.Add(this.group4);
             this.tab1.Label = "Promoveo";
             this.tab1.Name = "tab1";
             // 
@@ -97,9 +103,9 @@
             // group2
             // 
             this.group2.Items.Add(this.button1);
-            this.group2.Items.Add(this.btnRoles);
             this.group2.Items.Add(this.btnSerialize);
-            this.group2.Items.Add(this.btnUserManagement);
+            this.group2.Items.Add(this.btnShapeDataSource);
+            this.group2.Items.Add(this.btnConfigurations);
             this.group2.Label = "Configuration";
             this.group2.Name = "group2";
             // 
@@ -127,6 +133,18 @@
             this.btnUserManagement.Name = "btnUserManagement";
             this.btnUserManagement.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnUserManagement_Click);
             // 
+            // btnShapeDataSource
+            // 
+            this.btnShapeDataSource.Label = "Shape Data Source";
+            this.btnShapeDataSource.Name = "btnShapeDataSource";
+            this.btnShapeDataSource.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnShapeDataSource_Click);
+            // 
+            // btnConfigurations
+            // 
+            this.btnConfigurations.Label = "Configurations";
+            this.btnConfigurations.Name = "btnConfigurations";
+            this.btnConfigurations.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnConfigurations_Click);
+            // 
             // group3
             // 
             this.group3.Items.Add(this.btnModelUserRole);
@@ -138,6 +156,20 @@
             this.btnModelUserRole.Label = "Model User Roles";
             this.btnModelUserRole.Name = "btnModelUserRole";
             this.btnModelUserRole.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnModelUserRole_Click);
+            // 
+            // group4
+            // 
+            this.group4.Items.Add(this.btnProcessModels);
+            this.group4.Items.Add(this.btnRoles);
+            this.group4.Items.Add(this.btnUserManagement);
+            this.group4.Label = "Process Models";
+            this.group4.Name = "group4";
+            // 
+            // btnProcessModels
+            // 
+            this.btnProcessModels.Label = "Process Models";
+            this.btnProcessModels.Name = "btnProcessModels";
+            this.btnProcessModels.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnProcessModels_Click);
             // 
             // PromoveoRibbon
             // 
@@ -153,6 +185,8 @@
             this.group2.PerformLayout();
             this.group3.ResumeLayout(false);
             this.group3.PerformLayout();
+            this.group4.ResumeLayout(false);
+            this.group4.PerformLayout();
 
         }
 
@@ -171,6 +205,10 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnUserManagement;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group3;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnModelUserRole;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnShapeDataSource;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnConfigurations;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group4;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnProcessModels;
     }
 
     partial class ThisRibbonCollection

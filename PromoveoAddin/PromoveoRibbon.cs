@@ -63,16 +63,10 @@ namespace PromoveoAddin
 
         private void btnPublish_Click(object sender, RibbonControlEventArgs e)
         {
-            SaveFileDialog fileDialog = new SaveFileDialog();
-            fileDialog.Filter = "Html Page (*.htm, *.html)|*.htm;*html";
-            fileDialog.FileName = System.IO.Path.GetFileNameWithoutExtension(SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument.Name);
-            DialogResult result = fileDialog.ShowDialog();
-            if (result != DialogResult.Cancel)
-            {
-                CustomPublisher publisher = new CustomPublisher(SingletonVisioApp.GetCurrentVisioInstance().VisioApp, 
-                    fileDialog.FileName);
-                publisher.StartPublish(true);
-            }
+            frmPublishDialog publishDialog = new frmPublishDialog();
+            publishDialog.Show();
+            
+
         }
 
         private void btnMerge_Click(object sender, RibbonControlEventArgs e)
@@ -105,6 +99,24 @@ namespace PromoveoAddin
         {
             UserManagement.frmModelRoles frmmodelRoles = new UserManagement.frmModelRoles();
             frmmodelRoles.Show();
+        }
+
+        private void btnShapeDataSource_Click(object sender, RibbonControlEventArgs e)
+        {
+            MasterDataManagement.frmGetShapeDataSource frmgetShapeDataSource = new MasterDataManagement.frmGetShapeDataSource();
+            frmgetShapeDataSource.Show();
+        }
+
+        private void btnConfigurations_Click(object sender, RibbonControlEventArgs e)
+        {
+            MasterDataManagement.frmConfigurations frmConfigurations = new MasterDataManagement.frmConfigurations();
+            frmConfigurations.Show();
+        }
+
+        private void btnProcessModels_Click(object sender, RibbonControlEventArgs e)
+        {
+            MasterDataManagement.frmProcessModels processModels = new MasterDataManagement.frmProcessModels();
+            processModels.Show();
         }
 
     }

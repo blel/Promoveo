@@ -94,6 +94,24 @@ namespace PromoveoAddin.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ProcessModelAndOwner.
+        /// </summary>
+        internal static string ModelOwnerView {
+            get {
+                return ResourceManager.GetString("ModelOwnerView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ModelUserGroupUsers.
+        /// </summary>
+        internal static string ModelUserRoleView {
+            get {
+                return ResourceManager.GetString("ModelUserRoleView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap print_icon_tcm46_328106 {

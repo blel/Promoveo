@@ -195,12 +195,39 @@
     </Compile>
     <Compile Include="DocumentComparer.cs" />
     <Compile Include="FileHelper.cs" />
+    <Compile Include="frmPublishDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPublishDialog.Designer.cs">
+      <DependentUpon>frmPublishDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InputBox.Designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterDataManagement\ConfigurationDAL.cs" />
+    <Compile Include="MasterDataManagement\ConnectionStringHelper.cs" />
+    <Compile Include="MasterDataManagement\frmConfigurations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterDataManagement\frmConfigurations.Designer.cs">
+      <DependentUpon>frmConfigurations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterDataManagement\frmGetShapeDataSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterDataManagement\frmGetShapeDataSource.Designer.cs">
+      <DependentUpon>frmGetShapeDataSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterDataManagement\frmProcessModels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterDataManagement\frmProcessModels.Designer.cs">
+      <DependentUpon>frmProcessModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterDataManagement\ProcessModelDAL.cs" />
     <Compile Include="MergeVisioFiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,7 +254,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserManagement\DALBaseClass.cs" />
+    <Compile Include="DALBaseClass.cs" />
     <Compile Include="UserManagement\frmModelRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,8 +289,20 @@
       <DependentUpon>WorkflowConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="WorkflowDataXmlOperator.cs" />
+    <EmbeddedResource Include="frmPublishDialog.resx">
+      <DependentUpon>frmPublishDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterDataManagement\frmConfigurations.resx">
+      <DependentUpon>frmConfigurations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterDataManagement\frmGetShapeDataSource.resx">
+      <DependentUpon>frmGetShapeDataSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterDataManagement\frmProcessModels.resx">
+      <DependentUpon>frmProcessModels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MergeVisioFiles.resx">
       <DependentUpon>MergeVisioFiles.cs</DependentUpon>
