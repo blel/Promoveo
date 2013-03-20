@@ -45,15 +45,19 @@
             this.btnRoles = this.Factory.CreateRibbonButton();
             this.btnSerialize = this.Factory.CreateRibbonButton();
             this.btnUserManagement = this.Factory.CreateRibbonButton();
+            this.group3 = this.Factory.CreateRibbonGroup();
+            this.btnModelUserRole = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
+            this.group3.SuspendLayout();
             // 
             // tab1
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
             this.tab1.Groups.Add(this.group1);
             this.tab1.Groups.Add(this.group2);
+            this.tab1.Groups.Add(this.group3);
             this.tab1.Label = "Promoveo";
             this.tab1.Name = "tab1";
             // 
@@ -123,6 +127,18 @@
             this.btnUserManagement.Name = "btnUserManagement";
             this.btnUserManagement.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnUserManagement_Click);
             // 
+            // group3
+            // 
+            this.group3.Items.Add(this.btnModelUserRole);
+            this.group3.Label = "Model User Configuration";
+            this.group3.Name = "group3";
+            // 
+            // btnModelUserRole
+            // 
+            this.btnModelUserRole.Label = "Model User Roles";
+            this.btnModelUserRole.Name = "btnModelUserRole";
+            this.btnModelUserRole.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnModelUserRole_Click);
+            // 
             // PromoveoRibbon
             // 
             this.Name = "PromoveoRibbon";
@@ -135,6 +151,8 @@
             this.group1.PerformLayout();
             this.group2.ResumeLayout(false);
             this.group2.PerformLayout();
+            this.group3.ResumeLayout(false);
+            this.group3.PerformLayout();
 
         }
 
@@ -151,6 +169,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnRoles;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnSerialize;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnUserManagement;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group3;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnModelUserRole;
     }
 
     partial class ThisRibbonCollection

@@ -234,6 +234,7 @@
     <Compile Include="UserManagement\frmModelRoles.Designer.cs">
       <DependentUpon>frmModelRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserManagement\ModelUserRolesDAL.cs" />
     <Compile Include="UserManagement\ProcessModelDAL.cs" />
     <Compile Include="UserManagement\PublishingPlatformRole.cs">
       <SubType>Form</SubType>

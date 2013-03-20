@@ -101,5 +101,11 @@ namespace PromoveoAddin
             frmPublishingPlatformUser.Show();
         }
 
+        private void btnModelUserRole_Click(object sender, RibbonControlEventArgs e)
+        {
+            UserManagement.frmModelRoles frmmodelRoles = new UserManagement.frmModelRoles();
+            frmmodelRoles.Show();
+        }
+
     }
 }

@@ -11,7 +11,8 @@ namespace PromoveoAddin.UserManagement
     public abstract class DALBaseClass:IDisposable
     {
         protected string _connectionString = ConfigurationManager.ConnectionStrings["PromoveoAddin.Properties.Settings.PromoveoDBConnectionString"].ConnectionString;
-        private SqlConnection _connection;                                     
+        private SqlConnection _connection; 
+                                 
         
         public DALBaseClass()
         {
