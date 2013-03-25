@@ -26,20 +26,38 @@ namespace PromoveoAddin.MasterDataManagement
             this.publishingPlatformUserTableAdapter.Fill(this.promoveoDataSet.PublishingPlatformUser);
             // TODO: This line of code loads data into the 'promoveoDataSet.ProcessModel' table. You can move, or remove it, as needed.
 
-            MasterDataManagement.ProcessModelDAL dal = new ProcessModelDAL();
-            foreach (Data.PromoveoDataSet.ProcessModelRow row in dal.GetProcessModels(1).Rows)
-            {
-                this.promoveoDataSet.ProcessModel.ImportRow(row);
-            }
-           // this.processModelTableAdapter.Fill(this.promoveoDataSet.ProcessModel);
-
+            this.processModelBindingSource.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
+            this.processModelTableAdapter.Fill(this.promoveoDataSet.ProcessModel);
         }
 
-
+        private int GetConfigurationID()
+        {
+            if (this.cmbConfiguration.Items.Count > 0 && this.cmbConfiguration.SelectedItem != null)
+                return Convert.ToInt32(((DataRowView)this.cmbConfiguration.SelectedItem).Row[0]);
+            return 0;
+        }
 
         private void dgvModels_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
             this.processModelTableAdapter.Update(this.promoveoDataSet.ProcessModel);
+        }
+
+        private void cmbConfiguration_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.processModelBindingSource.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
+        }
+
+        private void btnCreateModels_Click(object sender, EventArgs e)
+        {
+            int configID = Convert.ToInt32(this.cmbConfiguration.SelectedValue.ToString());// Convert.ToInt32(((DataRowView)this.cmbConfiguration.SelectedItem).Row[0]);
+            List<string> newModels;
+            MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
+
+            bool hasNewModels = processModelDAL.HasNewModels(SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument, configID
+                    , out newModels);
+            processModelDAL.AddNewModels(newModels, configID);
+            this.processModelTableAdapter.Fill(this.promoveoDataSet.ProcessModel);
+            
         }
     }
 }

@@ -11,26 +11,21 @@ namespace PromoveoAddin
     {
         public bool Equals(Visio.Shape shape1, Visio.Shape shape2)
         {
-            CheckUID(shape1);
-            CheckUID(shape2);
+            string uidShape1 = ShapeHelper.GetGUID(shape1);
+            string uidShape2 = ShapeHelper.GetGUID(shape2);
 
-            if (shape1.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID] == shape2.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID])
+            if (uidShape1 == uidShape2)
                 return true;
             return false;
         }
 
         public int GetHashCode(Visio.Shape shape)
         {
-            CheckUID(shape);
-            return shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID].GetHashCode();
+            string uidShape = ShapeHelper.GetGUID(shape);
+            return uidShape.GetHashCode();
         }
 
-        private void CheckUID(Visio.Shape shape)
-        {
-            string uid = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
-            if (string.IsNullOrEmpty(uid))
-                throw new Exception (string.Format("The shape {0} does not have a UID.", shape.Name));
-        }
+
 
     }
 }

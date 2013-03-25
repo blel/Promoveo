@@ -24,7 +24,8 @@ namespace PromoveoAddin
         private string _exportFileName;
         private string _exportFileSubDirectory;
         private string _printIcon;
-        public CustomPublisher(Visio.Application app, string fileName)
+        private int _configurationID;
+        public CustomPublisher(Visio.Application app, string fileName, int configurationID)
         {
             _app = app;
             _document = app.ActiveDocument;
@@ -34,7 +35,7 @@ namespace PromoveoAddin
             _exportFileName = System.IO.Path.GetFileNameWithoutExtension(fileName);
             //relative subpath to the export path
             _exportFileSubDirectory = _exportFileName + "_files\\";
-
+            _configurationID = configurationID;
             _printIcon = SingletonVisioApp.GetCurrentVisioInstance().PrintIcon;
         }
 
@@ -163,7 +164,7 @@ namespace PromoveoAddin
         {         
             UserManagement.PublishingPlatformSerializer serializer =
                 new UserManagement.PublishingPlatformSerializer(string.Format("{0}userdata.xml", _exportPath+_exportFileSubDirectory));
-            serializer.PrepareObjects();
+            serializer.PrepareObjects(_configurationID);
             serializer.SerializeModelUsers();
         }
 

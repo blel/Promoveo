@@ -255,6 +255,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="DALBaseClass.cs" />
+    <Compile Include="ShapeHelper.cs" />
     <Compile Include="UserManagement\frmModelRoles.cs">
       <SubType>Form</SubType>
     </Compile>

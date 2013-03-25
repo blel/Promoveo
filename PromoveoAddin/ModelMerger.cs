@@ -27,6 +27,10 @@ namespace PromoveoAddin
 
         //replace pages
         bool _replacePages;
+
+        string _diffPagesPath;
+
+
         #endregion
 
         #region Properties
@@ -72,25 +76,35 @@ namespace PromoveoAddin
             CloseAllOpenFiles();
             if (!string.IsNullOrWhiteSpace(_targetFileName))
             {
-                _resultDoc = _app.VisioApp.Documents.Add(_targetFileName);
+                _resultDoc = _app.VisioApp.Documents.Open(_targetFileName);
             }
             else
             {
                 _resultDoc = _app.VisioApp.Documents.Add("");
-                _initialPageToRemove = _resultDoc.Pages[1];
-                _initialPageToRemove.Name = Guid.NewGuid().ToString();
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Visio Files (*.vsd)|*.vsd";
+                DialogResult result = saveFileDialog.ShowDialog();
+                if (result != DialogResult.Cancel)
+                {
+                    _resultDoc.SaveAs(saveFileDialog.FileName); 
+                    _initialPageToRemove = _resultDoc.Pages[1];
+                    _initialPageToRemove.Name = Guid.NewGuid().ToString();
+                }
             }
-            
-            
-            foreach (string fileName in FilesToMerge)
+
+            if (!string.IsNullOrWhiteSpace(_resultDoc.Path))
             {
-                _app.VisioApp.EventsEnabled = Convert.ToInt16( false);
-                Merge(fileName);
-                _app.VisioApp.EventsEnabled = Convert.ToInt16(true);
+                foreach (string fileName in FilesToMerge)
+                {
+                    _app.VisioApp.EventsEnabled = Convert.ToInt16(false);
+                    Merge(fileName);
+                    _app.VisioApp.EventsEnabled = Convert.ToInt16(true);
+                }
+                if (_initialPageToRemove != null)
+                    _resultDoc.Pages[_initialPageToRemove.Name].Delete(Convert.ToInt16(false));
+                LocalizeVisioHyperlinks();
+                //RelativizeOtherHyperlinks();
             }
-            if (_initialPageToRemove != null)
-            _resultDoc.Pages[_initialPageToRemove.Name].Delete(Convert.ToInt16(false));
-            LocalizeVisioHyperlinks();
         }
 
         /// <summary>
@@ -125,26 +139,36 @@ namespace PromoveoAddin
             }
         }
 
+        private void RelativizeOtherHyperlinks()
+        {
+            Uri baseUri = new Uri(_resultDoc.Path);
+            foreach (Visio.Page page in _resultDoc.Pages)
+            {
+                foreach (Visio.Shape shape in page.Shapes)
+                {
+                    foreach (Visio.Hyperlink hyperlink in shape.Hyperlinks.Cast<Visio.Hyperlink>().Where(cc => !string.IsNullOrWhiteSpace(cc.Address)
+                        && !IsVisioFile(cc.Address)))
+                    {
+                        hyperlink.Address = baseUri.MakeRelativeUri(new Uri(hyperlink.Address)).ToString();
+                    }
+                }
+            }
+
+
+        }
+
         /// <summary>
         /// merges the page to the _resultdoc
         /// </summary>
         /// <param name="pageToMerge"></param>
         private void MergePage(Visio.Page pageToMerge)
         {
-            //create a page with differences
-            //does not work currently - seems that guid is not preserved
-            if (_replacePages)
-            {
-                Visio.Page originalPage = _resultDoc.Pages.Cast<Visio.Page>().ToList().Find(cc => cc.Name == pageToMerge.Name);
-                if (originalPage != null)
-                {
-                    Visio.Page diffPage = _resultDoc.Pages.Add();
-                    diffPage.Name = pageToMerge.Name + "DiffResults";
-                    PageComparer pageComparer = new PageComparer(_app.VisioApp, originalPage, pageToMerge, diffPage);
-                    pageComparer.ComparePages();
+            //add fix guids to page when merged
+            PrepareGuids(pageToMerge);
+            
+            //create diff page
+            CreateDiffPage(pageToMerge);
 
-                }
-            }
 
             //merge page
             Visio.Page resultPage = _resultDoc.Pages.Add();
@@ -168,6 +192,82 @@ namespace PromoveoAddin
             return resultList;
         }
 
+        private void PrepareGuids(Visio.Page pageToMerge)
+        {
+            //If there is a page with same name in the MergeTarget, assign it to originalPage
+            Visio.Page originalPage = _resultDoc.Pages.Cast<Visio.Page>().ToList().Find(cc => cc.Name == pageToMerge.Name);
+            
+            //If there is no page with teh same name, create a shape property with the guid of the shape
+            if (originalPage == null)
+            {
+                foreach (Visio.Shape shape in pageToMerge.Shapes)
+                {
+                    if (!Convert.ToBoolean(shape.CellExistsU["Prop.DiffGUID", (short)0]))
+                    {
+
+
+                        int row = shape.AddNamedRow((short)Visio.VisSectionIndices.visSectionProp,
+                                                "DiffGUID",
+                                                (short)Visio.VisRowTags.visTagDefault);
+
+                        shape.CellsSRC[(short)Visio.VisSectionIndices.visSectionProp,
+                                       (short)row,
+                                       (short)Visio.VisCellIndices.visCustPropsLabel].FormulaU = "\"DiffGUID\"";
+                        shape.CellsSRC[(short)Visio.VisSectionIndices.visSectionProp,
+                       (short)row,
+                       (short)Visio.VisCellIndices.visCustPropsInvis].FormulaU = "1";
+                        shape.CellsSRC[(short)Visio.VisSectionIndices.visSectionProp,
+                                       (short)row,
+                                       (short)Visio.VisCellIndices.visCustPropsValue].FormulaU = "\"" + shape.get_UniqueID((short)Visio.VisUniqueIDArgs.visGetOrMakeGUID) + "\"";
+
+                    }
+                }
+
+            }
+
+        }
+
+        private void CreateDiffPage(Visio.Page pageToMerge)
+        {
+            if (_replacePages)
+            {
+                Visio.Page originalPage = _resultDoc.Pages.Cast<Visio.Page>().ToList().Find(cc => cc.Name == pageToMerge.Name);
+                if (originalPage != null && !string.IsNullOrWhiteSpace(GetDiffPagePath()))
+                {
+                    Visio.Document diffDoc = _app.VisioApp.Documents.AddEx("",0,64);
+                    Visio.Page diffPage = diffDoc.Pages[1];
+
+                    PagePreparer pagePreparer = new PagePreparer(diffDoc, diffPage, pageToMerge);
+                    pagePreparer.CopyFormatToDestinationPage(false);
+                    PageComparer pageComparer = new PageComparer(_app.VisioApp, originalPage, pageToMerge, diffPage);
+                    pageComparer.ComparePages();
+                    diffDoc.ExportAsFixedFormat(Visio.VisFixedFormatTypes.visFixedFormatPDF, _diffPagesPath + "\\" + diffPage.Name+".pdf", Visio.VisDocExIntent.visDocExIntentScreen,
+                        Visio.VisPrintOutRange.visPrintAll);
+                    diffDoc.Saved = true;
+                    diffDoc.Close();
+                    //add link
+
+                }
+            }
+        }
+
+
+
+        private string GetDiffPagePath()
+        {
+            if (!string.IsNullOrWhiteSpace(_diffPagesPath))
+                return _diffPagesPath;
+            else
+            {
+                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                DialogResult result = folderBrowserDialog.ShowDialog();
+                if (result != DialogResult.Cancel)
+                {
+                    _diffPagesPath = folderBrowserDialog.SelectedPath;
+                }
+            }
+            return _diffPagesPath;
+        }
 
 
         private void LocalizeVisioHyperlinks()
@@ -204,6 +304,9 @@ namespace PromoveoAddin
                 }
             }
         }
+
+
+
 
         public static bool IsVisioFile(string fileName)
         {

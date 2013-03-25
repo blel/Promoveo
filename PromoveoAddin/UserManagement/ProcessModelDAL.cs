@@ -17,8 +17,16 @@ namespace PromoveoAddin.UserManagement
             PromoveoDataSet.ProcessModelDataTable table = new PromoveoDataSet.ProcessModelDataTable();
             adapter.Fill(table);
             return table;
-
         }
+
+        public PromoveoDataSet.ProcessModelDataTable GetProcessModels(int configurationID)
+        {
+            SqlDataAdapter sqlAdapter = new SqlDataAdapter("SELECT * FROM ProcessModel WHERE FK_Configuration = " + configurationID, base._connectionString);
+            PromoveoDataSet.ProcessModelDataTable table = new PromoveoDataSet.ProcessModelDataTable();
+            sqlAdapter.Fill(table);
+            return table;
+        }
+
 
         public int GetModelID(string processModel)
         {

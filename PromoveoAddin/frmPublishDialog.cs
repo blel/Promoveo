@@ -18,10 +18,7 @@ namespace PromoveoAddin
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void frmPublishDialog_Load(object sender, EventArgs e)
         {
@@ -34,11 +31,13 @@ namespace PromoveoAddin
         {
             int configID = Convert.ToInt32(((DataRowView)this.cmbConfiguration.SelectedItem).Row[0]);
             List<string> newModels;
-            bool hasNewModels = HasNewModels(SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument, configID
+            MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
+
+            bool hasNewModels = processModelDAL.HasNewModels(SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument, configID
                     , out newModels);
             if ((hasNewModels && chkAddModels.Checked) || !hasNewModels)
             {
-                AddNewModels(newModels, configID);
+                processModelDAL.AddNewModels(newModels, configID);
                 SaveFileDialog fileDialog = new SaveFileDialog();
                 fileDialog.Filter = "Html Page (*.htm, *.html)|*.htm;*html";
                 fileDialog.FileName = System.IO.Path.GetFileNameWithoutExtension(SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument.Name);
@@ -46,7 +45,7 @@ namespace PromoveoAddin
                 if (result != DialogResult.Cancel)
                 {
                     CustomPublisher publisher = new CustomPublisher(SingletonVisioApp.GetCurrentVisioInstance().VisioApp,
-                        fileDialog.FileName);
+                        fileDialog.FileName, Convert.ToInt32(this.cmbConfiguration.SelectedValue));
 
                     publisher.StartPublish(true);
                 }
@@ -59,34 +58,7 @@ namespace PromoveoAddin
 
         }
 
-        private bool HasNewModels(Visio.Document document, int configurationID, out List<string> newModels)
-        {
-            bool hasNewModels = false;
-            newModels = new List<string>();
-            MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
-            var processModels = processModelDAL.GetProcessModels(configurationID);
-            foreach (string modelName in document.Pages.Cast<Visio.Page>().Select(cc => cc.Name))
-            {
-                if (processModels.Rows.Cast<Data.PromoveoDataSet.ProcessModelRow>().Where(cc => cc.ProcessModel == modelName).Count() == 0)
-                {
-                    hasNewModels = true;
-                    newModels.Add(modelName);
-                }
 
-            }
-            return hasNewModels;
-        }
-
-        private void AddNewModels(List<string> modelNames, int configurationID)
-        {
-            MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
-
-            foreach (string modelName in modelNames)
-            {
-                processModelDAL.Insert(modelName, configurationID);
-            }
-
-        }
 
 
     }

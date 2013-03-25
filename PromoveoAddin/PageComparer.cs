@@ -57,13 +57,13 @@ namespace PromoveoAddin
                 foreach (Visio.Shape shape in ShapesOnXExceptY)
                 {
                     Visio.Shape resultShape = DropShapeOnPage(shape, _resultPage);
-                    String originalUID = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                    String originalUID = ShapeHelper.GetGUID(shape);
                     resultShape.Cells["LineColor"].FormulaU = Color;
                     resultShape.Data1 = originalUID;
                     if (isConnector)
                     {
-                        string uidShapeFrom = shape.Connects[1].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
-                        string uidShapeTo = shape.Connects[2].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                        string uidShapeFrom = ShapeHelper.GetGUID( shape.Connects[1].ToSheet);
+                        string uidShapeTo = ShapeHelper.GetGUID(shape.Connects[2].ToSheet);
                         Visio.Shape fromShape = GetResultpageShape(uidShapeFrom);
                         Visio.Shape toShape = GetResultpageShape(uidShapeTo);
                         resultShape.Cells["BeginX"].GlueTo(fromShape.Cells["PinX"]);
@@ -92,37 +92,39 @@ namespace PromoveoAddin
                 {
                     if (!isConnector)
                     {
-                        Visio.Shape comparedShape = _page2.Shapes.ItemFromUniqueID[shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]];
+                        Visio.Shape comparedShape = ShapeHelper.FindShapeByGUID(_page2, ShapeHelper.GetGUID(shape));
+
                         if (IsShapeModified(shape, comparedShape))
                         {
                             Visio.Shape resultShape = DropShapeOnPage(comparedShape, _resultPage);
                             resultShape.Cells["LineColor"].FormulaU = color;
-                            String originalUID = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                            String originalUID = ShapeHelper.GetGUID( shape);
                             resultShape.Data1 = originalUID;
                         }
                         else
                         {
                             Visio.Shape resultShape = DropShapeOnPage(shape, _resultPage);
-                            String originalUID = shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                            String originalUID = ShapeHelper.GetGUID(shape);
                             resultShape.Data1 = originalUID;
                         }
                     }
                     else
                     {
-                        Visio.Shape connector2 = _page2.Shapes.ItemFromUniqueID[shape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]];
+                        Visio.Shape connector2 = ShapeHelper.FindShapeByGUID(_page2, ShapeHelper.GetGUID(shape));
                         Visio.Shape resultShape = DropShapeOnPage(connector2, _resultPage);
-                        string uID = connector2.Connects[1].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                        string uID = ShapeHelper.GetGUID(connector2.Connects[1].ToSheet);
+                        
                         Visio.Shape fromShape = GetResultpageShape(uID);
-                        Visio.Shape toShape = GetResultpageShape(connector2.Connects[2].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]);
+                        Visio.Shape toShape = GetResultpageShape(ShapeHelper.GetGUID(connector2.Connects[2].ToSheet));
                         resultShape.Cells["BeginX"].GlueTo(fromShape.Cells["PinX"]);
                         resultShape.Cells["EndX"].GlueTo(toShape.Cells["PinX"]);
                         if (!AreEqual(shape, connector2))
                         {
                             resultShape.Cells["LineColor"].FormulaU = "RGB(0,255,0)";
                             resultShape = DropShapeOnPage(shape, _resultPage);
-                            uID = shape.Connects[1].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                            uID = ShapeHelper.GetGUID(connector2.Connects[1].ToSheet);
                             fromShape = GetResultpageShape(uID);
-                            toShape = GetResultpageShape(shape.Connects[2].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]);
+                            toShape = GetResultpageShape(ShapeHelper.GetGUID(connector2.Connects[2].ToSheet));
                             resultShape.Cells["BeginX"].GlueTo(fromShape.Cells["PinX"]);
                             resultShape.Cells["EndX"].GlueTo(toShape.Cells["PinX"]);
                             resultShape.Cells["LineColor"].FormulaU = "RGB(255,0,0)";
@@ -165,17 +167,16 @@ namespace PromoveoAddin
                 }
                 else
                 {
-                    Visio.Shape connector2 = _page2.Shapes.ItemFromUniqueID[connector.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]];
-                    if (connector2.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID] ==
-                        connector.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID])
+                    Visio.Shape connector2 = ShapeHelper.FindShapeByGUID(_page2, ShapeHelper.GetGUID(connector));
+                    if (ShapeHelper.GetGUID( connector2) ==ShapeHelper.GetGUID(    connector))
                     {
 
                         if (AreEqual(connector, connector2))
                         {
                             Visio.Shape resultShape = DropShapeOnPage(connector2, _resultPage);
-                            string uID = connector2.Connects[1].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID];
+                            string uID = ShapeHelper.GetGUID(connector2.Connects[1].ToSheet);
                             Visio.Shape fromShape = GetResultpageShape(uID);
-                            Visio.Shape toShape = GetResultpageShape(connector2.Connects[2].ToSheet.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID]);
+                            Visio.Shape toShape = GetResultpageShape(ShapeHelper.GetGUID(connector2.Connects[2].ToSheet));
 
 
 
@@ -223,8 +224,8 @@ namespace PromoveoAddin
             GetFromToShapes(connector1, out connector1FromShape, out connector1ToShape);
             GetFromToShapes(connector2, out connector2FromShape, out connector2ToShape);
 
-            if (connector1FromShape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID] == connector2FromShape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID] &&
-                connector1ToShape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID] == connector2ToShape.UniqueID[(short)Visio.VisUniqueIDArgs.visGetGUID])
+            if (ShapeHelper.GetGUID(connector1FromShape) == ShapeHelper.GetGUID(connector2FromShape) &&
+                ShapeHelper.GetGUID(connector1ToShape) == ShapeHelper.GetGUID(connector2ToShape))
                 result = true;
 
             return result;

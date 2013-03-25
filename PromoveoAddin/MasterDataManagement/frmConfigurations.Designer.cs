@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvConfigurations = new System.Windows.Forms.DataGridView();
-            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
-            this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
+            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConfigurations)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvConfigurations
@@ -53,20 +53,7 @@
             this.dgvConfigurations.Size = new System.Drawing.Size(259, 237);
             this.dgvConfigurations.TabIndex = 0;
             this.dgvConfigurations.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConfigurations_RowLeave);
-            // 
-            // promoveoDataSet
-            // 
-            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
-            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // configurationBindingSource
-            // 
-            this.configurationBindingSource.DataMember = "Configuration";
-            this.configurationBindingSource.DataSource = this.promoveoDataSet;
-            // 
-            // configurationTableAdapter
-            // 
-            this.configurationTableAdapter.ClearBeforeFill = true;
+            this.dgvConfigurations.Validated += new System.EventHandler(this.dgvConfigurations_Validated);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -82,6 +69,20 @@
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
+            // configurationBindingSource
+            // 
+            this.configurationBindingSource.DataMember = "Configuration";
+            this.configurationBindingSource.DataSource = this.promoveoDataSet;
+            // 
+            // promoveoDataSet
+            // 
+            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
+            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // configurationTableAdapter
+            // 
+            this.configurationTableAdapter.ClearBeforeFill = true;
+            // 
             // frmConfigurations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -92,8 +93,8 @@
             this.Text = "frmConfigurations";
             this.Load += new System.EventHandler(this.frmConfigurations_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvConfigurations)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }

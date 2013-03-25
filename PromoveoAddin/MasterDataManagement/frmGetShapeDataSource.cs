@@ -38,14 +38,14 @@ namespace PromoveoAddin.MasterDataManagement
 
                 if (!IsDataRecordsetAvailable(txtModelUserRoleView.Text))
                 {
-                    string sqlCommand = "select * from \"" + txtDBName.Text + "\".\"dbo\".\"" + txtModelUserRoleView.Text + "\"";
+                    string sqlCommand = "select * from \"" + txtDBName.Text + "\".\"dbo\".\"" + txtModelUserRoleView.Text + "\" WHERE FK_Configuration = " + this.cmbConfiguration.SelectedValue.ToString();
                     _app.ActiveDocument.DataRecordsets.Add(connString, sqlCommand, 0, txtModelUserRoleView.Text);
                     _app.ActiveDocument.DataRecordsets.ItemFromID[GetDataRecordsetIndex(txtModelUserRoleView.Text)].SetPrimaryKey(Visio.VisPrimaryKeySettings.visKeySingle, PrimaryKeys);
                 }
 
                 if (!IsDataRecordsetAvailable(this.txtModelOwnerView.Text))
                 {
-                    string sqlCommand = "select * from \"" + txtDBName.Text + "\".\"dbo\".\"" + txtModelOwnerView.Text + "\"";
+                    string sqlCommand = "select * from \"" + txtDBName.Text + "\".\"dbo\".\"" + txtModelOwnerView.Text + "\" WHERE FK_Configuration = " + this.cmbConfiguration.SelectedValue.ToString();
                     _app.ActiveDocument.DataRecordsets.Add(connString, sqlCommand, 0, txtModelOwnerView.Text);
                     _app.ActiveDocument.DataRecordsets.ItemFromID[GetDataRecordsetIndex(txtModelOwnerView.Text)].SetPrimaryKey(Visio.VisPrimaryKeySettings.visKeySingle, PrimaryKeys);
                     _app.ActiveDocument.DataRecordsets.ItemFromID[GetDataRecordsetIndex(txtModelOwnerView.Text)].DataColumns["Email"].SetProperty(Visio.VisDataColumnProperties.visDataColumnPropertyHyperlink, true);
@@ -80,6 +80,13 @@ namespace PromoveoAddin.MasterDataManagement
                     index = i;
             }
             return index;
+        }
+
+        private void frmGetShapeDataSource_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'promoveoDataSet.Configuration' table. You can move, or remove it, as needed.
+            this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
+
         }
 
     }

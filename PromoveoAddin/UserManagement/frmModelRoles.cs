@@ -90,8 +90,6 @@ namespace PromoveoAddin.UserManagement
                 item.SubItems.Add(row.Name);
                 item.SubItems.Add(row.Shortname);
             }
-
-
         }
 
         private void btnAssignSelected_Click(object sender, EventArgs e)

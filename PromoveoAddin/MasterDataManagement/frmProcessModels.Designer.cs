@@ -31,25 +31,25 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbConfiguration = new System.Windows.Forms.ComboBox();
+            this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
             this.btnCreateModels = new System.Windows.Forms.Button();
             this.dgvModels = new System.Windows.Forms.DataGridView();
-            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
-            this.processModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.processModelTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ProcessModelTableAdapter();
-            this.publishingPlatformUserBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.publishingPlatformUserTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.PublishingPlatformUserTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.processModelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.publishingVersionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fKPublishingPlatformUserDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.publishingPlatformUserBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fKConfigurationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.processModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.processModelTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ProcessModelTableAdapter();
+            this.publishingPlatformUserTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.PublishingPlatformUserTableAdapter();
             this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvModels)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.processModelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.publishingPlatformUserBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvModels)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.publishingPlatformUserBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.processModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,6 +71,17 @@
             this.cmbConfiguration.Size = new System.Drawing.Size(316, 21);
             this.cmbConfiguration.TabIndex = 1;
             this.cmbConfiguration.ValueMember = "Id";
+            this.cmbConfiguration.SelectedIndexChanged += new System.EventHandler(this.cmbConfiguration_SelectedIndexChanged);
+            // 
+            // configurationBindingSource
+            // 
+            this.configurationBindingSource.DataMember = "Configuration";
+            this.configurationBindingSource.DataSource = this.promoveoDataSet;
+            // 
+            // promoveoDataSet
+            // 
+            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
+            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnCreateModels
             // 
@@ -80,6 +91,7 @@
             this.btnCreateModels.TabIndex = 2;
             this.btnCreateModels.Text = "Create Models";
             this.btnCreateModels.UseVisualStyleBackColor = true;
+            this.btnCreateModels.Click += new System.EventHandler(this.btnCreateModels_Click);
             // 
             // dgvModels
             // 
@@ -98,31 +110,7 @@
             this.dgvModels.Name = "dgvModels";
             this.dgvModels.Size = new System.Drawing.Size(388, 278);
             this.dgvModels.TabIndex = 3;
-
             this.dgvModels.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModels_RowValidated);
-            // 
-            // promoveoDataSet
-            // 
-            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
-            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // processModelBindingSource
-            // 
-            this.processModelBindingSource.DataMember = "ProcessModel";
-            this.processModelBindingSource.DataSource = this.promoveoDataSet;
-            // 
-            // processModelTableAdapter
-            // 
-            this.processModelTableAdapter.ClearBeforeFill = true;
-            // 
-            // publishingPlatformUserBindingSource
-            // 
-            this.publishingPlatformUserBindingSource.DataMember = "PublishingPlatformUser";
-            this.publishingPlatformUserBindingSource.DataSource = this.promoveoDataSet;
-            // 
-            // publishingPlatformUserTableAdapter
-            // 
-            this.publishingPlatformUserTableAdapter.ClearBeforeFill = true;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -156,6 +144,11 @@
             this.fKPublishingPlatformUserDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.fKPublishingPlatformUserDataGridViewTextBoxColumn.ValueMember = "Id";
             // 
+            // publishingPlatformUserBindingSource
+            // 
+            this.publishingPlatformUserBindingSource.DataMember = "PublishingPlatformUser";
+            this.publishingPlatformUserBindingSource.DataSource = this.promoveoDataSet;
+            // 
             // fKConfigurationDataGridViewTextBoxColumn
             // 
             this.fKConfigurationDataGridViewTextBoxColumn.DataPropertyName = "FK_Configuration";
@@ -163,10 +156,18 @@
             this.fKConfigurationDataGridViewTextBoxColumn.Name = "fKConfigurationDataGridViewTextBoxColumn";
             this.fKConfigurationDataGridViewTextBoxColumn.Visible = false;
             // 
-            // configurationBindingSource
+            // processModelBindingSource
             // 
-            this.configurationBindingSource.DataMember = "Configuration";
-            this.configurationBindingSource.DataSource = this.promoveoDataSet;
+            this.processModelBindingSource.DataMember = "ProcessModel";
+            this.processModelBindingSource.DataSource = this.promoveoDataSet;
+            // 
+            // processModelTableAdapter
+            // 
+            this.processModelTableAdapter.ClearBeforeFill = true;
+            // 
+            // publishingPlatformUserTableAdapter
+            // 
+            this.publishingPlatformUserTableAdapter.ClearBeforeFill = true;
             // 
             // configurationTableAdapter
             // 
@@ -184,11 +185,11 @@
             this.Name = "frmProcessModels";
             this.Text = "frmProcessModels";
             this.Load += new System.EventHandler(this.frmProcessModels_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvModels)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.processModelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.publishingPlatformUserBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvModels)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.publishingPlatformUserBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.processModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

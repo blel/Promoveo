@@ -41,10 +41,14 @@ namespace PromoveoAddin
             {
                 foreach (Visio.Shape shape in page.Shapes)
                 {
+                    
                     shape.get_UniqueID ((short)Visio.VisUniqueIDArgs.visGetOrMakeGUID);
                 }
             }
         }
+
+
+
 
 
         #region VSTO generated code

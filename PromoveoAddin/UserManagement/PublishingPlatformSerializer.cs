@@ -20,12 +20,12 @@ namespace PromoveoAddin.UserManagement
 
         }
 
-        public void PrepareObjects()
+        public void PrepareObjects(int configurationID)
         {
             _modelUsers = new List<SerializableModelUser>();
 
             ProcessModelDAL pmDAL = new ProcessModelDAL();
-            Data.PromoveoDataSet.ProcessModelDataTable processModels = pmDAL.GetProcessModels();
+            Data.PromoveoDataSet.ProcessModelDataTable processModels = pmDAL.GetProcessModels(configurationID);
             foreach (Data.PromoveoDataSet.ProcessModelRow row in processModels.Rows)
             {
                 SerializableModelUser modelUser = new SerializableModelUser();

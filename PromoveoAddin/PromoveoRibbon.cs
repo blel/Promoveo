@@ -81,14 +81,6 @@ namespace PromoveoAddin
             frmRoles.Show();
         }
 
-        private void btnSerialize_Click(object sender, RibbonControlEventArgs e)
-        {
-            UserManagement.PublishingPlatformSerializer serializer = new UserManagement.PublishingPlatformSerializer("D:\\tmp\\users.xml");
-            serializer.PrepareObjects();
-            serializer.SerializeModelUsers();
-            
-        }
-
         private void btnUserManagement_Click(object sender, RibbonControlEventArgs e)
         {
             UserManagement.PublishingPlatformUser frmPublishingPlatformUser = new UserManagement.PublishingPlatformUser();

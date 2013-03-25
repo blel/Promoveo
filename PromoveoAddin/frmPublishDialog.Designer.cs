@@ -51,7 +51,6 @@
             this.textBox1.Size = new System.Drawing.Size(259, 30);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Please select the configuration you want to use for this publish:";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // cmbConfiguration
             // 

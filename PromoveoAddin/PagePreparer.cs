@@ -12,8 +12,8 @@ namespace PromoveoAddin
     {
         private Visio.Page _destinationPage;
         private Visio.Page _sourcePage;
-        private Visio.Document  _resultDocument;
-        
+        private Visio.Document _resultDocument;
+
         public PagePreparer(Visio.Document doc, Visio.Page destinationPage, Visio.Page sourcePage)
         {
             _destinationPage = destinationPage;
@@ -28,7 +28,7 @@ namespace PromoveoAddin
             {
                 if (replacePages)
                 {
-                    
+
 
 
                     string pageName = pageWithSameName.Name;
@@ -44,7 +44,7 @@ namespace PromoveoAddin
             else
             {
                 _destinationPage.Name = _sourcePage.Name;
-               
+
             }
 
             //copy properties from source to dstination page
@@ -54,13 +54,13 @@ namespace PromoveoAddin
 
             _destinationPage.PageSheet.Cells["PrintPageOrientation"].FormulaU = _sourcePage.PageSheet.Cells["PrintPageOrientation"].get_ResultStrU(Visio.VisUnitCodes.visNumber);
 
-            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPage, (short)Visio.VisCellIndices.visPageShdwOffsetX].FormulaU = 
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPage, (short)Visio.VisCellIndices.visPageShdwOffsetX].FormulaU =
                 _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPage, (short)Visio.VisCellIndices.visPageShdwOffsetX].FormulaU;
 
-            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPage, (short)Visio.VisCellIndices.visPageShdwOffsetY].FormulaU = 
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPage, (short)Visio.VisCellIndices.visPageShdwOffsetY].FormulaU =
                 _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPage, (short)Visio.VisCellIndices.visPageShdwOffsetY].FormulaU;
 
-            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOPlaceStyle].FormulaForceU = 
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOPlaceStyle].FormulaForceU =
                 _sourcePage.PageSheet.CellsU["PlaceStyle"].FormulaU;
             //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLORouteStyle].FormulaForceU = "6"
             //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOLineToNodeX].FormulaForceU = "3.175 mm"
@@ -73,16 +73,16 @@ namespace PromoveoAddin
             //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOLineToLineY].FormulaForceU = "3.175 mm"
             //_destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPageLayout, (short)Visio.VisCellIndices.visPLOSplit].FormulaForceU = "1"
 
-            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesLeftMargin].FormulaU = 
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesLeftMargin].FormulaU =
                 _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesLeftMargin].FormulaU;
 
-            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesRightMargin].FormulaU = 
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesRightMargin].FormulaU =
                 _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesRightMargin].FormulaU;
 
-            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesTopMargin].FormulaU = 
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesTopMargin].FormulaU =
                 _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesTopMargin].FormulaU;
 
-            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesBottomMargin].FormulaU = 
+            _destinationPage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesBottomMargin].FormulaU =
                 _sourcePage.PageSheet.CellsSRC[(short)Visio.VisSectionIndices.visSectionObject, (short)Visio.VisRowIndices.visRowPrintProperties, (short)Visio.VisCellIndices.visPrintPropertiesTopMargin].FormulaU;
 
             //_destinationPage.PageSheet.CellsSRC(visSectionUser, 0, visUserValue).FormulaForceU = "36"
@@ -93,7 +93,8 @@ namespace PromoveoAddin
 
         public void CopyPage()
         {
-            _sourcePage.AddGuide((short)Visio.VisGuideTypes.visPoint, 0, 0);
+            Visio.Shape Guide = _sourcePage.AddGuide((short)Visio.VisGuideTypes.visPoint, 0, 0);
+            Guide.Name = "TemporaryGuide";
             Visio.Selection selection = _sourcePage.CreateSelection(Visio.VisSelectionTypes.visSelTypeAll);
             selection.Copy();
             _destinationPage.Paste();
@@ -104,7 +105,9 @@ namespace PromoveoAddin
             double diffX = origX - newX;
             double diffY = origY - newY;
             resultSelection.Move(diffX, diffY);
+            _sourcePage.Shapes["TemporaryGuide"].Delete();
+            _destinationPage.Shapes["TemporaryGuide"].Delete();
         }
-
     }
 }
+

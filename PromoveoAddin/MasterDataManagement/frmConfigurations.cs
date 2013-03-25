@@ -25,7 +25,12 @@ namespace PromoveoAddin.MasterDataManagement
 
         private void dgvConfigurations_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-            this.configurationTableAdapter.Update(this.promoveoDataSet.Configuration);
+            //this.configurationTableAdapter.Update(promoveoDataSet);
+        }
+
+        private void dgvConfigurations_Validated(object sender, EventArgs e)
+        {
+            this.configurationTableAdapter.Update(promoveoDataSet);
         }
     }
 }

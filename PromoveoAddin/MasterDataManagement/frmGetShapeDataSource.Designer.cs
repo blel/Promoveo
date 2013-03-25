@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,6 +38,13 @@
             this.txtModelUserRoleView = new System.Windows.Forms.TextBox();
             this.txtModelOwnerView = new System.Windows.Forms.TextBox();
             this.btnGetShapeData = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbConfiguration = new System.Windows.Forms.ComboBox();
+            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
+            this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -105,7 +113,7 @@
             // 
             // btnGetShapeData
             // 
-            this.btnGetShapeData.Location = new System.Drawing.Point(330, 110);
+            this.btnGetShapeData.Location = new System.Drawing.Point(330, 142);
             this.btnGetShapeData.Name = "btnGetShapeData";
             this.btnGetShapeData.Size = new System.Drawing.Size(102, 23);
             this.btnGetShapeData.TabIndex = 8;
@@ -113,11 +121,47 @@
             this.btnGetShapeData.UseVisualStyleBackColor = true;
             this.btnGetShapeData.Click += new System.EventHandler(this.btnGetShapeData_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 113);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Configuration";
+            // 
+            // cmbConfiguration
+            // 
+            this.cmbConfiguration.DataSource = this.configurationBindingSource;
+            this.cmbConfiguration.DisplayMember = "Name";
+            this.cmbConfiguration.FormattingEnabled = true;
+            this.cmbConfiguration.Location = new System.Drawing.Point(148, 110);
+            this.cmbConfiguration.Name = "cmbConfiguration";
+            this.cmbConfiguration.Size = new System.Drawing.Size(284, 21);
+            this.cmbConfiguration.TabIndex = 10;
+            this.cmbConfiguration.ValueMember = "Id";
+            // 
+            // promoveoDataSet
+            // 
+            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
+            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // configurationBindingSource
+            // 
+            this.configurationBindingSource.DataMember = "Configuration";
+            this.configurationBindingSource.DataSource = this.promoveoDataSet;
+            // 
+            // configurationTableAdapter
+            // 
+            this.configurationTableAdapter.ClearBeforeFill = true;
+            // 
             // frmGetShapeDataSource
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 144);
+            this.ClientSize = new System.Drawing.Size(444, 208);
+            this.Controls.Add(this.cmbConfiguration);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnGetShapeData);
             this.Controls.Add(this.txtModelOwnerView);
             this.Controls.Add(this.txtModelUserRoleView);
@@ -129,6 +173,9 @@
             this.Controls.Add(this.label1);
             this.Name = "frmGetShapeDataSource";
             this.Text = "frmGetShapeDataSource";
+            this.Load += new System.EventHandler(this.frmGetShapeDataSource_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +192,10 @@
         private System.Windows.Forms.TextBox txtModelUserRoleView;
         private System.Windows.Forms.TextBox txtModelOwnerView;
         private System.Windows.Forms.Button btnGetShapeData;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbConfiguration;
+        private Data.PromoveoDataSet promoveoDataSet;
+        private System.Windows.Forms.BindingSource configurationBindingSource;
+        private Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter configurationTableAdapter;
     }
 }
