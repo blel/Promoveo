@@ -400,6 +400,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DB_Scripts\FullDBScript_201303191746.sql" />
+    <Content Include="DB_Scripts\FullDBScript_201303280810.sql" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
