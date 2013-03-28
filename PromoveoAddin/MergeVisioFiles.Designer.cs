@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbFilesToMerge = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -35,19 +36,27 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdbNewFile = new System.Windows.Forms.RadioButton();
-            this.rdbExistingFile = new System.Windows.Forms.RadioButton();
-            this.txtTarget = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
+            this.txtTarget = new System.Windows.Forms.TextBox();
+            this.rdbExistingFile = new System.Windows.Forms.RadioButton();
+            this.rdbNewFile = new System.Windows.Forms.RadioButton();
             this.chkReplacePages = new System.Windows.Forms.CheckBox();
+            this.chkCreateVersions = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbConfiguration = new System.Windows.Forms.ComboBox();
+            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
+            this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lbFilesToMerge
             // 
             this.lbFilesToMerge.FormattingEnabled = true;
             this.lbFilesToMerge.Location = new System.Drawing.Point(9, 36);
-            this.lbFilesToMerge.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbFilesToMerge.Margin = new System.Windows.Forms.Padding(2);
             this.lbFilesToMerge.Name = "lbFilesToMerge";
             this.lbFilesToMerge.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbFilesToMerge.Size = new System.Drawing.Size(342, 303);
@@ -66,7 +75,7 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(274, 343);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(74, 31);
             this.btnAdd.TabIndex = 2;
@@ -77,7 +86,7 @@
             // btnRemove
             // 
             this.btnRemove.Location = new System.Drawing.Point(9, 343);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(74, 31);
             this.btnRemove.TabIndex = 3;
@@ -88,7 +97,7 @@
             // btnOK
             // 
             this.btnOK.Location = new System.Drawing.Point(274, 584);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(74, 31);
             this.btnOK.TabIndex = 4;
@@ -99,7 +108,7 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(8, 584);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(74, 31);
             this.btnCancel.TabIndex = 5;
@@ -120,17 +129,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Merge into:";
             // 
-            // rdbNewFile
+            // btnBrowse
             // 
-            this.rdbNewFile.AutoSize = true;
-            this.rdbNewFile.Checked = true;
-            this.rdbNewFile.Location = new System.Drawing.Point(7, 20);
-            this.rdbNewFile.Name = "rdbNewFile";
-            this.rdbNewFile.Size = new System.Drawing.Size(66, 17);
-            this.rdbNewFile.TabIndex = 0;
-            this.rdbNewFile.TabStop = true;
-            this.rdbNewFile.Text = "New File";
-            this.rdbNewFile.UseVisualStyleBackColor = true;
+            this.btnBrowse.Location = new System.Drawing.Point(265, 62);
+            this.btnBrowse.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(74, 31);
+            this.btnBrowse.TabIndex = 7;
+            this.btnBrowse.Text = "Browse...";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // txtTarget
+            // 
+            this.txtTarget.Location = new System.Drawing.Point(7, 68);
+            this.txtTarget.Name = "txtTarget";
+            this.txtTarget.Size = new System.Drawing.Size(253, 20);
+            this.txtTarget.TabIndex = 2;
             // 
             // rdbExistingFile
             // 
@@ -143,27 +158,23 @@
             this.rdbExistingFile.UseVisualStyleBackColor = true;
             this.rdbExistingFile.CheckedChanged += new System.EventHandler(this.rdbExistingFile_CheckedChanged);
             // 
-            // txtTarget
+            // rdbNewFile
             // 
-            this.txtTarget.Location = new System.Drawing.Point(7, 68);
-            this.txtTarget.Name = "txtTarget";
-            this.txtTarget.Size = new System.Drawing.Size(253, 20);
-            this.txtTarget.TabIndex = 2;
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.Location = new System.Drawing.Point(265, 62);
-            this.btnBrowse.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(74, 31);
-            this.btnBrowse.TabIndex = 7;
-            this.btnBrowse.Text = "Browse...";
-            this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            this.rdbNewFile.AutoSize = true;
+            this.rdbNewFile.Checked = true;
+            this.rdbNewFile.Location = new System.Drawing.Point(7, 20);
+            this.rdbNewFile.Name = "rdbNewFile";
+            this.rdbNewFile.Size = new System.Drawing.Size(66, 17);
+            this.rdbNewFile.TabIndex = 0;
+            this.rdbNewFile.TabStop = true;
+            this.rdbNewFile.Text = "New File";
+            this.rdbNewFile.UseVisualStyleBackColor = true;
             // 
             // chkReplacePages
             // 
             this.chkReplacePages.AutoSize = true;
+            this.chkReplacePages.Checked = true;
+            this.chkReplacePages.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkReplacePages.Location = new System.Drawing.Point(8, 507);
             this.chkReplacePages.Name = "chkReplacePages";
             this.chkReplacePages.Size = new System.Drawing.Size(177, 17);
@@ -172,11 +183,60 @@
             this.chkReplacePages.UseVisualStyleBackColor = true;
             this.chkReplacePages.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // chkCreateVersions
+            // 
+            this.chkCreateVersions.AutoSize = true;
+            this.chkCreateVersions.Checked = true;
+            this.chkCreateVersions.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkCreateVersions.Location = new System.Drawing.Point(8, 530);
+            this.chkCreateVersions.Name = "chkCreateVersions";
+            this.chkCreateVersions.Size = new System.Drawing.Size(100, 17);
+            this.chkCreateVersions.TabIndex = 8;
+            this.chkCreateVersions.Text = "Create Versions";
+            this.chkCreateVersions.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 554);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Use configuration:";
+            // 
+            // cmbConfiguration
+            // 
+            this.cmbConfiguration.DataSource = this.configurationBindingSource;
+            this.cmbConfiguration.DisplayMember = "Name";
+            this.cmbConfiguration.FormattingEnabled = true;
+            this.cmbConfiguration.Location = new System.Drawing.Point(108, 551);
+            this.cmbConfiguration.Name = "cmbConfiguration";
+            this.cmbConfiguration.Size = new System.Drawing.Size(240, 21);
+            this.cmbConfiguration.TabIndex = 10;
+            this.cmbConfiguration.ValueMember = "Id";
+            // 
+            // promoveoDataSet
+            // 
+            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
+            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // configurationBindingSource
+            // 
+            this.configurationBindingSource.DataMember = "Configuration";
+            this.configurationBindingSource.DataSource = this.promoveoDataSet;
+            // 
+            // configurationTableAdapter
+            // 
+            this.configurationTableAdapter.ClearBeforeFill = true;
+            // 
             // MergeVisioFiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 626);
+            this.Controls.Add(this.cmbConfiguration);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.chkCreateVersions);
             this.Controls.Add(this.chkReplacePages);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
@@ -185,11 +245,14 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbFilesToMerge);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MergeVisioFiles";
             this.Text = "MergeVisioFiles";
+            this.Load += new System.EventHandler(this.MergeVisioFiles_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,5 +272,11 @@
         private System.Windows.Forms.RadioButton rdbExistingFile;
         private System.Windows.Forms.RadioButton rdbNewFile;
         private System.Windows.Forms.CheckBox chkReplacePages;
+        private System.Windows.Forms.CheckBox chkCreateVersions;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbConfiguration;
+        private Data.PromoveoDataSet promoveoDataSet;
+        private System.Windows.Forms.BindingSource configurationBindingSource;
+        private Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter configurationTableAdapter;
     }
 }

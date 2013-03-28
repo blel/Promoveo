@@ -57,7 +57,8 @@ namespace PromoveoAddin
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            ModelMerger merger = new ModelMerger(this.txtTarget.Text, this.chkReplacePages.Checked);
+                       
+            ModelMerger merger = new ModelMerger(this.txtTarget.Text, this.chkReplacePages.Checked, this.chkReplacePages.Checked, Convert.ToInt32( this.cmbConfiguration.SelectedValue.ToString()));
             merger.FilesToMerge = lbFilesToMerge.Items.Cast<string>().ToList();
             DialogResult result = MessageBox.Show("All open docs will be closed without saving. Do you want to continue?",
                 "Promoveo For Visio", MessageBoxButtons.YesNo);
@@ -97,6 +98,13 @@ namespace PromoveoAddin
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void MergeVisioFiles_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'promoveoDataSet.Configuration' table. You can move, or remove it, as needed.
+            this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
 
         }
 

@@ -143,11 +143,11 @@ namespace PromoveoAddin
         {
             bool result = false;
             //X position
-            result = shape1.Cells["PinX"].Result[(short)Visio.VisUnitCodes.visInches] != shape2.Cells["PinX"].Result[(short)Visio.VisUnitCodes.visInches] ?
-                 true : result;
+            //result = shape1.Cells["PinX"].Result[(short)Visio.VisUnitCodes.visInches] != shape2.Cells["PinX"].Result[(short)Visio.VisUnitCodes.visInches] ?
+            //     true : result;
             //y position
-            result = shape1.Cells["PinY"].Result[(short)Visio.VisUnitCodes.visInches] != shape2.Cells["PinY"].Result[(short)Visio.VisUnitCodes.visInches] ?
-                 true : result;
+            //result = shape1.Cells["PinY"].Result[(short)Visio.VisUnitCodes.visInches] != shape2.Cells["PinY"].Result[(short)Visio.VisUnitCodes.visInches] ?
+            //     true : result;
             //text
             result = shape1.Text != shape2.Text ? true : result;
             return result;

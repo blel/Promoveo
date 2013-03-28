@@ -28,13 +28,9 @@ namespace PromoveoAddin
             {
                 if (replacePages)
                 {
-
-
-
                     string pageName = pageWithSameName.Name;
                     _resultDocument.Pages[pageWithSameName.Name].Delete(Convert.ToInt16(false));
                     _destinationPage.Name = pageName;
-
                 }
                 else
                 {
@@ -44,7 +40,6 @@ namespace PromoveoAddin
             else
             {
                 _destinationPage.Name = _sourcePage.Name;
-
             }
 
             //copy properties from source to dstination page

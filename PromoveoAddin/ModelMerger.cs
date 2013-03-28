@@ -30,7 +30,8 @@ namespace PromoveoAddin
 
         string _diffPagesPath;
 
-
+        bool _createVersions;
+        int _configurationID;
         #endregion
 
         #region Properties
@@ -41,11 +42,13 @@ namespace PromoveoAddin
         /// <summary>
         /// Constructor
         /// </summary>
-        public ModelMerger(string targetFileName, bool replacePages)
+        public ModelMerger(string targetFileName, bool replacePages, bool createVersions, int configurationID)
         {
             _targetFileName = targetFileName;
             _replacePages = replacePages;
             _app = SingletonVisioApp.GetCurrentVisioInstance();
+            _createVersions = createVersions;
+            _configurationID = configurationID;
         }
 
         #endregion
@@ -163,12 +166,17 @@ namespace PromoveoAddin
         /// <param name="pageToMerge"></param>
         private void MergePage(Visio.Page pageToMerge)
         {
+            Visio.Page originalPage = _resultDoc.Pages.Cast<Visio.Page>().ToList().Find(cc => cc.Name == pageToMerge.Name);
+            
+            //create version
+            CreateVersion(pageToMerge.Name);
+
+            
             //add fix guids to page when merged
-            PrepareGuids(pageToMerge);
+            PrepareGuids(pageToMerge, originalPage);
             
             //create diff page
-            CreateDiffPage(pageToMerge);
-
+            CreateDiffPage(pageToMerge, originalPage);
 
             //merge page
             Visio.Page resultPage = _resultDoc.Pages.Add();
@@ -176,6 +184,17 @@ namespace PromoveoAddin
             preparer.CopyFormatToDestinationPage(_replacePages);
             preparer.CopyPage();
         }
+
+
+        private void CreateVersion(string modelName)
+        {
+            if (_createVersions)
+            {
+                MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
+                processModelDAL.CreateVersion(modelName, _configurationID);
+            }
+        }
+
 
         /// <summary>
         /// Returns a list of hyperlinks in a page
@@ -192,11 +211,8 @@ namespace PromoveoAddin
             return resultList;
         }
 
-        private void PrepareGuids(Visio.Page pageToMerge)
-        {
-            //If there is a page with same name in the MergeTarget, assign it to originalPage
-            Visio.Page originalPage = _resultDoc.Pages.Cast<Visio.Page>().ToList().Find(cc => cc.Name == pageToMerge.Name);
-            
+        private void PrepareGuids(Visio.Page pageToMerge, Visio.Page originalPage)
+        {         
             //If there is no page with teh same name, create a shape property with the guid of the shape
             if (originalPage == null)
             {
@@ -204,8 +220,6 @@ namespace PromoveoAddin
                 {
                     if (!Convert.ToBoolean(shape.CellExistsU["Prop.DiffGUID", (short)0]))
                     {
-
-
                         int row = shape.AddNamedRow((short)Visio.VisSectionIndices.visSectionProp,
                                                 "DiffGUID",
                                                 (short)Visio.VisRowTags.visTagDefault);
@@ -219,19 +233,16 @@ namespace PromoveoAddin
                         shape.CellsSRC[(short)Visio.VisSectionIndices.visSectionProp,
                                        (short)row,
                                        (short)Visio.VisCellIndices.visCustPropsValue].FormulaU = "\"" + shape.get_UniqueID((short)Visio.VisUniqueIDArgs.visGetOrMakeGUID) + "\"";
-
                     }
                 }
 
             }
-
         }
 
-        private void CreateDiffPage(Visio.Page pageToMerge)
+        private void CreateDiffPage(Visio.Page pageToMerge, Visio.Page originalPage)
         {
             if (_replacePages)
             {
-                Visio.Page originalPage = _resultDoc.Pages.Cast<Visio.Page>().ToList().Find(cc => cc.Name == pageToMerge.Name);
                 if (originalPage != null && !string.IsNullOrWhiteSpace(GetDiffPagePath()))
                 {
                     Visio.Document diffDoc = _app.VisioApp.Documents.AddEx("",0,64);
@@ -241,6 +252,7 @@ namespace PromoveoAddin
                     pagePreparer.CopyFormatToDestinationPage(false);
                     PageComparer pageComparer = new PageComparer(_app.VisioApp, originalPage, pageToMerge, diffPage);
                     pageComparer.ComparePages();
+                    diffDoc.SaveAs(_diffPagesPath + "\\" + diffPage.Name + "_diffPage.vsd");
                     diffDoc.ExportAsFixedFormat(Visio.VisFixedFormatTypes.visFixedFormatPDF, _diffPagesPath + "\\" + diffPage.Name+".pdf", Visio.VisDocExIntent.visDocExIntentScreen,
                         Visio.VisPrintOutRange.visPrintAll);
                     diffDoc.Saved = true;
