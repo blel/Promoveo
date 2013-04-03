@@ -14,31 +14,21 @@ namespace PromoveoAddin.UserManagement
         public PublishingPlatformUser()
         {
             InitializeComponent();
+            
         }
 
         private void PublishingPlatformUser_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'promoveoDataSet.PublishingPlatformRole' table. You can move, or remove it, as needed.
-            this.publishingPlatformRoleTableAdapter.Fill(this.promoveoDataSet.PublishingPlatformRole);
             // TODO: This line of code loads data into the 'promoveoDataSet.PublishingPlatformUser' table. You can move, or remove it, as needed.
             this.publishingPlatformUserTableAdapter.Fill(this.promoveoDataSet.PublishingPlatformUser);
-
-            
-
-
         }
 
-        private void dgvUsers_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (dgvUsers.Columns[e.ColumnIndex].HeaderText == "Shortname")
-            //    dgvUsers[e.ColumnIndex, e.RowIndex].Value = dgvUsers[e.ColumnIndex, e.RowIndex].Value.ToString().ToUpper();
-        }
+
 
         private void dgvUsers_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvUsers.Columns[e.ColumnIndex].HeaderText == "Shortname")
                 dgvUsers[e.ColumnIndex, e.RowIndex].Value = dgvUsers[e.ColumnIndex, e.RowIndex].Value.ToString().ToUpper();
-
         }
 
 
@@ -52,24 +42,34 @@ namespace PromoveoAddin.UserManagement
                 item.SubItems.Add(row.Name);
                 item.SubItems.Add(row.Shortname);
             }
-            
         }
 
-
-
-
-
-
-
-
-
-
-        private void dgvUsers_RowLeave(object sender, DataGridViewCellEventArgs e)
+        private void dgvUsers_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-            if (promoveoDataSet.HasChanges())
-            {
-                publishingPlatformUserTableAdapter.Update(promoveoDataSet.PublishingPlatformUser);
-            }
+            publishingPlatformUserTableAdapter.Update(promoveoDataSet.PublishingPlatformUser);
         }
+
+        private void dgvUsers_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(dgvUsers[0, e.RowIndex].FormattedValue.ToString()) ||
+                string.IsNullOrWhiteSpace(dgvUsers[1, e.RowIndex].FormattedValue.ToString()) ||
+                string.IsNullOrWhiteSpace(dgvUsers[2, e.RowIndex].FormattedValue.ToString()))
+            {
+                dgvUsers.Rows[e.RowIndex].ErrorText = "All cells must be populated.";
+                e.Cancel = true;
+            }
+            else
+            {
+                dgvUsers.Rows[e.RowIndex].ErrorText = string.Empty;
+            }
+
+        }
+
+
+
+
+
+
+
     }
 }

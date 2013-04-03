@@ -77,6 +77,7 @@
             this.cmbConfiguration.Size = new System.Drawing.Size(321, 21);
             this.cmbConfiguration.TabIndex = 1;
             this.cmbConfiguration.ValueMember = "Id";
+            this.cmbConfiguration.SelectedIndexChanged += new System.EventHandler(this.cmbConfiguration_SelectedIndexChanged);
             // 
             // bsConfiguration
             // 
@@ -119,8 +120,9 @@
             this.dgvModelUserRoles.Margin = new System.Windows.Forms.Padding(2);
             this.dgvModelUserRoles.Name = "dgvModelUserRoles";
             this.dgvModelUserRoles.RowTemplate.Height = 24;
-            this.dgvModelUserRoles.Size = new System.Drawing.Size(428, 339);
+            this.dgvModelUserRoles.Size = new System.Drawing.Size(428, 330);
             this.dgvModelUserRoles.TabIndex = 0;
+            this.dgvModelUserRoles.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvModelUserRoles_DataError);
             this.dgvModelUserRoles.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModelUserRoles_RowLeave);
             this.dgvModelUserRoles.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModelUserRoles_RowValidated);
             // 

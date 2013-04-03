@@ -168,11 +168,6 @@ namespace PromoveoAddin.UserManagement
 
         }
 
-        private void dgdRoles_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
-        {
-
-        }
-
         private void cmbSelectRole_SelectedIndexChanged(object sender, EventArgs e)
         {
             int roleID = 0;
@@ -183,6 +178,11 @@ namespace PromoveoAddin.UserManagement
             UserRoleDAL userRoleDAL = new UserRoleDAL();
             PopulateListView(this.lsvAssignedUsers, userRoleDAL.GetAssignedUsers(roleID));
             PopulateListView(this.lsvAvailableUsers, userRoleDAL.GetUnassignedUsers(roleID));
+        }
+
+        private void dgdRoles_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Please enter a value.", "Promoveo Addin");
         }
 
 

@@ -6,6 +6,7 @@ using Visio = Microsoft.Office.Interop.Visio;
 using Office = Microsoft.Office.Core;
 using System.Windows.Forms;
 using System.IO;
+using System.ComponentModel;
 
 namespace PromoveoAddin
 {
@@ -25,7 +26,8 @@ namespace PromoveoAddin
         private string _exportFileSubDirectory;
         private string _printIcon;
         private int _configurationID;
-        public CustomPublisher(Visio.Application app, string fileName, int configurationID)
+        private BackgroundWorker _worker;
+        public CustomPublisher(Visio.Application app, string fileName, int configurationID, BackgroundWorker worker)
         {
             _app = app;
             _document = app.ActiveDocument;
@@ -37,6 +39,7 @@ namespace PromoveoAddin
             _exportFileSubDirectory = _exportFileName + "_files\\";
             _configurationID = configurationID;
             _printIcon = SingletonVisioApp.GetCurrentVisioInstance().PrintIcon;
+            _worker = worker;
         }
 
         public void StartPublish(bool includePrint)
@@ -90,6 +93,9 @@ namespace PromoveoAddin
                     _document.Pages[i].Shapes["watermark"+i].Delete();
 
                     AddPrintIcon(i);
+                    double temp = (double)i / (double)_document.Pages.Count * 100;
+
+                    _worker.ReportProgress(Convert.ToInt32(temp));
                 }
             }
             catch (Exception ex)

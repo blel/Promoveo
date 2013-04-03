@@ -36,6 +36,8 @@
             this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
             this.chkAddModels = new System.Windows.Forms.CheckBox();
             this.btnStart = new System.Windows.Forms.Button();
+            this.pgbProgress = new System.Windows.Forms.ProgressBar();
+            this.bgrWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
             this.SuspendLayout();
@@ -97,11 +99,19 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
+            // pgbProgress
+            // 
+            this.pgbProgress.Location = new System.Drawing.Point(13, 154);
+            this.pgbProgress.Name = "pgbProgress";
+            this.pgbProgress.Size = new System.Drawing.Size(259, 23);
+            this.pgbProgress.TabIndex = 4;
+            // 
             // frmPublishDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.pgbProgress);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.chkAddModels);
             this.Controls.Add(this.cmbConfiguration);
@@ -125,6 +135,8 @@
         private Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter configurationTableAdapter;
         private System.Windows.Forms.CheckBox chkAddModels;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.ProgressBar pgbProgress;
+        private System.ComponentModel.BackgroundWorker bgrWorker;
 
     }
 }

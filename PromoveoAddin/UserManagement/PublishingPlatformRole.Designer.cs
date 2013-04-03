@@ -108,7 +108,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(402, 483);
+            this.btnSave.Location = new System.Drawing.Point(402, 449);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 4;
@@ -121,7 +121,7 @@
             this.chkModels.FormattingEnabled = true;
             this.chkModels.Location = new System.Drawing.Point(12, 49);
             this.chkModels.Name = "chkModels";
-            this.chkModels.Size = new System.Drawing.Size(465, 424);
+            this.chkModels.Size = new System.Drawing.Size(465, 394);
             this.chkModels.TabIndex = 3;
             // 
             // label2
@@ -180,9 +180,9 @@
             this.dgdRoles.RowTemplate.Height = 24;
             this.dgdRoles.Size = new System.Drawing.Size(474, 503);
             this.dgdRoles.TabIndex = 0;
+            this.dgdRoles.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgdRoles_DataError);
             this.dgdRoles.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdRoles_RowLeave);
             this.dgdRoles.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdRoles_RowValidated);
-            this.dgdRoles.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgdRoles_RowValidating);
             // 
             // idDataGridViewTextBoxColumn
             // 

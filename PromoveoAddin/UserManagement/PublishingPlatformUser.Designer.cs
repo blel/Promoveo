@@ -37,15 +37,12 @@
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsUsers = new System.Windows.Forms.BindingSource(this.components);
             this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
-            this.bsSelectRole = new System.Windows.Forms.BindingSource(this.components);
             this.publishingPlatformUserTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.PublishingPlatformUserTableAdapter();
-            this.publishingPlatformRoleTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.PublishingPlatformRoleTableAdapter();
             this.tbcUsers.SuspendLayout();
             this.tbpUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSelectRole)).BeginInit();
             this.SuspendLayout();
             // 
             // tbcUsers
@@ -56,7 +53,6 @@
             this.tbcUsers.SelectedIndex = 0;
             this.tbcUsers.Size = new System.Drawing.Size(459, 346);
             this.tbcUsers.TabIndex = 0;
-
             // 
             // tbpUser
             // 
@@ -83,8 +79,9 @@
             this.dgvUsers.Size = new System.Drawing.Size(438, 307);
             this.dgvUsers.TabIndex = 1;
             this.dgvUsers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellEndEdit);
-            this.dgvUsers.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellLeave);
-            this.dgvUsers.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_RowLeave);
+            this.dgvUsers.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_RowValidated);
+            this.dgvUsers.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvUsers_RowValidating);
+
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -114,18 +111,9 @@
             this.promoveoDataSet.DataSetName = "PromoveoDataSet";
             this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // bsSelectRole
-            // 
-            this.bsSelectRole.DataMember = "PublishingPlatformRole";
-            this.bsSelectRole.DataSource = this.promoveoDataSet;
-            // 
             // publishingPlatformUserTableAdapter
             // 
             this.publishingPlatformUserTableAdapter.ClearBeforeFill = true;
-            // 
-            // publishingPlatformRoleTableAdapter
-            // 
-            this.publishingPlatformRoleTableAdapter.ClearBeforeFill = true;
             // 
             // PublishingPlatformUser
             // 
@@ -141,7 +129,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSelectRole)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -157,7 +144,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn shortnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource bsSelectRole;
-        private Data.PromoveoDataSetTableAdapters.PublishingPlatformRoleTableAdapter publishingPlatformRoleTableAdapter;
     }
 }
