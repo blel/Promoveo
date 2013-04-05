@@ -19,13 +19,8 @@ namespace PromoveoAddin.MasterDataManagement
 
         private void frmProcessModels_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'promoveoDataSet.Configuration' table. You can move, or remove it, as needed.
             this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
-
-            // TODO: This line of code loads data into the 'promoveoDataSet.PublishingPlatformUser' table. You can move, or remove it, as needed.
             this.publishingPlatformUserTableAdapter.Fill(this.promoveoDataSet.PublishingPlatformUser);
-            // TODO: This line of code loads data into the 'promoveoDataSet.ProcessModel' table. You can move, or remove it, as needed.
-
             this.processModelBindingSource.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
             this.processModelTableAdapter.Fill(this.promoveoDataSet.ProcessModel);
         }

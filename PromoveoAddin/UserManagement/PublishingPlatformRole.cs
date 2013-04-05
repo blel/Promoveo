@@ -31,9 +31,7 @@ namespace PromoveoAddin.UserManagement
 
         private void PublishingPlatformRole_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'promoveoDataSet.Configuration' table. You can move, or remove it, as needed.
             this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
-            // TODO: This line of code loads data into the 'promoveoDataSet.PublishingPlatformRole' table. You can move, or remove it, as needed.
             this.publishingPlatformRoleTableAdapter.Fill(this.promoveoDataSet.PublishingPlatformRole);
             this.bsPublishingRole.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
             this.bsCbRoles.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());

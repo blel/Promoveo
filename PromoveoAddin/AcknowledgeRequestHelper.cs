@@ -17,7 +17,6 @@ namespace PromoveoAddin
             _master = master;
         }
 
-        //TODO: Send the acknowledge request to all users of all models which are not in state Acknowledged of a specific configuration
         public void SendAcknowledgeRequest()
         {
             MasterDataManagement.ProcessModelDAL pmDal = new MasterDataManagement.ProcessModelDAL();
@@ -25,7 +24,7 @@ namespace PromoveoAddin
             ServiceClient.ListsCommunicator listCommunicator = new ServiceClient.ListsCommunicator();
             foreach (Visio.Page page in _master.Pages)
             {
-                Data.PromoveoDataSet.ProcessModelRow processModel = pmDal.GetProcessModels(_configurationID).Where(cc => cc.ProcessModel == page.Name).FirstOrDefault();//TODO: Only with appropriate acknowledge state (currently DBNull error)...
+                Data.PromoveoDataSet.ProcessModelRow processModel = pmDal.GetProcessModels(_configurationID).Where(cc => cc.ProcessModel == page.Name && (cc.AcknowledgeState ==null || cc.AcknowledgeState==AcknowledgeState.MergedAndPublished.ToString())).FirstOrDefault();
                 if (processModel != null)
                 {
                     List<string> users = GetUsers(page);
@@ -75,5 +74,6 @@ public enum AcknowledgeState
 {
     Merged,
     MergedAndPublished,
-    Acknowledged
+    Acknowledged,
+    None
 }

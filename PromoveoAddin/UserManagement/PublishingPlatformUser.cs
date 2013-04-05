@@ -19,11 +19,8 @@ namespace PromoveoAddin.UserManagement
 
         private void PublishingPlatformUser_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'promoveoDataSet.PublishingPlatformUser' table. You can move, or remove it, as needed.
             this.publishingPlatformUserTableAdapter.Fill(this.promoveoDataSet.PublishingPlatformUser);
         }
-
-
 
         private void dgvUsers_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {

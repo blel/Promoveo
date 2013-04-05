@@ -172,7 +172,7 @@ namespace PromoveoAddin
             CreateVersion(pageToMerge.Name);
 
             //set AcknowledgeState
-            if (_replacePages && originalPage != null)
+            if (_replacePages & originalPage != null|| originalPage==null)
             {
                 SetAcknowledgeState(pageToMerge);
             }
