@@ -1859,6 +1859,8 @@ namespace PromoveoAddin.Data {
             
             private global::System.Data.DataColumn columnFK_Configuration;
             
+            private global::System.Data.DataColumn columnAcknowledgeState;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ProcessModelDataTable() {
@@ -1934,6 +1936,14 @@ namespace PromoveoAddin.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AcknowledgeStateColumn {
+                get {
+                    return this.columnAcknowledgeState;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1969,14 +1979,15 @@ namespace PromoveoAddin.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ProcessModelRow AddProcessModelRow(string ProcessModel, string PublishingVersion, int FK_PublishingPlatformUser, ConfigurationRow parentConfigurationRowByFK_ProcessModel_Configuration) {
+            public ProcessModelRow AddProcessModelRow(string ProcessModel, string PublishingVersion, int FK_PublishingPlatformUser, ConfigurationRow parentConfigurationRowByFK_ProcessModel_Configuration, string AcknowledgeState) {
                 ProcessModelRow rowProcessModelRow = ((ProcessModelRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ProcessModel,
                         PublishingVersion,
                         FK_PublishingPlatformUser,
-                        null};
+                        null,
+                        AcknowledgeState};
                 if ((parentConfigurationRowByFK_ProcessModel_Configuration != null)) {
                     columnValuesArray[4] = parentConfigurationRowByFK_ProcessModel_Configuration[0];
                 }
@@ -2014,6 +2025,7 @@ namespace PromoveoAddin.Data {
                 this.columnPublishingVersion = base.Columns["PublishingVersion"];
                 this.columnFK_PublishingPlatformUser = base.Columns["FK_PublishingPlatformUser"];
                 this.columnFK_Configuration = base.Columns["FK_Configuration"];
+                this.columnAcknowledgeState = base.Columns["AcknowledgeState"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2029,6 +2041,8 @@ namespace PromoveoAddin.Data {
                 base.Columns.Add(this.columnFK_PublishingPlatformUser);
                 this.columnFK_Configuration = new global::System.Data.DataColumn("FK_Configuration", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFK_Configuration);
+                this.columnAcknowledgeState = new global::System.Data.DataColumn("AcknowledgeState", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAcknowledgeState);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -4039,6 +4053,22 @@ namespace PromoveoAddin.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AcknowledgeState {
+                get {
+                    try {
+                        return ((string)(this[this.tableProcessModel.AcknowledgeStateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AcknowledgeState\' in table \'ProcessModel\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProcessModel.AcknowledgeStateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ConfigurationRow ConfigurationRow {
                 get {
                     return ((ConfigurationRow)(this.GetParentRow(this.Table.ParentRelations["FK_ProcessModel_Configuration"])));
@@ -4070,6 +4100,18 @@ namespace PromoveoAddin.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFK_ConfigurationNull() {
                 this[this.tableProcessModel.FK_ConfigurationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAcknowledgeStateNull() {
+                return this.IsNull(this.tableProcessModel.AcknowledgeStateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAcknowledgeStateNull() {
+                this[this.tableProcessModel.AcknowledgeStateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

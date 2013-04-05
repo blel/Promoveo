@@ -171,6 +171,11 @@ namespace PromoveoAddin
             //create version
             CreateVersion(pageToMerge.Name);
 
+            //set AcknowledgeState
+            if (_replacePages && originalPage != null)
+            {
+                SetAcknowledgeState(pageToMerge);
+            }
             
             //add fix guids to page when merged
             PrepareGuids(pageToMerge, originalPage);
@@ -185,6 +190,11 @@ namespace PromoveoAddin
             preparer.CopyPage();
         }
 
+        private void SetAcknowledgeState(Visio.Page pageToMerge)
+        {
+            MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
+            processModelDAL.SetAcknowledgeState(_configurationID, pageToMerge.Name, AcknowledgeState.Merged);
+        }
 
         private void CreateVersion(string modelName)
         {

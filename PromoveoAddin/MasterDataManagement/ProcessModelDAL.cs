@@ -81,5 +81,49 @@ namespace PromoveoAddin.MasterDataManagement
             adapter.Update(ds.ProcessModel);
         }
 
+        public void SetAcknowledgeState(int configurationID, string modelName, AcknowledgeState state)
+        {
+            PromoveoDataSet.ProcessModelDataTable pmTable = new PromoveoDataSet.ProcessModelDataTable();
+            Data.PromoveoDataSetTableAdapters.ProcessModelTableAdapter adapter = new ProcessModelTableAdapter();
+            adapter.Fill(pmTable);
+
+            PromoveoDataSet.ProcessModelRow rowToUpdate = (from cc in pmTable
+                                                          where cc.ProcessModel == modelName && cc.FK_Configuration == configurationID
+                                                           select cc).FirstOrDefault();
+            AcknowledgeState stateOfRowToUpdate = (AcknowledgeState)Enum.Parse(typeof(AcknowledgeState), rowToUpdate.AcknowledgeState);
+            switch (stateOfRowToUpdate)
+            {
+                case AcknowledgeState.Acknowledged:
+                    rowToUpdate.AcknowledgeState = state.ToString();
+                    break;
+                case AcknowledgeState.Merged:
+                    if (state == AcknowledgeState.MergedAndPublished)
+                    {
+                        rowToUpdate.AcknowledgeState = state.ToString();
+                    }
+                    break;
+                case AcknowledgeState.MergedAndPublished:
+                    if (state == AcknowledgeState.Acknowledged)
+                        rowToUpdate.AcknowledgeState = state.ToString();
+                    break;
+                default:
+                    rowToUpdate.AcknowledgeState = state.ToString();
+                    break;
+            }
+            adapter.Update(pmTable);
+        }
+
+        //TODO: How to get the modelUsers assigned to a model? This infomration is currently not saved in the database...
+        public Data.PromoveoDataSet.PublishingPlatformUserDataTable GetModelUsers(string modelName, int configurationID)
+        {
+            Data.PromoveoDataSet.PublishingPlatformUserDataTable userTable = new PromoveoDataSet.PublishingPlatformUserDataTable();
+            SqlDataAdapter sqlAdapter = new SqlDataAdapter("SELECT * FROM PublishingPlatformUser INNER JOIN ",base._connectionString);
+            sqlAdapter.Fill(userTable);
+            return userTable;
+        }
+
     }
+
 }
+
+

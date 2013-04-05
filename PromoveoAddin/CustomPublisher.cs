@@ -57,6 +57,7 @@ namespace PromoveoAddin
                 Resources.Resources.print_icon_tcm46_328106.Save(_exportPath + _exportFileSubDirectory + "printicon.bmp");
                 AddPdfToPages();
             }
+            SetAcknowledgeState();
             SaveAsHtml();
         }
 
@@ -127,6 +128,15 @@ namespace PromoveoAddin
                 
             }
             
+        }
+
+        private void SetAcknowledgeState()
+        {
+            foreach (Visio.Page page in _document.Pages)
+            {
+                MasterDataManagement.ProcessModelDAL pmDal = new MasterDataManagement.ProcessModelDAL();
+                pmDal.SetAcknowledgeState(_configurationID, page.Name, AcknowledgeState.MergedAndPublished);
+            }
         }
 
 

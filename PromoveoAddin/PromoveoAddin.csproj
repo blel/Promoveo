@@ -183,6 +183,7 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="AcknowledgeRequestHelper.cs" />
     <Compile Include="CustomPublisher.cs" />
     <Compile Include="Data\PromoveoDataSet.cs">
       <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
@@ -195,6 +196,12 @@
     </Compile>
     <Compile Include="DocumentComparer.cs" />
     <Compile Include="FileHelper.cs" />
+    <Compile Include="frmAcknowledgeRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAcknowledgeRequest.Designer.cs">
+      <DependentUpon>frmAcknowledgeRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPublishDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +262,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="DALBaseClass.cs" />
+    <Compile Include="ServiceClient\AbstractBindingFactory.cs" />
+    <Compile Include="ServiceClient\BasicHttpBindingFactory.cs" />
+    <Compile Include="ServiceClient\frmListWebservice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServiceClient\frmListWebservice.Designer.cs">
+      <DependentUpon>frmListWebservice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceClient\ListsCommunicator.cs" />
+    <Compile Include="ServiceClient\SharepointUser.cs" />
+    <Compile Include="ServiceClient\UserGroup.cs" />
+    <Compile Include="ServiceClient\UserGroupProxy.cs" />
     <Compile Include="ShapeHelper.cs" />
     <Compile Include="UserManagement\frmModelRoles.cs">
       <SubType>Form</SubType>
@@ -281,15 +300,19 @@
     <Compile Include="UserManagement\RoleModelDAL.cs" />
     <Compile Include="UserManagement\SerializableModelUser.cs" />
     <Compile Include="UserManagement\UserRoleDAL.cs" />
-    <Compile Include="Workflow.cs" />
-    <Compile Include="WorkflowCommunicator.cs" />
-    <Compile Include="WorkflowConfiguration.cs">
+    <Compile Include="ServiceClient\Lists.cs" />
+    <Compile Include="ServiceClient\Workflow.cs" />
+    <Compile Include="ServiceClient\WorkflowCommunicator.cs" />
+    <Compile Include="ServiceClient\WorkflowConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WorkflowConfiguration.Designer.cs">
+    <Compile Include="ServiceClient\WorkflowConfiguration.Designer.cs">
       <DependentUpon>WorkflowConfiguration.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorkflowDataXmlOperator.cs" />
+    <Compile Include="ServiceClient\WorkflowDataXmlOperator.cs" />
+    <EmbeddedResource Include="frmAcknowledgeRequest.resx">
+      <DependentUpon>frmAcknowledgeRequest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPublishDialog.resx">
       <DependentUpon>frmPublishDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +347,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ServiceClient\frmListWebservice.resx">
+      <DependentUpon>frmListWebservice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserManagement\frmModelRoles.resx">
       <DependentUpon>frmModelRoles.cs</DependentUpon>
     </EmbeddedResource>
@@ -333,10 +359,12 @@
     <EmbeddedResource Include="UserManagement\PublishingPlatformUser.resx">
       <DependentUpon>PublishingPlatformUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WorkflowConfiguration.resx">
+    <EmbeddedResource Include="ServiceClient\WorkflowConfiguration.resx">
       <DependentUpon>WorkflowConfiguration.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Data\PromoveoDataSet.xsc">
       <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
     </None>

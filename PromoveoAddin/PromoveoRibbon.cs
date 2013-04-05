@@ -6,6 +6,7 @@ using Microsoft.Office.Tools.Ribbon;
 using Visio = Microsoft.Office.Interop.Visio;
 using Office = Microsoft.Office.Core;
 using System.Windows.Forms;
+using ServiceClient;
 
 namespace PromoveoAddin
 {
@@ -38,8 +39,8 @@ namespace PromoveoAddin
             }
             else
             {
-                ServiceClient.WorkflowCommunicator workflowCommunicator =
-                    new ServiceClient.WorkflowCommunicator(SingletonVisioApp.GetCurrentVisioInstance().WorkflowAddress,
+                WorkflowCommunicator workflowCommunicator =
+                    new WorkflowCommunicator(SingletonVisioApp.GetCurrentVisioInstance().WorkflowAddress,
                                                            SingletonVisioApp.GetCurrentVisioInstance().WorkflowName);
                 try
                 {
@@ -109,6 +110,24 @@ namespace PromoveoAddin
         {
             MasterDataManagement.frmProcessModels processModels = new MasterDataManagement.frmProcessModels();
             processModels.Show();
+        }
+
+        private void btnListWebservice_Click(object sender, RibbonControlEventArgs e)
+        {
+            ServiceClient.frmListWebservice frmListWebservice = new ServiceClient.frmListWebservice();
+            frmListWebservice.Show();
+        }
+
+        private void btnGetUserID_Click(object sender, RibbonControlEventArgs e)
+        {
+            ServiceClient.UserGroupProxy proxy = new ServiceClient.UserGroupProxy();
+            MessageBox.Show(  proxy.GetUserId("Zenon5000\\Elias"));
+        }
+
+        private void btnAcknowledgeRequest_Click(object sender, RibbonControlEventArgs e)
+        {
+            frmAcknowledgeRequest frmAcknRequest = new frmAcknowledgeRequest();
+            frmAcknRequest.Show();
         }
 
     }

@@ -98,7 +98,6 @@
             this.txtExportPath.Name = "txtExportPath";
             this.txtExportPath.Size = new System.Drawing.Size(359, 22);
             this.txtExportPath.TabIndex = 7;
-            this.txtExportPath.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label3
             // 
@@ -108,7 +107,6 @@
             this.label3.Size = new System.Drawing.Size(81, 17);
             this.label3.TabIndex = 6;
             this.label3.Text = "Export Path";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtPrintIcon
             // 

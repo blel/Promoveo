@@ -15,11 +15,12 @@ namespace ServiceClient
         private XmlDocument  _mainXml;
         private XmlNamespaceManager _namespaceManager;
 
+        #region constructor
+
         public WorkflowDataXmlOperator(XmlDocument mainXml)
         {
             _mainXml = mainXml;
             _namespaceManager = GetDefaultNamespace();
-
         }
 
         public WorkflowDataXmlOperator(System.Xml.Linq.XElement mainXml)
@@ -46,6 +47,8 @@ namespace ServiceClient
             _namespaceManager = GetDefaultNamespace();
             
         }
+
+        #endregion
 
         private XmlNamespaceManager GetDefaultNamespace()
         {
