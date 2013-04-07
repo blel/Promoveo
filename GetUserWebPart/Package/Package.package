@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" Id="c719d17a-40ce-43d7-97b1-aee2b462f6cc" solutionId="c719d17a-40ce-43d7-97b1-aee2b462f6cc" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" name="GetUserWebPart">
+    <features>
+        <featureReference itemId="203e2c96-12a9-4ed4-ba84-30dc34a3303d" />
+    </features>
+</package>

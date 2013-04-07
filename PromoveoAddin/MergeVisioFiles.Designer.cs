@@ -181,7 +181,6 @@
             this.chkReplacePages.TabIndex = 7;
             this.chkReplacePages.Text = "Replace pages with same name";
             this.chkReplacePages.UseVisualStyleBackColor = true;
-            this.chkReplacePages.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // chkCreateVersions
             // 

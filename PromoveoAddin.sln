@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromoveoAddin", "PromoveoAd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromoveoAddinTest", "PromoveoAddinTest\PromoveoAddinTest.csproj", "{759BDE1E-1DEF-4015-97FE-760B46C8EB0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetUserWebPart", "..\GetUserWebPart\GetUserWebPart\GetUserWebPart.csproj", "{275F5573-540F-45BC-891D-CBDA5CFA1C59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetUserWebPart", "GetUserWebPart\GetUserWebPart.csproj", "{275F5573-540F-45BC-891D-CBDA5CFA1C59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

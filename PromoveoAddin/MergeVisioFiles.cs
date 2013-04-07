@@ -56,9 +56,8 @@ namespace PromoveoAddin
         }
 
         private void btnOK_Click(object sender, EventArgs e)
-        {
-                       
-            ModelMerger merger = new ModelMerger(this.txtTarget.Text, this.chkReplacePages.Checked, this.chkReplacePages.Checked, Convert.ToInt32( this.cmbConfiguration.SelectedValue.ToString()));
+        {         
+            ModelMerger merger = new ModelMerger(this.txtTarget.Text, this.chkReplacePages.Checked, this.chkReplacePages.Checked, Convert.ToInt32(this.cmbConfiguration.SelectedValue));
             merger.FilesToMerge = lbFilesToMerge.Items.Cast<string>().ToList();
             DialogResult result = MessageBox.Show("All open docs will be closed without saving. Do you want to continue?",
                 "Promoveo For Visio", MessageBoxButtons.YesNo);
@@ -92,21 +91,11 @@ namespace PromoveoAddin
             {
                 this.txtTarget.Text = fileDialog.FileName;
             }
-
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void MergeVisioFiles_Load(object sender, EventArgs e)
         {
             this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
-
         }
-
-
     }
 }

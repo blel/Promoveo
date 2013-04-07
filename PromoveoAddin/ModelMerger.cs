@@ -74,6 +74,7 @@ namespace PromoveoAddin
         /// Files to merge must have been set before (TODO: should  
         /// be passed as a parameter)
         /// </summary>
+        //TODO: Save and check the filename of the master document
         public void StartMerge()
         {
             CloseAllOpenFiles();
@@ -89,13 +90,24 @@ namespace PromoveoAddin
                 DialogResult result = saveFileDialog.ShowDialog();
                 if (result != DialogResult.Cancel)
                 {
-                    _resultDoc.SaveAs(saveFileDialog.FileName); 
+                    _resultDoc.SaveAs(saveFileDialog.FileName);
                     _initialPageToRemove = _resultDoc.Pages[1];
                     _initialPageToRemove.Name = Guid.NewGuid().ToString();
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(_resultDoc.Path))
+            MasterDataManagement.ConfigurationDAL configurationDAL = new MasterDataManagement.ConfigurationDAL();
+            string visioMasterFilename = configurationDAL.GetVisioMasterFileName(_configurationID);
+            bool abort = false;
+            if (!string.IsNullOrWhiteSpace(visioMasterFilename) && visioMasterFilename !=
+                FileHelper.EnsureTailBackslash(_resultDoc.Path) + _resultDoc.Name)
+            {
+                DialogResult result = MessageBox.Show("You have used this configuration with another Master before. Do you want to continue?", "Promoveo for Visio", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No)
+                    abort = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(_resultDoc.Path) && !abort)
             {
                 foreach (string fileName in FilesToMerge)
                 {
@@ -107,7 +119,16 @@ namespace PromoveoAddin
                     _resultDoc.Pages[_initialPageToRemove.Name].Delete(Convert.ToInt16(false));
                 LocalizeVisioHyperlinks();
                 //RelativizeOtherHyperlinks();
+
+                //save the filename to the database if it differs from the current name
+                if (visioMasterFilename != FileHelper.EnsureTailBackslash(_resultDoc.Path) + _resultDoc.Name)
+                {
+                    configurationDAL.SetVisioMasterFileName(_configurationID, FileHelper.EnsureTailBackslash(_resultDoc.Path) + _resultDoc.Name);
+                }
             }
+
+            
+
         }
 
         /// <summary>
@@ -193,7 +214,14 @@ namespace PromoveoAddin
         private void SetAcknowledgeState(Visio.Page pageToMerge)
         {
             MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
-            processModelDAL.SetAcknowledgeState(_configurationID, pageToMerge.Name, AcknowledgeState.Merged);
+            try
+            {
+                processModelDAL.SetAcknowledgeState(_configurationID, pageToMerge.Name, AcknowledgeState.Merged);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void CreateVersion(string modelName)

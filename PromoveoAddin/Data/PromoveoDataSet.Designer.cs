@@ -3957,11 +3957,11 @@ namespace PromoveoAddin.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string VisioMasterFilename {
                 get {
-                    try {
-                        return ((string)(this[this.tableConfiguration.VisioMasterFilenameColumn]));
+                    if (this.IsVisioMasterFilenameNull()) {
+                        return null;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VisioMasterFilename\' in table \'Configuration\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tableConfiguration.VisioMasterFilenameColumn]));
                     }
                 }
                 set {

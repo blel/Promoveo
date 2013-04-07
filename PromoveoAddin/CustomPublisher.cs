@@ -135,7 +135,14 @@ namespace PromoveoAddin
             foreach (Visio.Page page in _document.Pages)
             {
                 MasterDataManagement.ProcessModelDAL pmDal = new MasterDataManagement.ProcessModelDAL();
-                pmDal.SetAcknowledgeState(_configurationID, page.Name, AcknowledgeState.MergedAndPublished);
+                try
+                {
+                    pmDal.SetAcknowledgeState(_configurationID, page.Name, AcknowledgeState.MergedAndPublished);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -202,10 +209,5 @@ namespace PromoveoAddin
             watermark.CellsSRC[(short)Visio.VisSectionIndices.visSectionCharacter, 0, (short)Visio.VisCellIndices.visCharacterColorTrans].FormulaU = "75%";
             return watermark;
         }
-
-
-
-
-
     }
 }

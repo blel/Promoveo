@@ -14,11 +14,11 @@ namespace PromoveoAddin
     public partial class frmPublishDialog : Form
     {
         delegate void ChangeProgressBar(int percentage);
-        
+
         public frmPublishDialog()
         {
             InitializeComponent();
-            bgrWorker.DoWork +=  new DoWorkEventHandler(bgrWorker_DoWork);
+            bgrWorker.DoWork += new DoWorkEventHandler(bgrWorker_DoWork);
             bgrWorker.WorkerReportsProgress = true;
             bgrWorker.ProgressChanged += new ProgressChangedEventHandler(bgrWorker_ProgressChanged);
         }
@@ -28,33 +28,23 @@ namespace PromoveoAddin
             pgbProgress.Value = precentage;
         }
 
-
-
         void bgrWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
 
-            pgbProgress.Invoke(new ChangeProgressBar(ChangeTheProgressBar),e.ProgressPercentage);
-            
+            pgbProgress.Invoke(new ChangeProgressBar(ChangeTheProgressBar), e.ProgressPercentage);
         }
 
         void bgrWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-
-
-                BackgroundWorkerArgs args = (BackgroundWorkerArgs)e.Argument;
-                CustomPublisher publisher = new CustomPublisher(SingletonVisioApp.GetCurrentVisioInstance().VisioApp,
-                    args.Filename, args.ConfigurationID, bgrWorker);
-
-                publisher.StartPublish(true);
-            
+            BackgroundWorkerArgs args = (BackgroundWorkerArgs)e.Argument;
+            CustomPublisher publisher = new CustomPublisher(SingletonVisioApp.GetCurrentVisioInstance().VisioApp,
+                args.Filename, args.ConfigurationID, bgrWorker);
+            publisher.StartPublish(true);
         }
-
-        
 
         private void frmPublishDialog_Load(object sender, EventArgs e)
         {
             this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
-
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -72,7 +62,7 @@ namespace PromoveoAddin
                 fileDialog.Filter = "Html Page (*.htm, *.html)|*.htm;*html";
                 fileDialog.FileName = System.IO.Path.GetFileNameWithoutExtension(SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument.Name);
                 DialogResult result = fileDialog.ShowDialog();
-                pgbProgress.Maximum = 100;// SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument.Pages.Count;
+                pgbProgress.Maximum = 100;
                 pgbProgress.Step = 1;
 
                 if (result != DialogResult.Cancel)
@@ -84,23 +74,15 @@ namespace PromoveoAddin
                     {
                         bgrWorker.RunWorkerAsync(bgrArgs);
                     }
-                    //CustomPublisher publisher = new CustomPublisher(SingletonVisioApp.GetCurrentVisioInstance().VisioApp,
-                    //    fileDialog.FileName, Convert.ToInt32(this.cmbConfiguration.SelectedValue));
-
-                    //publisher.StartPublish(true);
                 }
             }
             else
             {
                 MessageBox.Show("There are new models for the selected configuration. Add the models and appropriate user rights first, and publish again.");
             }
-            
+
 
         }
-
-
-
-
     }
 
     public class BackgroundWorkerArgs
@@ -108,7 +90,4 @@ namespace PromoveoAddin
         public string Filename { get; set; }
         public int ConfigurationID { get; set; }
     }
-
-
-
 }

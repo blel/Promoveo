@@ -90,7 +90,10 @@ namespace PromoveoAddin.MasterDataManagement
             PromoveoDataSet.ProcessModelRow rowToUpdate = (from cc in pmTable
                                                           where cc.ProcessModel == modelName && cc.FK_Configuration == configurationID
                                                            select cc).FirstOrDefault();
-
+            if (rowToUpdate == null)
+            { 
+                throw new Exception(string.Format("No configuration available with Key = {0} and model name = {1}", configurationID, modelName));
+            }
             AcknowledgeState stateOfRowToUpdate = AcknowledgeState.None;
             if (rowToUpdate.AcknowledgeState != null)
             {
@@ -117,6 +120,9 @@ namespace PromoveoAddin.MasterDataManagement
             }
             adapter.Update(pmTable);
         }
+
+
+
     }
 
 }
