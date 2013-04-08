@@ -11,6 +11,8 @@ namespace PromoveoAddin
     {
         int _configurationID;
         Visio.Document _master;
+        //TODO: This const should be replaced by a configuration parameter
+        const string landingPage = "http://zenon5000/SitePages/terst.aspx";
         public AcknowledgeRequestHelper(int configurationID, Visio.Document master)
         {
             _configurationID = configurationID;
@@ -29,7 +31,7 @@ namespace PromoveoAddin
                 {
                     List<string> users = GetUsers(page);
                     List<ServiceClient.SharepointUser> spUsers = proxy.GetSharepointUsers(users, "zenon5000");
-                    listCommunicator.AddTask(spUsers, string.Format("Please acknowledge model {0}.", page.Name), "Tasks");
+                    listCommunicator.AddTask(spUsers, string.Format("Please acknowledge model {0}. Goto {1}?page={0}.", page.Name, landingPage), "Tasks");
                     processModel.AcknowledgeState = AcknowledgeState.Acknowledged.ToString();
                     Data.PromoveoDataSetTableAdapters.ProcessModelTableAdapter adapter = new Data.PromoveoDataSetTableAdapters.ProcessModelTableAdapter();
                     adapter.Update(processModel);
