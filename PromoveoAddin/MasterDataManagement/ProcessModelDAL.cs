@@ -27,6 +27,17 @@ namespace PromoveoAddin.MasterDataManagement
             adapter.Insert(modelName, "", null, configID,null);
         }
 
+        public bool IsModelOfConfiguration(string modelName, int configurationID)
+        {
+            PromoveoDataSet ds = new PromoveoDataSet();
+            ProcessModelTableAdapter adapter = new ProcessModelTableAdapter();
+            adapter.Fill(ds.ProcessModel);
+            return (from cc in ds.ProcessModel
+                    where cc.FK_Configuration == configurationID &&
+                          cc.ProcessModel == modelName
+                    select cc).Count() > 0;
+        }
+
 
         public bool HasNewModels(Visio.Document document, int configurationID, out List<string> newModels)
         {

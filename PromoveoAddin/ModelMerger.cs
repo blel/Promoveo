@@ -126,9 +126,6 @@ namespace PromoveoAddin
                     configurationDAL.SetVisioMasterFileName(_configurationID, FileHelper.EnsureTailBackslash(_resultDoc.Path) + _resultDoc.Name);
                 }
             }
-
-            
-
         }
 
         /// <summary>
@@ -137,13 +134,28 @@ namespace PromoveoAddin
         /// <param name="fileName"></param>
         private void Merge(string fileName)
         {
+            bool abort;
             Visio.Document docToMerge = _app.VisioApp.Documents.OpenEx(fileName,(short)Visio.VisOpenSaveArgs.visOpenHidden + (short)Visio.VisOpenSaveArgs.visOpenDontList);
+            MasterDataManagement.ProcessModelDAL pmDal = new MasterDataManagement.ProcessModelDAL();
             foreach (Visio.Page pageToMerge in docToMerge.Pages)
             {
+                abort = false;
+                if (!pmDal.IsModelOfConfiguration(pageToMerge.Name,_configurationID))
+                {
+                    DialogResult result = MessageBox.Show(string.Format("The model {0} does currently not belong to the configuration. Shall it be added? Yes: add, No: skip", pageToMerge.Name), "Promoveo Addin", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        pmDal.Insert(pageToMerge.Name, _configurationID);
+                    }
+                    else abort = true;
+                }
 
+                if (!abort)
+                {
                     MakeAbsoluteLinks(pageToMerge, docToMerge.Path);
                     MergePage(pageToMerge);
-                
+                }
+
             }
             docToMerge.Saved = true;
             docToMerge.Close();

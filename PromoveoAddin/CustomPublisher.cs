@@ -157,8 +157,7 @@ namespace PromoveoAddin
             settings.PriFormat = "PNG";
             settings.SilentMode = Convert.ToInt16(true);
             settings.TargetPath = string.Format("{0}{1}.htm", _exportPath, _exportFileName);
-            saveAsWebObj.CreatePages();
-            
+            saveAsWebObj.CreatePages(); 
             OverwriteFramesetJs();
             SerializePublishPlatformUsers();
 
