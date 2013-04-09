@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PromoveoAddin.Data;
-using PromoveoAddin.Data.PromoveoDataSetTableAdapters;
+using PromoveoWebService.Data;
+using PromoveoWebService.Data.PromoveoDataSetTableAdapters;
 
-namespace PromoveoAddin.UserManagement
+namespace PromoveoWebService.DataAccessLayer
 {
-    public class UserRoleDAL: DALBaseClass
+    public class UserRoleDAL : DALBaseClass, PromoveoWebService.ServiceDefinitions.IUserRole
     {
         /// <summary>
         /// This function is a little bit shaky. First, in the dataset, a query is created which returns
@@ -62,7 +62,8 @@ namespace PromoveoAddin.UserManagement
             
             if (IsUserAssigned(roleID, userID,out assignedUser))
             {
-                userRoleAdapter.Delete(assignedUser.Id, assignedUser.FK_PublishingPlatformRole, assignedUser.FK_PublishingPlatformUser);
+                //TODO: got an error here, before I had three parameters, now the ID only
+                userRoleAdapter.Delete(assignedUser.Id);
             }
         }
 

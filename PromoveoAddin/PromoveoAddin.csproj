@@ -185,15 +185,6 @@
   <ItemGroup>
     <Compile Include="AcknowledgeRequestHelper.cs" />
     <Compile Include="CustomPublisher.cs" />
-    <Compile Include="Data\PromoveoDataSet.cs">
-      <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data\PromoveoDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="DocumentComparer.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="frmAcknowledgeRequest.cs">
@@ -214,7 +205,6 @@
     <Compile Include="InputBox.Designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterDataManagement\ConfigurationDAL.cs" />
     <Compile Include="MasterDataManagement\ConnectionStringHelper.cs" />
     <Compile Include="MasterDataManagement\frmConfigurations.cs">
       <SubType>Form</SubType>
@@ -234,7 +224,6 @@
     <Compile Include="MasterDataManagement\frmProcessModels.Designer.cs">
       <DependentUpon>frmProcessModels.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterDataManagement\ProcessModelDAL.cs" />
     <Compile Include="MergeVisioFiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,7 +250,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="DALBaseClass.cs" />
     <Compile Include="ServiceClient\AbstractBindingFactory.cs" />
     <Compile Include="ServiceClient\BasicHttpBindingFactory.cs" />
     <Compile Include="ServiceClient\frmListWebservice.cs">
@@ -281,15 +269,12 @@
     <Compile Include="UserManagement\frmModelRoles.Designer.cs">
       <DependentUpon>frmModelRoles.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserManagement\ModelUserRolesDAL.cs" />
-    <Compile Include="UserManagement\ProcessModelDAL.cs" />
     <Compile Include="UserManagement\PublishingPlatformRole.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserManagement\PublishingPlatformRole.Designer.cs">
       <DependentUpon>PublishingPlatformRole.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserManagement\PublishingPlatformRolesDAL.cs" />
     <Compile Include="UserManagement\PublishingPlatformSerializer.cs" />
     <Compile Include="UserManagement\PublishingPlatformUser.cs">
       <SubType>Form</SubType>
@@ -297,9 +282,7 @@
     <Compile Include="UserManagement\PublishingPlatformUser.Designer.cs">
       <DependentUpon>PublishingPlatformUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserManagement\RoleModelDAL.cs" />
     <Compile Include="UserManagement\SerializableModelUser.cs" />
-    <Compile Include="UserManagement\UserRoleDAL.cs" />
     <Compile Include="ServiceClient\Lists.cs" />
     <Compile Include="ServiceClient\Workflow.cs" />
     <Compile Include="ServiceClient\WorkflowCommunicator.cs" />
@@ -365,17 +348,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\PromoveoDataSet.xsc">
-      <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Data\PromoveoDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PromoveoDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Data\PromoveoDataSet.xss">
-      <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="PromoveoAddin_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\PromoveoDBEntities.datasource" />
@@ -425,11 +397,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\print_icon_tcm46-328106.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DB_Scripts\FullDBScript_201303191746.sql" />
-    <Content Include="DB_Scripts\FullDBScript_201303280810.sql" />
-    <Content Include="DB_Scripts\Wipe_Tables.sql" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

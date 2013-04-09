@@ -1,13 +1,13 @@
-﻿using System;
+﻿using PromoveoWebService.Data;
+using PromoveoWebService.Data.PromoveoDataSetTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PromoveoAddin.Data;
-using PromoveoAddin.Data.PromoveoDataSetTableAdapters;
 
-namespace PromoveoAddin.MasterDataManagement
+namespace PromoveoWebService.DataAccessLayer
 {
-    public class ConfigurationDAL:DALBaseClass
+    public class ConfigurationDAL : DALBaseClass, PromoveoWebService.ServiceDefinitions.IConfiguration
     {
         public string GetVisioMasterFileName(int configurationID)
         {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PromoveoAddin.UserManagement
+namespace PromoveoWebService.DataAccessLayer
 {
-    public class PublishingPlatformRolesDAL:DALBaseClass
+    public class PublishingPlatformRolesDAL : DALBaseClass, PromoveoWebService.ServiceDefinitions.IPublishingPlatformRolesDAL
     {
         public void CreateRole(Data.PromoveoDataSet.PublishingPlatformRoleDataTable data)
         {

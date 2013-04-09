@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PromoveoAddin.Data;
-using PromoveoAddin.Data.PromoveoDataSetTableAdapters;
+using PromoveoWebService.Data;
+using PromoveoWebService.Data.PromoveoDataSetTableAdapters;
 using System.Data.SqlClient;
-using Visio = Microsoft.Office.Interop.Visio;
-using Office = Microsoft.Office.Core;
 
-namespace PromoveoAddin.MasterDataManagement
+
+namespace PromoveoWebService.DataAccessLayer
 {
-    public class ProcessModelDAL:DALBaseClass
+    public class ProcessModelDAL : DALBaseClass, PromoveoWebService.ServiceDefinitions.IProcessModel
     {
         public PromoveoDataSet.ProcessModelDataTable GetProcessModels(int configurationID)
         {
@@ -20,11 +19,10 @@ namespace PromoveoAddin.MasterDataManagement
             sqlAdapter.Fill(ds.ProcessModel);
             return ds.ProcessModel;
         }
-
         public void Insert(string modelName, int configID)
         {
             ProcessModelTableAdapter adapter = new ProcessModelTableAdapter();
-            adapter.Insert(modelName, "", null, configID,null);
+            adapter.Insert(modelName, "", null, configID, null);
         }
 
         public bool IsModelOfConfiguration(string modelName, int configurationID)
@@ -38,22 +36,19 @@ namespace PromoveoAddin.MasterDataManagement
                     select cc).Count() > 0;
         }
 
-
-        public bool HasNewModels(Visio.Document document, int configurationID, out List<string> newModels)
+        //TODO: first parameter changed from visio.document to List<string> --> client??
+        public bool HasNewModels(List<string> modelNames, int configurationID, out List<string> newModels)
         {
             bool hasNewModels = false;
             newModels = new List<string>();
-            var processModels = this.GetProcessModels(configurationID);
-            if (document != null)
-            {
-                foreach (string modelName in document.Pages.Cast<Visio.Page>().Select(cc => cc.Name))
-                {
-                    if (processModels.Rows.Cast<Data.PromoveoDataSet.ProcessModelRow>().Where(cc => cc.ProcessModel == modelName).Count() == 0)
-                    {
-                        hasNewModels = true;
-                        newModels.Add(modelName);
-                    }
+            var processModels = GetProcessModels(configurationID);
 
+            foreach (string modelName in modelNames)
+            {
+                if (processModels.Rows.Cast<Data.PromoveoDataSet.ProcessModelRow>().Where(cc => cc.ProcessModel == modelName).Count() == 0)
+                {
+                    hasNewModels = true;
+                    newModels.Add(modelName);
                 }
             }
             return hasNewModels;
@@ -61,7 +56,7 @@ namespace PromoveoAddin.MasterDataManagement
 
         public void AddNewModels(List<string> modelNames, int configurationID)
         {
-            MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
+            ProcessModelDAL processModelDAL = new ProcessModelDAL();
 
             foreach (string modelName in modelNames)
             {
@@ -76,8 +71,8 @@ namespace PromoveoAddin.MasterDataManagement
             PromoveoDataSet ds = new PromoveoDataSet();
             adapter.Fill(ds.ProcessModel);
             PromoveoDataSet.ProcessModelRow model = (from cc in ds.ProcessModel
-                        where cc.ProcessModel == modelName && cc.FK_Configuration == configurationID
-                        select cc).FirstOrDefault();
+                                                     where cc.ProcessModel == modelName && cc.FK_Configuration == configurationID
+                                                     select cc).FirstOrDefault();
             if (model != null)
             {
                 if (string.IsNullOrWhiteSpace(model.PublishingVersion))
@@ -99,16 +94,16 @@ namespace PromoveoAddin.MasterDataManagement
             adapter.Fill(pmTable);
 
             PromoveoDataSet.ProcessModelRow rowToUpdate = (from cc in pmTable
-                                                          where cc.ProcessModel == modelName && cc.FK_Configuration == configurationID
+                                                           where cc.ProcessModel == modelName && cc.FK_Configuration == configurationID
                                                            select cc).FirstOrDefault();
             if (rowToUpdate == null)
-            { 
+            {
                 throw new Exception(string.Format("No configuration available with Key = {0} and model name = {1}", configurationID, modelName));
             }
             AcknowledgeState stateOfRowToUpdate = AcknowledgeState.None;
             if (rowToUpdate.AcknowledgeState != null)
             {
-                 stateOfRowToUpdate = (AcknowledgeState)Enum.Parse(typeof(AcknowledgeState), rowToUpdate.AcknowledgeState);
+                stateOfRowToUpdate = (AcknowledgeState)Enum.Parse(typeof(AcknowledgeState), rowToUpdate.AcknowledgeState);
             }
             switch (stateOfRowToUpdate)
             {
@@ -133,9 +128,32 @@ namespace PromoveoAddin.MasterDataManagement
         }
 
 
+        public PromoveoDataSet.ProcessModelDataTable GetProcessModels()
+        {
+            ProcessModelTableAdapter adapter = new ProcessModelTableAdapter();
+            PromoveoDataSet.ProcessModelDataTable table = new PromoveoDataSet.ProcessModelDataTable();
+            adapter.Fill(table);
+            return table;
+        }
+
+        public int GetModelID(string processModel)
+        {
+            ProcessModelTableAdapter adapter = new ProcessModelTableAdapter();
+            PromoveoDataSet.ProcessModelDataTable table = new PromoveoDataSet.ProcessModelDataTable();
+            adapter.Fill(table);
+            return (from cc in table.AsEnumerable()
+                    where cc.ProcessModel == processModel
+                    select cc).First().Id;
+
+        }
+
+        public PromoveoDataSet.ProcessModelUsersDataTable GetUsers(string processModel)
+        {
+            ProcessModelUsersTableAdapter pmuAdapter = new ProcessModelUsersTableAdapter();
+
+            return pmuAdapter.GetData1(processModel);
+        }
 
     }
-
 }
-
 

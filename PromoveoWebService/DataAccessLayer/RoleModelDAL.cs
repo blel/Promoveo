@@ -5,9 +5,9 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace PromoveoAddin.UserManagement
+namespace PromoveoWebService.DataAccessLayer
 {
-    public class RoleModelDAL:DALBaseClass
+    public class RoleModelDAL : DALBaseClass, PromoveoWebService.ServiceDefinitions.IRoleModel
     {
         
         
@@ -60,7 +60,8 @@ namespace PromoveoAddin.UserManagement
             {
                 if (row != null)
                 {
-                    roleModelAdapter.Delete(row.Id, pmId, RoleID);
+                    //TODO: got an error here, before I had three parameters, now the ID only
+                    roleModelAdapter.Delete(row.Id);
                 }
             }
         }

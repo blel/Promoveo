@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PromoveoAddin.Data;
-using PromoveoAddin.Data.PromoveoDataSetTableAdapters;
+using PromoveoWebService.Data;
+using PromoveoWebService.Data.PromoveoDataSetTableAdapters;
 using System.Data.SqlClient;
 
-namespace PromoveoAddin.UserManagement
+namespace PromoveoWebService.DataAccessLayer
 {
-    public class ModelUserRolesDAL:DALBaseClass
+    public class ModelUserRolesDAL : DALBaseClass, PromoveoWebService.ServiceDefinitions.IModelUserRoles
     {
         public PromoveoDataSet.ModelUserGroupDataTable GetModelUserRoles(int configurationID)
         {
@@ -70,7 +70,8 @@ namespace PromoveoAddin.UserManagement
             if (IsUserAssigned(configurationID, modelRoleID, userID, out modelUserAssignment))
             {
                 UserToModelUserGroupAssignmentTableAdapter modelUserRoleAdapter = new UserToModelUserGroupAssignmentTableAdapter();
-                modelUserRoleAdapter.Delete(modelUserAssignment.Id, modelUserAssignment.FK_User, modelUserAssignment.FK_ModelUserGroup);
+                //TODO: got an error here, before I had three parameters, now the ID only
+                modelUserRoleAdapter.Delete(modelUserAssignment.Id);
             }
         }
 

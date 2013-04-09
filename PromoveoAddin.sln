@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromoveoAddin", "PromoveoAd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetUserWebPart", "GetUserWebPart\GetUserWebPart.csproj", "{275F5573-540F-45BC-891D-CBDA5CFA1C59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromoveoWebService", "PromoveoWebService\PromoveoWebService.csproj", "{F465A510-F83D-44C6-97EC-D7D668C2E887}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{275F5573-540F-45BC-891D-CBDA5CFA1C59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{275F5573-540F-45BC-891D-CBDA5CFA1C59}.Release|Any CPU.Build.0 = Release|Any CPU
 		{275F5573-540F-45BC-891D-CBDA5CFA1C59}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F465A510-F83D-44C6-97EC-D7D668C2E887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F465A510-F83D-44C6-97EC-D7D668C2E887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F465A510-F83D-44C6-97EC-D7D668C2E887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F465A510-F83D-44C6-97EC-D7D668C2E887}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

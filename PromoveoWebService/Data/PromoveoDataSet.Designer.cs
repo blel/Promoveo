@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace PromoveoAddin.Data {
+namespace PromoveoWebService.Data {
     
     
     /// <summary>
@@ -28,8 +28,6 @@ namespace PromoveoAddin.Data {
         
         private UserRoleAssignmentDataTable tableUserRoleAssignment;
         
-        private UserToModelUserGroupAssignmentDataTable tableUserToModelUserGroupAssignment;
-        
         private ConfigurationDataTable tableConfiguration;
         
         private ModelUserGroupDataTable tableModelUserGroup;
@@ -44,9 +42,7 @@ namespace PromoveoAddin.Data {
         
         private PublishingPlatformUser_PublishingPlatformRoleDataTable tablePublishingPlatformUser_PublishingPlatformRole;
         
-        private global::System.Data.DataRelation relationFK_UserToModelUserGroupAssignment_ToModelUserGroup;
-        
-        private global::System.Data.DataRelation relationFK_UserToModelUserGroupAssignment_ToUser;
+        private UserToModelUserGroupAssignmentDataTable tableUserToModelUserGroupAssignment;
         
         private global::System.Data.DataRelation relationFK_ModelUserGroup_ToConfiguration;
         
@@ -61,6 +57,18 @@ namespace PromoveoAddin.Data {
         private global::System.Data.DataRelation relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformRole;
         
         private global::System.Data.DataRelation relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser;
+        
+        private global::System.Data.DataRelation relationFK_UserToModelUserGroupAssignment_ToModelUserGroup;
+        
+        private global::System.Data.DataRelation relationFK_UserToModelUserGroupAssignment_ToUser;
+        
+        private global::System.Data.DataRelation relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser1;
+        
+        private global::System.Data.DataRelation relationFK_UserToModelUserGroupAssignment_ToUser1;
+        
+        private global::System.Data.DataRelation relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser2;
+        
+        private global::System.Data.DataRelation relationFK_UserToModelUserGroupAssignment_ToUser2;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -96,9 +104,6 @@ namespace PromoveoAddin.Data {
                 if ((ds.Tables["UserRoleAssignment"] != null)) {
                     base.Tables.Add(new UserRoleAssignmentDataTable(ds.Tables["UserRoleAssignment"]));
                 }
-                if ((ds.Tables["UserToModelUserGroupAssignment"] != null)) {
-                    base.Tables.Add(new UserToModelUserGroupAssignmentDataTable(ds.Tables["UserToModelUserGroupAssignment"]));
-                }
                 if ((ds.Tables["Configuration"] != null)) {
                     base.Tables.Add(new ConfigurationDataTable(ds.Tables["Configuration"]));
                 }
@@ -119,6 +124,9 @@ namespace PromoveoAddin.Data {
                 }
                 if ((ds.Tables["PublishingPlatformUser_PublishingPlatformRole"] != null)) {
                     base.Tables.Add(new PublishingPlatformUser_PublishingPlatformRoleDataTable(ds.Tables["PublishingPlatformUser_PublishingPlatformRole"]));
+                }
+                if ((ds.Tables["UserToModelUserGroupAssignment"] != null)) {
+                    base.Tables.Add(new UserToModelUserGroupAssignmentDataTable(ds.Tables["UserToModelUserGroupAssignment"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -155,16 +163,6 @@ namespace PromoveoAddin.Data {
         public UserRoleAssignmentDataTable UserRoleAssignment {
             get {
                 return this.tableUserRoleAssignment;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public UserToModelUserGroupAssignmentDataTable UserToModelUserGroupAssignment {
-            get {
-                return this.tableUserToModelUserGroupAssignment;
             }
         }
         
@@ -235,6 +233,16 @@ namespace PromoveoAddin.Data {
         public PublishingPlatformUser_PublishingPlatformRoleDataTable PublishingPlatformUser_PublishingPlatformRole {
             get {
                 return this.tablePublishingPlatformUser_PublishingPlatformRole;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public UserToModelUserGroupAssignmentDataTable UserToModelUserGroupAssignment {
+            get {
+                return this.tableUserToModelUserGroupAssignment;
             }
         }
         
@@ -311,9 +319,6 @@ namespace PromoveoAddin.Data {
                 if ((ds.Tables["UserRoleAssignment"] != null)) {
                     base.Tables.Add(new UserRoleAssignmentDataTable(ds.Tables["UserRoleAssignment"]));
                 }
-                if ((ds.Tables["UserToModelUserGroupAssignment"] != null)) {
-                    base.Tables.Add(new UserToModelUserGroupAssignmentDataTable(ds.Tables["UserToModelUserGroupAssignment"]));
-                }
                 if ((ds.Tables["Configuration"] != null)) {
                     base.Tables.Add(new ConfigurationDataTable(ds.Tables["Configuration"]));
                 }
@@ -334,6 +339,9 @@ namespace PromoveoAddin.Data {
                 }
                 if ((ds.Tables["PublishingPlatformUser_PublishingPlatformRole"] != null)) {
                     base.Tables.Add(new PublishingPlatformUser_PublishingPlatformRoleDataTable(ds.Tables["PublishingPlatformUser_PublishingPlatformRole"]));
+                }
+                if ((ds.Tables["UserToModelUserGroupAssignment"] != null)) {
+                    base.Tables.Add(new UserToModelUserGroupAssignmentDataTable(ds.Tables["UserToModelUserGroupAssignment"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -380,12 +388,6 @@ namespace PromoveoAddin.Data {
                     this.tableUserRoleAssignment.InitVars();
                 }
             }
-            this.tableUserToModelUserGroupAssignment = ((UserToModelUserGroupAssignmentDataTable)(base.Tables["UserToModelUserGroupAssignment"]));
-            if ((initTable == true)) {
-                if ((this.tableUserToModelUserGroupAssignment != null)) {
-                    this.tableUserToModelUserGroupAssignment.InitVars();
-                }
-            }
             this.tableConfiguration = ((ConfigurationDataTable)(base.Tables["Configuration"]));
             if ((initTable == true)) {
                 if ((this.tableConfiguration != null)) {
@@ -428,8 +430,12 @@ namespace PromoveoAddin.Data {
                     this.tablePublishingPlatformUser_PublishingPlatformRole.InitVars();
                 }
             }
-            this.relationFK_UserToModelUserGroupAssignment_ToModelUserGroup = this.Relations["FK_UserToModelUserGroupAssignment_ToModelUserGroup"];
-            this.relationFK_UserToModelUserGroupAssignment_ToUser = this.Relations["FK_UserToModelUserGroupAssignment_ToUser"];
+            this.tableUserToModelUserGroupAssignment = ((UserToModelUserGroupAssignmentDataTable)(base.Tables["UserToModelUserGroupAssignment"]));
+            if ((initTable == true)) {
+                if ((this.tableUserToModelUserGroupAssignment != null)) {
+                    this.tableUserToModelUserGroupAssignment.InitVars();
+                }
+            }
             this.relationFK_ModelUserGroup_ToConfiguration = this.Relations["FK_ModelUserGroup_ToConfiguration"];
             this.relationFK_ProcessModel_Configuration = this.Relations["FK_ProcessModel_Configuration"];
             this.relationFK_ProcessModel_PublishingPlatformRole_ToProcessModel = this.Relations["FK_ProcessModel_PublishingPlatformRole_ToProcessModel"];
@@ -437,6 +443,12 @@ namespace PromoveoAddin.Data {
             this.relationFK_PublishingPlatformRole_Configuration = this.Relations["FK_PublishingPlatformRole_Configuration"];
             this.relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformRole = this.Relations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformRole"];
             this.relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser = this.Relations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser"];
+            this.relationFK_UserToModelUserGroupAssignment_ToModelUserGroup = this.Relations["FK_UserToModelUserGroupAssignment_ToModelUserGroup"];
+            this.relationFK_UserToModelUserGroupAssignment_ToUser = this.Relations["FK_UserToModelUserGroupAssignment_ToUser"];
+            this.relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser1 = this.Relations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser1"];
+            this.relationFK_UserToModelUserGroupAssignment_ToUser1 = this.Relations["FK_UserToModelUserGroupAssignment_ToUser1"];
+            this.relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser2 = this.Relations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser2"];
+            this.relationFK_UserToModelUserGroupAssignment_ToUser2 = this.Relations["FK_UserToModelUserGroupAssignment_ToUser2"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -451,8 +463,6 @@ namespace PromoveoAddin.Data {
             base.Tables.Add(this.tableProcessModelUsers);
             this.tableUserRoleAssignment = new UserRoleAssignmentDataTable();
             base.Tables.Add(this.tableUserRoleAssignment);
-            this.tableUserToModelUserGroupAssignment = new UserToModelUserGroupAssignmentDataTable();
-            base.Tables.Add(this.tableUserToModelUserGroupAssignment);
             this.tableConfiguration = new ConfigurationDataTable();
             base.Tables.Add(this.tableConfiguration);
             this.tableModelUserGroup = new ModelUserGroupDataTable();
@@ -467,14 +477,8 @@ namespace PromoveoAddin.Data {
             base.Tables.Add(this.tablePublishingPlatformUser);
             this.tablePublishingPlatformUser_PublishingPlatformRole = new PublishingPlatformUser_PublishingPlatformRoleDataTable();
             base.Tables.Add(this.tablePublishingPlatformUser_PublishingPlatformRole);
-            this.relationFK_UserToModelUserGroupAssignment_ToModelUserGroup = new global::System.Data.DataRelation("FK_UserToModelUserGroupAssignment_ToModelUserGroup", new global::System.Data.DataColumn[] {
-                        this.tableModelUserGroup.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableUserToModelUserGroupAssignment.FK_ModelUserGroupColumn}, false);
-            this.Relations.Add(this.relationFK_UserToModelUserGroupAssignment_ToModelUserGroup);
-            this.relationFK_UserToModelUserGroupAssignment_ToUser = new global::System.Data.DataRelation("FK_UserToModelUserGroupAssignment_ToUser", new global::System.Data.DataColumn[] {
-                        this.tablePublishingPlatformUser.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableUserToModelUserGroupAssignment.FK_UserColumn}, false);
-            this.Relations.Add(this.relationFK_UserToModelUserGroupAssignment_ToUser);
+            this.tableUserToModelUserGroupAssignment = new UserToModelUserGroupAssignmentDataTable();
+            base.Tables.Add(this.tableUserToModelUserGroupAssignment);
             this.relationFK_ModelUserGroup_ToConfiguration = new global::System.Data.DataRelation("FK_ModelUserGroup_ToConfiguration", new global::System.Data.DataColumn[] {
                         this.tableConfiguration.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableModelUserGroup.FK_ConfigurationColumn}, false);
@@ -503,6 +507,30 @@ namespace PromoveoAddin.Data {
                         this.tablePublishingPlatformUser.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tablePublishingPlatformUser_PublishingPlatformRole.FK_PublishingPlatformUserColumn}, false);
             this.Relations.Add(this.relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser);
+            this.relationFK_UserToModelUserGroupAssignment_ToModelUserGroup = new global::System.Data.DataRelation("FK_UserToModelUserGroupAssignment_ToModelUserGroup", new global::System.Data.DataColumn[] {
+                        this.tableModelUserGroup.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUserToModelUserGroupAssignment.FK_ModelUserGroupColumn}, false);
+            this.Relations.Add(this.relationFK_UserToModelUserGroupAssignment_ToModelUserGroup);
+            this.relationFK_UserToModelUserGroupAssignment_ToUser = new global::System.Data.DataRelation("FK_UserToModelUserGroupAssignment_ToUser", new global::System.Data.DataColumn[] {
+                        this.tablePublishingPlatformUser.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUserToModelUserGroupAssignment.FK_UserColumn}, false);
+            this.Relations.Add(this.relationFK_UserToModelUserGroupAssignment_ToUser);
+            this.relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser1 = new global::System.Data.DataRelation("FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser1", new global::System.Data.DataColumn[] {
+                        this.tableProcessModelUsers.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tablePublishingPlatformUser_PublishingPlatformRole.FK_PublishingPlatformUserColumn}, false);
+            this.Relations.Add(this.relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser1);
+            this.relationFK_UserToModelUserGroupAssignment_ToUser1 = new global::System.Data.DataRelation("FK_UserToModelUserGroupAssignment_ToUser1", new global::System.Data.DataColumn[] {
+                        this.tableProcessModelUsers.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUserToModelUserGroupAssignment.FK_UserColumn}, false);
+            this.Relations.Add(this.relationFK_UserToModelUserGroupAssignment_ToUser1);
+            this.relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser2 = new global::System.Data.DataRelation("FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser2", new global::System.Data.DataColumn[] {
+                        this.tableUserRoleAssignment.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tablePublishingPlatformUser_PublishingPlatformRole.FK_PublishingPlatformUserColumn}, false);
+            this.Relations.Add(this.relationFK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser2);
+            this.relationFK_UserToModelUserGroupAssignment_ToUser2 = new global::System.Data.DataRelation("FK_UserToModelUserGroupAssignment_ToUser2", new global::System.Data.DataColumn[] {
+                        this.tableUserRoleAssignment.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUserToModelUserGroupAssignment.FK_UserColumn}, false);
+            this.Relations.Add(this.relationFK_UserToModelUserGroupAssignment_ToUser2);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -514,12 +542,6 @@ namespace PromoveoAddin.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeUserRoleAssignment() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeUserToModelUserGroupAssignment() {
             return false;
         }
         
@@ -562,6 +584,12 @@ namespace PromoveoAddin.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializePublishingPlatformUser_PublishingPlatformRole() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeUserToModelUserGroupAssignment() {
             return false;
         }
         
@@ -627,9 +655,6 @@ namespace PromoveoAddin.Data {
         public delegate void UserRoleAssignmentRowChangeEventHandler(object sender, UserRoleAssignmentRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void UserToModelUserGroupAssignmentRowChangeEventHandler(object sender, UserToModelUserGroupAssignmentRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void ConfigurationRowChangeEventHandler(object sender, ConfigurationRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -649,6 +674,9 @@ namespace PromoveoAddin.Data {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void PublishingPlatformUser_PublishingPlatformRoleRowChangeEventHandler(object sender, PublishingPlatformUser_PublishingPlatformRoleRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void UserToModelUserGroupAssignmentRowChangeEventHandler(object sender, UserToModelUserGroupAssignmentRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1228,304 +1256,6 @@ namespace PromoveoAddin.Data {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "UserRoleAssignmentDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class UserToModelUserGroupAssignmentDataTable : global::System.Data.TypedTableBase<UserToModelUserGroupAssignmentRow> {
-            
-            private global::System.Data.DataColumn columnId;
-            
-            private global::System.Data.DataColumn columnFK_User;
-            
-            private global::System.Data.DataColumn columnFK_ModelUserGroup;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UserToModelUserGroupAssignmentDataTable() {
-                this.TableName = "UserToModelUserGroupAssignment";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal UserToModelUserGroupAssignmentDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected UserToModelUserGroupAssignmentDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdColumn {
-                get {
-                    return this.columnId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FK_UserColumn {
-                get {
-                    return this.columnFK_User;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FK_ModelUserGroupColumn {
-                get {
-                    return this.columnFK_ModelUserGroup;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UserToModelUserGroupAssignmentRow this[int index] {
-                get {
-                    return ((UserToModelUserGroupAssignmentRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UserToModelUserGroupAssignmentRowChangeEventHandler UserToModelUserGroupAssignmentRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UserToModelUserGroupAssignmentRowChangeEventHandler UserToModelUserGroupAssignmentRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UserToModelUserGroupAssignmentRowChangeEventHandler UserToModelUserGroupAssignmentRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UserToModelUserGroupAssignmentRowChangeEventHandler UserToModelUserGroupAssignmentRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddUserToModelUserGroupAssignmentRow(UserToModelUserGroupAssignmentRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UserToModelUserGroupAssignmentRow AddUserToModelUserGroupAssignmentRow(PublishingPlatformUserRow parentPublishingPlatformUserRowByFK_UserToModelUserGroupAssignment_ToUser, ModelUserGroupRow parentModelUserGroupRowByFK_UserToModelUserGroupAssignment_ToModelUserGroup) {
-                UserToModelUserGroupAssignmentRow rowUserToModelUserGroupAssignmentRow = ((UserToModelUserGroupAssignmentRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        null};
-                if ((parentPublishingPlatformUserRowByFK_UserToModelUserGroupAssignment_ToUser != null)) {
-                    columnValuesArray[1] = parentPublishingPlatformUserRowByFK_UserToModelUserGroupAssignment_ToUser[0];
-                }
-                if ((parentModelUserGroupRowByFK_UserToModelUserGroupAssignment_ToModelUserGroup != null)) {
-                    columnValuesArray[2] = parentModelUserGroupRowByFK_UserToModelUserGroupAssignment_ToModelUserGroup[0];
-                }
-                rowUserToModelUserGroupAssignmentRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowUserToModelUserGroupAssignmentRow);
-                return rowUserToModelUserGroupAssignmentRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UserToModelUserGroupAssignmentRow FindById(int Id) {
-                return ((UserToModelUserGroupAssignmentRow)(this.Rows.Find(new object[] {
-                            Id})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                UserToModelUserGroupAssignmentDataTable cln = ((UserToModelUserGroupAssignmentDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new UserToModelUserGroupAssignmentDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnId = base.Columns["Id"];
-                this.columnFK_User = base.Columns["FK_User"];
-                this.columnFK_ModelUserGroup = base.Columns["FK_ModelUserGroup"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
-                this.columnFK_User = new global::System.Data.DataColumn("FK_User", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFK_User);
-                this.columnFK_ModelUserGroup = new global::System.Data.DataColumn("FK_ModelUserGroup", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFK_ModelUserGroup);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId}, true));
-                this.columnId.AutoIncrement = true;
-                this.columnId.AutoIncrementSeed = -1;
-                this.columnId.AutoIncrementStep = -1;
-                this.columnId.AllowDBNull = false;
-                this.columnId.ReadOnly = true;
-                this.columnId.Unique = true;
-                this.columnFK_User.AllowDBNull = false;
-                this.columnFK_ModelUserGroup.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UserToModelUserGroupAssignmentRow NewUserToModelUserGroupAssignmentRow() {
-                return ((UserToModelUserGroupAssignmentRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new UserToModelUserGroupAssignmentRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(UserToModelUserGroupAssignmentRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.UserToModelUserGroupAssignmentRowChanged != null)) {
-                    this.UserToModelUserGroupAssignmentRowChanged(this, new UserToModelUserGroupAssignmentRowChangeEvent(((UserToModelUserGroupAssignmentRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.UserToModelUserGroupAssignmentRowChanging != null)) {
-                    this.UserToModelUserGroupAssignmentRowChanging(this, new UserToModelUserGroupAssignmentRowChangeEvent(((UserToModelUserGroupAssignmentRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.UserToModelUserGroupAssignmentRowDeleted != null)) {
-                    this.UserToModelUserGroupAssignmentRowDeleted(this, new UserToModelUserGroupAssignmentRowChangeEvent(((UserToModelUserGroupAssignmentRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.UserToModelUserGroupAssignmentRowDeleting != null)) {
-                    this.UserToModelUserGroupAssignmentRowDeleting(this, new UserToModelUserGroupAssignmentRowChangeEvent(((UserToModelUserGroupAssignmentRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveUserToModelUserGroupAssignmentRow(UserToModelUserGroupAssignmentRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                PromoveoDataSet ds = new PromoveoDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "UserToModelUserGroupAssignmentDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3696,6 +3426,304 @@ namespace PromoveoAddin.Data {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class UserToModelUserGroupAssignmentDataTable : global::System.Data.TypedTableBase<UserToModelUserGroupAssignmentRow> {
+            
+            private global::System.Data.DataColumn columnId;
+            
+            private global::System.Data.DataColumn columnFK_User;
+            
+            private global::System.Data.DataColumn columnFK_ModelUserGroup;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserToModelUserGroupAssignmentDataTable() {
+                this.TableName = "UserToModelUserGroupAssignment";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal UserToModelUserGroupAssignmentDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected UserToModelUserGroupAssignmentDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FK_UserColumn {
+                get {
+                    return this.columnFK_User;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FK_ModelUserGroupColumn {
+                get {
+                    return this.columnFK_ModelUserGroup;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserToModelUserGroupAssignmentRow this[int index] {
+                get {
+                    return ((UserToModelUserGroupAssignmentRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UserToModelUserGroupAssignmentRowChangeEventHandler UserToModelUserGroupAssignmentRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UserToModelUserGroupAssignmentRowChangeEventHandler UserToModelUserGroupAssignmentRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UserToModelUserGroupAssignmentRowChangeEventHandler UserToModelUserGroupAssignmentRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UserToModelUserGroupAssignmentRowChangeEventHandler UserToModelUserGroupAssignmentRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddUserToModelUserGroupAssignmentRow(UserToModelUserGroupAssignmentRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserToModelUserGroupAssignmentRow AddUserToModelUserGroupAssignmentRow(PublishingPlatformUserRow parentPublishingPlatformUserRowByFK_UserToModelUserGroupAssignment_ToUser, ModelUserGroupRow parentModelUserGroupRowByFK_UserToModelUserGroupAssignment_ToModelUserGroup) {
+                UserToModelUserGroupAssignmentRow rowUserToModelUserGroupAssignmentRow = ((UserToModelUserGroupAssignmentRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null,
+                        null};
+                if ((parentPublishingPlatformUserRowByFK_UserToModelUserGroupAssignment_ToUser != null)) {
+                    columnValuesArray[1] = parentPublishingPlatformUserRowByFK_UserToModelUserGroupAssignment_ToUser[0];
+                }
+                if ((parentModelUserGroupRowByFK_UserToModelUserGroupAssignment_ToModelUserGroup != null)) {
+                    columnValuesArray[2] = parentModelUserGroupRowByFK_UserToModelUserGroupAssignment_ToModelUserGroup[0];
+                }
+                rowUserToModelUserGroupAssignmentRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowUserToModelUserGroupAssignmentRow);
+                return rowUserToModelUserGroupAssignmentRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserToModelUserGroupAssignmentRow FindById(int Id) {
+                return ((UserToModelUserGroupAssignmentRow)(this.Rows.Find(new object[] {
+                            Id})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                UserToModelUserGroupAssignmentDataTable cln = ((UserToModelUserGroupAssignmentDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new UserToModelUserGroupAssignmentDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnId = base.Columns["Id"];
+                this.columnFK_User = base.Columns["FK_User"];
+                this.columnFK_ModelUserGroup = base.Columns["FK_ModelUserGroup"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
+                this.columnFK_User = new global::System.Data.DataColumn("FK_User", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFK_User);
+                this.columnFK_ModelUserGroup = new global::System.Data.DataColumn("FK_ModelUserGroup", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFK_ModelUserGroup);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnId}, true));
+                this.columnId.AutoIncrement = true;
+                this.columnId.AutoIncrementSeed = -1;
+                this.columnId.AutoIncrementStep = -1;
+                this.columnId.AllowDBNull = false;
+                this.columnId.ReadOnly = true;
+                this.columnId.Unique = true;
+                this.columnFK_User.AllowDBNull = false;
+                this.columnFK_ModelUserGroup.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserToModelUserGroupAssignmentRow NewUserToModelUserGroupAssignmentRow() {
+                return ((UserToModelUserGroupAssignmentRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new UserToModelUserGroupAssignmentRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(UserToModelUserGroupAssignmentRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.UserToModelUserGroupAssignmentRowChanged != null)) {
+                    this.UserToModelUserGroupAssignmentRowChanged(this, new UserToModelUserGroupAssignmentRowChangeEvent(((UserToModelUserGroupAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.UserToModelUserGroupAssignmentRowChanging != null)) {
+                    this.UserToModelUserGroupAssignmentRowChanging(this, new UserToModelUserGroupAssignmentRowChangeEvent(((UserToModelUserGroupAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.UserToModelUserGroupAssignmentRowDeleted != null)) {
+                    this.UserToModelUserGroupAssignmentRowDeleted(this, new UserToModelUserGroupAssignmentRowChangeEvent(((UserToModelUserGroupAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.UserToModelUserGroupAssignmentRowDeleting != null)) {
+                    this.UserToModelUserGroupAssignmentRowDeleting(this, new UserToModelUserGroupAssignmentRowChangeEvent(((UserToModelUserGroupAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveUserToModelUserGroupAssignmentRow(UserToModelUserGroupAssignmentRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                PromoveoDataSet ds = new PromoveoDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "UserToModelUserGroupAssignmentDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class ProcessModelUsersRow : global::System.Data.DataRow {
@@ -3768,6 +3796,28 @@ namespace PromoveoAddin.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetEmailNull() {
                 this[this.tableProcessModelUsers.EmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PublishingPlatformUser_PublishingPlatformRoleRow[] GetPublishingPlatformUser_PublishingPlatformRoleRows() {
+                if ((this.Table.ChildRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser1"] == null)) {
+                    return new PublishingPlatformUser_PublishingPlatformRoleRow[0];
+                }
+                else {
+                    return ((PublishingPlatformUser_PublishingPlatformRoleRow[])(base.GetChildRows(this.Table.ChildRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser1"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserToModelUserGroupAssignmentRow[] GetUserToModelUserGroupAssignmentRows() {
+                if ((this.Table.ChildRelations["FK_UserToModelUserGroupAssignment_ToUser1"] == null)) {
+                    return new UserToModelUserGroupAssignmentRow[0];
+                }
+                else {
+                    return ((UserToModelUserGroupAssignmentRow[])(base.GetChildRows(this.Table.ChildRelations["FK_UserToModelUserGroupAssignment_ToUser1"])));
+                }
             }
         }
         
@@ -3845,74 +3895,26 @@ namespace PromoveoAddin.Data {
             public void SetEmailNull() {
                 this[this.tableUserRoleAssignment.EmailColumn] = global::System.Convert.DBNull;
             }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class UserToModelUserGroupAssignmentRow : global::System.Data.DataRow {
-            
-            private UserToModelUserGroupAssignmentDataTable tableUserToModelUserGroupAssignment;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal UserToModelUserGroupAssignmentRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableUserToModelUserGroupAssignment = ((UserToModelUserGroupAssignmentDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Id {
-                get {
-                    return ((int)(this[this.tableUserToModelUserGroupAssignment.IdColumn]));
+            public PublishingPlatformUser_PublishingPlatformRoleRow[] GetPublishingPlatformUser_PublishingPlatformRoleRows() {
+                if ((this.Table.ChildRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser2"] == null)) {
+                    return new PublishingPlatformUser_PublishingPlatformRoleRow[0];
                 }
-                set {
-                    this[this.tableUserToModelUserGroupAssignment.IdColumn] = value;
+                else {
+                    return ((PublishingPlatformUser_PublishingPlatformRoleRow[])(base.GetChildRows(this.Table.ChildRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser2"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int FK_User {
-                get {
-                    return ((int)(this[this.tableUserToModelUserGroupAssignment.FK_UserColumn]));
+            public UserToModelUserGroupAssignmentRow[] GetUserToModelUserGroupAssignmentRows() {
+                if ((this.Table.ChildRelations["FK_UserToModelUserGroupAssignment_ToUser2"] == null)) {
+                    return new UserToModelUserGroupAssignmentRow[0];
                 }
-                set {
-                    this[this.tableUserToModelUserGroupAssignment.FK_UserColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int FK_ModelUserGroup {
-                get {
-                    return ((int)(this[this.tableUserToModelUserGroupAssignment.FK_ModelUserGroupColumn]));
-                }
-                set {
-                    this[this.tableUserToModelUserGroupAssignment.FK_ModelUserGroupColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ModelUserGroupRow ModelUserGroupRow {
-                get {
-                    return ((ModelUserGroupRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToModelUserGroup"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToModelUserGroup"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PublishingPlatformUserRow PublishingPlatformUserRow {
-                get {
-                    return ((PublishingPlatformUserRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToUser"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToUser"]);
+                else {
+                    return ((UserToModelUserGroupAssignmentRow[])(base.GetChildRows(this.Table.ChildRelations["FK_UserToModelUserGroupAssignment_ToUser2"])));
                 }
             }
         }
@@ -3957,11 +3959,11 @@ namespace PromoveoAddin.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string VisioMasterFilename {
                 get {
-                    if (this.IsVisioMasterFilenameNull()) {
-                        return null;
-                    }
-                    else {
+                    try {
                         return ((string)(this[this.tableConfiguration.VisioMasterFilenameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'VisioMasterFilename\' in table \'Configuration\' is DBNull.", e);
                     }
                 }
                 set {
@@ -4169,11 +4171,11 @@ namespace PromoveoAddin.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string AcknowledgeState {
                 get {
-                    if (this.IsAcknowledgeStateNull()) {
-                        return null;
-                    }
-                    else {
+                    try {
                         return ((string)(this[this.tableProcessModel.AcknowledgeStateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AcknowledgeState\' in table \'ProcessModel\' is DBNull.", e);
                     }
                 }
                 set {
@@ -4486,23 +4488,23 @@ namespace PromoveoAddin.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UserToModelUserGroupAssignmentRow[] GetUserToModelUserGroupAssignmentRows() {
-                if ((this.Table.ChildRelations["FK_UserToModelUserGroupAssignment_ToUser"] == null)) {
-                    return new UserToModelUserGroupAssignmentRow[0];
-                }
-                else {
-                    return ((UserToModelUserGroupAssignmentRow[])(base.GetChildRows(this.Table.ChildRelations["FK_UserToModelUserGroupAssignment_ToUser"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PublishingPlatformUser_PublishingPlatformRoleRow[] GetPublishingPlatformUser_PublishingPlatformRoleRows() {
                 if ((this.Table.ChildRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser"] == null)) {
                     return new PublishingPlatformUser_PublishingPlatformRoleRow[0];
                 }
                 else {
                     return ((PublishingPlatformUser_PublishingPlatformRoleRow[])(base.GetChildRows(this.Table.ChildRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserToModelUserGroupAssignmentRow[] GetUserToModelUserGroupAssignmentRows() {
+                if ((this.Table.ChildRelations["FK_UserToModelUserGroupAssignment_ToUser"] == null)) {
+                    return new UserToModelUserGroupAssignmentRow[0];
+                }
+                else {
+                    return ((UserToModelUserGroupAssignmentRow[])(base.GetChildRows(this.Table.ChildRelations["FK_UserToModelUserGroupAssignment_ToUser"])));
                 }
             }
         }
@@ -4575,6 +4577,120 @@ namespace PromoveoAddin.Data {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser"]);
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ProcessModelUsersRow ProcessModelUsersRow {
+                get {
+                    return ((ProcessModelUsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserRoleAssignmentRow UserRoleAssignmentRow {
+                get {
+                    return ((UserRoleAssignmentRow)(this.GetParentRow(this.Table.ParentRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser2"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_PublishingPlatformUser_PublishingPlatformRole_ToPublishingPlatformUser2"]);
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class UserToModelUserGroupAssignmentRow : global::System.Data.DataRow {
+            
+            private UserToModelUserGroupAssignmentDataTable tableUserToModelUserGroupAssignment;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal UserToModelUserGroupAssignmentRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableUserToModelUserGroupAssignment = ((UserToModelUserGroupAssignmentDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Id {
+                get {
+                    return ((int)(this[this.tableUserToModelUserGroupAssignment.IdColumn]));
+                }
+                set {
+                    this[this.tableUserToModelUserGroupAssignment.IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int FK_User {
+                get {
+                    return ((int)(this[this.tableUserToModelUserGroupAssignment.FK_UserColumn]));
+                }
+                set {
+                    this[this.tableUserToModelUserGroupAssignment.FK_UserColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int FK_ModelUserGroup {
+                get {
+                    return ((int)(this[this.tableUserToModelUserGroupAssignment.FK_ModelUserGroupColumn]));
+                }
+                set {
+                    this[this.tableUserToModelUserGroupAssignment.FK_ModelUserGroupColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ModelUserGroupRow ModelUserGroupRow {
+                get {
+                    return ((ModelUserGroupRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToModelUserGroup"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToModelUserGroup"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PublishingPlatformUserRow PublishingPlatformUserRow {
+                get {
+                    return ((PublishingPlatformUserRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToUser"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToUser"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ProcessModelUsersRow ProcessModelUsersRow {
+                get {
+                    return ((ProcessModelUsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToUser1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToUser1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserRoleAssignmentRow UserRoleAssignmentRow {
+                get {
+                    return ((UserRoleAssignmentRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToUser2"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_UserToModelUserGroupAssignment_ToUser2"]);
+                }
+            }
         }
         
         /// <summary>
@@ -4631,40 +4747,6 @@ namespace PromoveoAddin.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public UserRoleAssignmentRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class UserToModelUserGroupAssignmentRowChangeEvent : global::System.EventArgs {
-            
-            private UserToModelUserGroupAssignmentRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UserToModelUserGroupAssignmentRowChangeEvent(UserToModelUserGroupAssignmentRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UserToModelUserGroupAssignmentRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4916,9 +4998,43 @@ namespace PromoveoAddin.Data {
                 }
             }
         }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class UserToModelUserGroupAssignmentRowChangeEvent : global::System.EventArgs {
+            
+            private UserToModelUserGroupAssignmentRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserToModelUserGroupAssignmentRowChangeEvent(UserToModelUserGroupAssignmentRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserToModelUserGroupAssignmentRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
     }
 }
-namespace PromoveoAddin.Data.PromoveoDataSetTableAdapters {
+namespace PromoveoWebService.Data.PromoveoDataSetTableAdapters {
     
     
     /// <summary>
@@ -5053,7 +5169,7 @@ namespace PromoveoAddin.Data.PromoveoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::PromoveoAddin.Properties.Settings.Default.PromoveoDBConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PromoveoDBConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5243,7 +5359,7 @@ WHERE        (ProcessModel.ProcessModel = @modelName)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::PromoveoAddin.Properties.Settings.Default.PromoveoDBConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PromoveoDBConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5285,314 +5401,6 @@ WHERE        (PublishingPlatformUser_PublishingPlatformRole.FK_PublishingPlatfor
             PromoveoDataSet.UserRoleAssignmentDataTable dataTable = new PromoveoDataSet.UserRoleAssignmentDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class UserToModelUserGroupAssignmentTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public UserToModelUserGroupAssignmentTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "UserToModelUserGroupAssignment";
-            tableMapping.ColumnMappings.Add("Id", "Id");
-            tableMapping.ColumnMappings.Add("FK_User", "FK_User");
-            tableMapping.ColumnMappings.Add("FK_ModelUserGroup", "FK_ModelUserGroup");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[UserToModelUserGroupAssignment] WHERE (([Id] = @Original_Id) A" +
-                "ND ([FK_User] = @Original_FK_User) AND ([FK_ModelUserGroup] = @Original_FK_Model" +
-                "UserGroup))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_User", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_User", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_ModelUserGroup", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ModelUserGroup", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[UserToModelUserGroupAssignment] ([FK_User], [FK_ModelUserGroup" +
-                "]) VALUES (@FK_User, @FK_ModelUserGroup);\r\nSELECT Id, FK_User, FK_ModelUserGroup" +
-                " FROM UserToModelUserGroupAssignment WHERE (Id = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_User", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_User", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_ModelUserGroup", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ModelUserGroup", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[UserToModelUserGroupAssignment] SET [FK_User] = @FK_User, [FK_ModelUserGroup] = @FK_ModelUserGroup WHERE (([Id] = @Original_Id) AND ([FK_User] = @Original_FK_User) AND ([FK_ModelUserGroup] = @Original_FK_ModelUserGroup));
-SELECT Id, FK_User, FK_ModelUserGroup FROM UserToModelUserGroupAssignment WHERE (Id = @Id)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_User", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_User", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_ModelUserGroup", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ModelUserGroup", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_User", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_User", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_ModelUserGroup", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ModelUserGroup", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::PromoveoAddin.Properties.Settings.Default.PromoveoDBConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, FK_User, FK_ModelUserGroup FROM dbo.UserToModelUserGroupAssignment";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(PromoveoDataSet.UserToModelUserGroupAssignmentDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual PromoveoDataSet.UserToModelUserGroupAssignmentDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            PromoveoDataSet.UserToModelUserGroupAssignmentDataTable dataTable = new PromoveoDataSet.UserToModelUserGroupAssignmentDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(PromoveoDataSet.UserToModelUserGroupAssignmentDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(PromoveoDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "UserToModelUserGroupAssignment");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, int Original_FK_User, int Original_FK_ModelUserGroup) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_FK_User));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_FK_ModelUserGroup));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int FK_User, int FK_ModelUserGroup) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(FK_User));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(FK_ModelUserGroup));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int FK_User, int FK_ModelUserGroup, int Original_Id, int Original_FK_User, int Original_FK_ModelUserGroup, int Id) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(FK_User));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(FK_ModelUserGroup));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_FK_User));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_FK_ModelUserGroup));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Id));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int FK_User, int FK_ModelUserGroup, int Original_Id, int Original_FK_User, int Original_FK_ModelUserGroup) {
-            return this.Update(FK_User, FK_ModelUserGroup, Original_Id, Original_FK_User, Original_FK_ModelUserGroup, Original_Id);
         }
     }
     
@@ -5723,41 +5531,31 @@ SELECT Id, FK_User, FK_ModelUserGroup FROM UserToModelUserGroupAssignment WHERE 
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Configuration] WHERE (([Id] = @Original_Id) AND ([Name] = @Original_" +
-                "Name) AND ((@IsNull_VisioMasterFilename = 1 AND [VisioMasterFilename] IS NULL) O" +
-                "R ([VisioMasterFilename] = @Original_VisioMasterFilename)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Configuration] WHERE (([Id] = @Original_Id))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_VisioMasterFilename", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VisioMasterFilename", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VisioMasterFilename", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VisioMasterFilename", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [Configuration] ([Name], [VisioMasterFilename]) VALUES (@Name, @Visio" +
-                "MasterFilename);\r\nSELECT Id, Name, VisioMasterFilename FROM Configuration WHERE " +
-                "(Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Configuration] ([Name], [VisioMasterFilename]) VALUES (@Name, " +
+                "@VisioMasterFilename)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VisioMasterFilename", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VisioMasterFilename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Configuration] SET [Name] = @Name, [VisioMasterFilename] = @VisioMasterFilename WHERE (([Id] = @Original_Id) AND ([Name] = @Original_Name) AND ((@IsNull_VisioMasterFilename = 1 AND [VisioMasterFilename] IS NULL) OR ([VisioMasterFilename] = @Original_VisioMasterFilename)));
-SELECT Id, Name, VisioMasterFilename FROM Configuration WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Configuration] SET [Name] = @Name, [VisioMasterFilename] = @VisioMa" +
+                "sterFilename WHERE (([Id] = @Original_Id))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VisioMasterFilename", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VisioMasterFilename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_VisioMasterFilename", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VisioMasterFilename", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VisioMasterFilename", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "VisioMasterFilename", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::PromoveoAddin.Properties.Settings.Default.PromoveoDBConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PromoveoDBConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5766,7 +5564,7 @@ SELECT Id, Name, VisioMasterFilename FROM Configuration WHERE (Id = @Id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        Id, Name, VisioMasterFilename\r\nFROM            Configuration";
+            this._commandCollection[0].CommandText = "SELECT Id, Name, VisioMasterFilename FROM dbo.Configuration";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5827,22 +5625,8 @@ SELECT Id, Name, VisioMasterFilename FROM Configuration WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, string Original_Name, string Original_VisioMasterFilename) {
+        public virtual int Delete(int Original_Id) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            if ((Original_Name == null)) {
-                throw new global::System.ArgumentNullException("Original_Name");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Name));
-            }
-            if ((Original_VisioMasterFilename == null)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_VisioMasterFilename));
-            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5896,7 +5680,7 @@ SELECT Id, Name, VisioMasterFilename FROM Configuration WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string VisioMasterFilename, int Original_Id, string Original_Name, string Original_VisioMasterFilename, int Id) {
+        public virtual int Update(string Name, string VisioMasterFilename, int Original_Id) {
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
             }
@@ -5910,21 +5694,6 @@ SELECT Id, Name, VisioMasterFilename FROM Configuration WHERE (Id = @Id)";
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(VisioMasterFilename));
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Id));
-            if ((Original_Name == null)) {
-                throw new global::System.ArgumentNullException("Original_Name");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Name));
-            }
-            if ((Original_VisioMasterFilename == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_VisioMasterFilename));
-            }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5939,14 +5708,6 @@ SELECT Id, Name, VisioMasterFilename FROM Configuration WHERE (Id = @Id)";
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string VisioMasterFilename, int Original_Id, string Original_Name, string Original_VisioMasterFilename) {
-            return this.Update(Name, VisioMasterFilename, Original_Id, Original_Name, Original_VisioMasterFilename, Original_Id);
         }
     }
     
@@ -6077,38 +5838,31 @@ SELECT Id, Name, VisioMasterFilename FROM Configuration WHERE (Id = @Id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[ModelUserGroup] WHERE (([Id] = @Original_Id) AND ([Name] = @Or" +
-                "iginal_Name) AND ([FK_Configuration] = @Original_FK_Configuration))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[ModelUserGroup] WHERE (([Id] = @Original_Id))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[ModelUserGroup] ([Name], [FK_Configuration]) VALUES (@Name, @F" +
-                "K_Configuration);\r\nSELECT Id, Name, FK_Configuration FROM ModelUserGroup WHERE (" +
-                "Id = SCOPE_IDENTITY())";
+                "K_Configuration)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ModelUserGroup] SET [Name] = @Name, [FK_Configuration] = @FK_Configuration WHERE (([Id] = @Original_Id) AND ([Name] = @Original_Name) AND ([FK_Configuration] = @Original_FK_Configuration));
-SELECT Id, Name, FK_Configuration FROM ModelUserGroup WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[ModelUserGroup] SET [Name] = @Name, [FK_Configuration] = @FK_Config" +
+                "uration WHERE (([Id] = @Original_Id))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::PromoveoAddin.Properties.Settings.Default.PromoveoDBConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PromoveoDBConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6178,15 +5932,8 @@ SELECT Id, Name, FK_Configuration FROM ModelUserGroup WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, string Original_Name, int Original_FK_Configuration) {
+        public virtual int Delete(int Original_Id) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            if ((Original_Name == null)) {
-                throw new global::System.ArgumentNullException("Original_Name");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Name));
-            }
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_FK_Configuration));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6235,7 +5982,7 @@ SELECT Id, Name, FK_Configuration FROM ModelUserGroup WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, int FK_Configuration, int Original_Id, string Original_Name, int Original_FK_Configuration, int Id) {
+        public virtual int Update(string Name, int FK_Configuration, int Original_Id) {
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
             }
@@ -6244,14 +5991,6 @@ SELECT Id, Name, FK_Configuration FROM ModelUserGroup WHERE (Id = @Id)";
             }
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(FK_Configuration));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Id));
-            if ((Original_Name == null)) {
-                throw new global::System.ArgumentNullException("Original_Name");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Name));
-            }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_FK_Configuration));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6266,14 +6005,6 @@ SELECT Id, Name, FK_Configuration FROM ModelUserGroup WHERE (Id = @Id)";
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, int FK_Configuration, int Original_Id, string Original_Name, int Original_FK_Configuration) {
-            return this.Update(Name, FK_Configuration, Original_Id, Original_Name, Original_FK_Configuration, Original_Id);
         }
     }
     
@@ -6407,21 +6138,15 @@ SELECT Id, Name, FK_Configuration FROM ModelUserGroup WHERE (Id = @Id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[ProcessModel] WHERE (([Id] = @Original_Id) AND ([ProcessModel] = @Original_ProcessModel) AND ([PublishingVersion] = @Original_PublishingVersion) AND ((@IsNull_FK_PublishingPlatformUser = 1 AND [FK_PublishingPlatformUser] IS NULL) OR ([FK_PublishingPlatformUser] = @Original_FK_PublishingPlatformUser)) AND ((@IsNull_FK_Configuration = 1 AND [FK_Configuration] IS NULL) OR ([FK_Configuration] = @Original_FK_Configuration)) AND ((@IsNull_AcknowledgeState = 1 AND [AcknowledgeState] IS NULL) OR ([AcknowledgeState] = @Original_AcknowledgeState)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[ProcessModel] WHERE (([Id] = @Original_Id))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProcessModel", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProcessModel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PublishingVersion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PublishingVersion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FK_PublishingPlatformUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformUser", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_PublishingPlatformUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformUser", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AcknowledgeState", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcknowledgeState", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AcknowledgeState", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcknowledgeState", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ProcessModel] ([ProcessModel], [PublishingVersion], [FK_PublishingPlatformUser], [FK_Configuration], [AcknowledgeState]) VALUES (@ProcessModel, @PublishingVersion, @FK_PublishingPlatformUser, @FK_Configuration, @AcknowledgeState);
-SELECT Id, ProcessModel, PublishingVersion, FK_PublishingPlatformUser, FK_Configuration, AcknowledgeState FROM ProcessModel WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[ProcessModel] ([ProcessModel], [PublishingVersion], [FK_Publis" +
+                "hingPlatformUser], [FK_Configuration], [AcknowledgeState]) VALUES (@ProcessModel" +
+                ", @PublishingVersion, @FK_PublishingPlatformUser, @FK_Configuration, @Acknowledg" +
+                "eState)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProcessModel", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProcessModel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PublishingVersion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PublishingVersion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6430,8 +6155,7 @@ SELECT Id, ProcessModel, PublishingVersion, FK_PublishingPlatformUser, FK_Config
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AcknowledgeState", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcknowledgeState", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ProcessModel] SET [ProcessModel] = @ProcessModel, [PublishingVersion] = @PublishingVersion, [FK_PublishingPlatformUser] = @FK_PublishingPlatformUser, [FK_Configuration] = @FK_Configuration, [AcknowledgeState] = @AcknowledgeState WHERE (([Id] = @Original_Id) AND ([ProcessModel] = @Original_ProcessModel) AND ([PublishingVersion] = @Original_PublishingVersion) AND ((@IsNull_FK_PublishingPlatformUser = 1 AND [FK_PublishingPlatformUser] IS NULL) OR ([FK_PublishingPlatformUser] = @Original_FK_PublishingPlatformUser)) AND ((@IsNull_FK_Configuration = 1 AND [FK_Configuration] IS NULL) OR ([FK_Configuration] = @Original_FK_Configuration)) AND ((@IsNull_AcknowledgeState = 1 AND [AcknowledgeState] IS NULL) OR ([AcknowledgeState] = @Original_AcknowledgeState)));
-SELECT Id, ProcessModel, PublishingVersion, FK_PublishingPlatformUser, FK_Configuration, AcknowledgeState FROM ProcessModel WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ProcessModel] SET [ProcessModel] = @ProcessModel, [PublishingVersion] = @PublishingVersion, [FK_PublishingPlatformUser] = @FK_PublishingPlatformUser, [FK_Configuration] = @FK_Configuration, [AcknowledgeState] = @AcknowledgeState WHERE (([Id] = @Original_Id))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProcessModel", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProcessModel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PublishingVersion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PublishingVersion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6439,22 +6163,13 @@ SELECT Id, ProcessModel, PublishingVersion, FK_PublishingPlatformUser, FK_Config
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AcknowledgeState", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcknowledgeState", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProcessModel", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProcessModel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PublishingVersion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PublishingVersion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FK_PublishingPlatformUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformUser", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_PublishingPlatformUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformUser", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AcknowledgeState", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcknowledgeState", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AcknowledgeState", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AcknowledgeState", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::PromoveoAddin.Properties.Settings.Default.PromoveoDBConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PromoveoDBConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6525,44 +6240,8 @@ SELECT Id, ProcessModel, PublishingVersion, FK_PublishingPlatformUser, FK_Config
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, string Original_ProcessModel, string Original_PublishingVersion, global::System.Nullable<int> Original_FK_PublishingPlatformUser, global::System.Nullable<int> Original_FK_Configuration, string Original_AcknowledgeState) {
+        public virtual int Delete(int Original_Id) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            if ((Original_ProcessModel == null)) {
-                throw new global::System.ArgumentNullException("Original_ProcessModel");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_ProcessModel));
-            }
-            if ((Original_PublishingVersion == null)) {
-                throw new global::System.ArgumentNullException("Original_PublishingVersion");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_PublishingVersion));
-            }
-            if ((Original_FK_PublishingPlatformUser.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_FK_PublishingPlatformUser.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Original_FK_Configuration.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_FK_Configuration.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Original_AcknowledgeState == null)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_AcknowledgeState));
-            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6634,7 +6313,7 @@ SELECT Id, ProcessModel, PublishingVersion, FK_PublishingPlatformUser, FK_Config
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ProcessModel, string PublishingVersion, global::System.Nullable<int> FK_PublishingPlatformUser, global::System.Nullable<int> FK_Configuration, string AcknowledgeState, int Original_Id, string Original_ProcessModel, string Original_PublishingVersion, global::System.Nullable<int> Original_FK_PublishingPlatformUser, global::System.Nullable<int> Original_FK_Configuration, string Original_AcknowledgeState, int Id) {
+        public virtual int Update(string ProcessModel, string PublishingVersion, global::System.Nullable<int> FK_PublishingPlatformUser, global::System.Nullable<int> FK_Configuration, string AcknowledgeState, int Original_Id) {
             if ((ProcessModel == null)) {
                 throw new global::System.ArgumentNullException("ProcessModel");
             }
@@ -6666,43 +6345,6 @@ SELECT Id, ProcessModel, PublishingVersion, FK_PublishingPlatformUser, FK_Config
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(AcknowledgeState));
             }
             this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Id));
-            if ((Original_ProcessModel == null)) {
-                throw new global::System.ArgumentNullException("Original_ProcessModel");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_ProcessModel));
-            }
-            if ((Original_PublishingVersion == null)) {
-                throw new global::System.ArgumentNullException("Original_PublishingVersion");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_PublishingVersion));
-            }
-            if ((Original_FK_PublishingPlatformUser.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_FK_PublishingPlatformUser.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((Original_FK_Configuration.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_FK_Configuration.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            if ((Original_AcknowledgeState == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_AcknowledgeState));
-            }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6717,14 +6359,6 @@ SELECT Id, ProcessModel, PublishingVersion, FK_PublishingPlatformUser, FK_Config
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ProcessModel, string PublishingVersion, global::System.Nullable<int> FK_PublishingPlatformUser, global::System.Nullable<int> FK_Configuration, string AcknowledgeState, int Original_Id, string Original_ProcessModel, string Original_PublishingVersion, global::System.Nullable<int> Original_FK_PublishingPlatformUser, global::System.Nullable<int> Original_FK_Configuration, string Original_AcknowledgeState) {
-            return this.Update(ProcessModel, PublishingVersion, FK_PublishingPlatformUser, FK_Configuration, AcknowledgeState, Original_Id, Original_ProcessModel, Original_PublishingVersion, Original_FK_PublishingPlatformUser, Original_FK_Configuration, Original_AcknowledgeState, Original_Id);
         }
     }
     
@@ -6856,37 +6490,32 @@ SELECT Id, ProcessModel, PublishingVersion, FK_PublishingPlatformUser, FK_Config
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[ProcessModel_PublishingPlatformRole] WHERE (([Id] = @Original_" +
-                "Id) AND ([FK_ProcessModel] = @Original_FK_ProcessModel) AND ([FK_PublishingPlatf" +
-                "ormRole] = @Original_FK_PublishingPlatformRole))";
+                "Id))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_ProcessModel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ProcessModel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_PublishingPlatformRole", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformRole", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ProcessModel_PublishingPlatformRole] ([FK_ProcessModel], [FK_PublishingPlatformRole]) VALUES (@FK_ProcessModel, @FK_PublishingPlatformRole);
-SELECT Id, FK_ProcessModel, FK_PublishingPlatformRole FROM ProcessModel_PublishingPlatformRole WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[ProcessModel_PublishingPlatformRole] ([FK_ProcessModel], [FK_P" +
+                "ublishingPlatformRole]) VALUES (@FK_ProcessModel, @FK_PublishingPlatformRole)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_ProcessModel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ProcessModel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_PublishingPlatformRole", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformRole", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ProcessModel_PublishingPlatformRole] SET [FK_ProcessModel] = @FK_ProcessModel, [FK_PublishingPlatformRole] = @FK_PublishingPlatformRole WHERE (([Id] = @Original_Id) AND ([FK_ProcessModel] = @Original_FK_ProcessModel) AND ([FK_PublishingPlatformRole] = @Original_FK_PublishingPlatformRole));
-SELECT Id, FK_ProcessModel, FK_PublishingPlatformRole FROM ProcessModel_PublishingPlatformRole WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[ProcessModel_PublishingPlatformRole] SET [FK_ProcessModel] = @FK_Pr" +
+                "ocessModel, [FK_PublishingPlatformRole] = @FK_PublishingPlatformRole WHERE (([Id" +
+                "] = @Original_Id))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_ProcessModel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ProcessModel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_PublishingPlatformRole", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformRole", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_ProcessModel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ProcessModel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_PublishingPlatformRole", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformRole", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::PromoveoAddin.Properties.Settings.Default.PromoveoDBConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PromoveoDBConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6957,10 +6586,8 @@ SELECT Id, FK_ProcessModel, FK_PublishingPlatformRole FROM ProcessModel_Publishi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, int Original_FK_ProcessModel, int Original_FK_PublishingPlatformRole) {
+        public virtual int Delete(int Original_Id) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_FK_ProcessModel));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_FK_PublishingPlatformRole));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7004,13 +6631,10 @@ SELECT Id, FK_ProcessModel, FK_PublishingPlatformRole FROM ProcessModel_Publishi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int FK_ProcessModel, int FK_PublishingPlatformRole, int Original_Id, int Original_FK_ProcessModel, int Original_FK_PublishingPlatformRole, int Id) {
+        public virtual int Update(int FK_ProcessModel, int FK_PublishingPlatformRole, int Original_Id) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(FK_ProcessModel));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(FK_PublishingPlatformRole));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_FK_ProcessModel));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_FK_PublishingPlatformRole));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7025,14 +6649,6 @@ SELECT Id, FK_ProcessModel, FK_PublishingPlatformRole FROM ProcessModel_Publishi
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int FK_ProcessModel, int FK_PublishingPlatformRole, int Original_Id, int Original_FK_ProcessModel, int Original_FK_PublishingPlatformRole) {
-            return this.Update(FK_ProcessModel, FK_PublishingPlatformRole, Original_Id, Original_FK_ProcessModel, Original_FK_PublishingPlatformRole, Original_Id);
         }
     }
     
@@ -7163,41 +6779,31 @@ SELECT Id, FK_ProcessModel, FK_PublishingPlatformRole FROM ProcessModel_Publishi
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[PublishingPlatformRole] WHERE (([Id] = @Original_Id) AND ([Rol" +
-                "eName] = @Original_RoleName) AND ((@IsNull_FK_Configuration = 1 AND [FK_Configur" +
-                "ation] IS NULL) OR ([FK_Configuration] = @Original_FK_Configuration)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[PublishingPlatformRole] WHERE (([Id] = @Original_Id))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[PublishingPlatformRole] ([RoleName], [FK_Configuration]) VALUE" +
-                "S (@RoleName, @FK_Configuration);\r\nSELECT Id, RoleName, FK_Configuration FROM Pu" +
-                "blishingPlatformRole WHERE (Id = SCOPE_IDENTITY())";
+                "S (@RoleName, @FK_Configuration)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[PublishingPlatformRole] SET [RoleName] = @RoleName, [FK_Configuration] = @FK_Configuration WHERE (([Id] = @Original_Id) AND ([RoleName] = @Original_RoleName) AND ((@IsNull_FK_Configuration = 1 AND [FK_Configuration] IS NULL) OR ([FK_Configuration] = @Original_FK_Configuration)));
-SELECT Id, RoleName, FK_Configuration FROM PublishingPlatformRole WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[PublishingPlatformRole] SET [RoleName] = @RoleName, [FK_Configurati" +
+                "on] = @FK_Configuration WHERE (([Id] = @Original_Id))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoleName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_Configuration", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_Configuration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::PromoveoAddin.Properties.Settings.Default.PromoveoDBConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PromoveoDBConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7267,22 +6873,8 @@ SELECT Id, RoleName, FK_Configuration FROM PublishingPlatformRole WHERE (Id = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, string Original_RoleName, global::System.Nullable<int> Original_FK_Configuration) {
+        public virtual int Delete(int Original_Id) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            if ((Original_RoleName == null)) {
-                throw new global::System.ArgumentNullException("Original_RoleName");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_RoleName));
-            }
-            if ((Original_FK_Configuration.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_FK_Configuration.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7336,7 +6928,7 @@ SELECT Id, RoleName, FK_Configuration FROM PublishingPlatformRole WHERE (Id = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string RoleName, global::System.Nullable<int> FK_Configuration, int Original_Id, string Original_RoleName, global::System.Nullable<int> Original_FK_Configuration, int Id) {
+        public virtual int Update(string RoleName, global::System.Nullable<int> FK_Configuration, int Original_Id) {
             if ((RoleName == null)) {
                 throw new global::System.ArgumentNullException("RoleName");
             }
@@ -7350,21 +6942,6 @@ SELECT Id, RoleName, FK_Configuration FROM PublishingPlatformRole WHERE (Id = @I
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Id));
-            if ((Original_RoleName == null)) {
-                throw new global::System.ArgumentNullException("Original_RoleName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_RoleName));
-            }
-            if ((Original_FK_Configuration.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_FK_Configuration.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7379,14 +6956,6 @@ SELECT Id, RoleName, FK_Configuration FROM PublishingPlatformRole WHERE (Id = @I
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string RoleName, global::System.Nullable<int> FK_Configuration, int Original_Id, string Original_RoleName, global::System.Nullable<int> Original_FK_Configuration) {
-            return this.Update(RoleName, FK_Configuration, Original_Id, Original_RoleName, Original_FK_Configuration, Original_Id);
         }
     }
     
@@ -7518,45 +7087,33 @@ SELECT Id, RoleName, FK_Configuration FROM PublishingPlatformRole WHERE (Id = @I
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[PublishingPlatformUser] WHERE (([Id] = @Original_Id) AND ([Nam" +
-                "e] = @Original_Name) AND ([Shortname] = @Original_Shortname) AND ((@IsNull_Email" +
-                " = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[PublishingPlatformUser] WHERE (([Id] = @Original_Id))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Shortname", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Shortname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Email", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[PublishingPlatformUser] ([Name], [Shortname], [Email]) VALUES " +
-                "(@Name, @Shortname, @Email);\r\nSELECT Id, Name, Shortname, Email FROM PublishingP" +
-                "latformUser WHERE (Id = SCOPE_IDENTITY())";
+                "(@Name, @Shortname, @Email)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Shortname", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Shortname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[PublishingPlatformUser] SET [Name] = @Name, [Shortname] = @Shortname, [Email] = @Email WHERE (([Id] = @Original_Id) AND ([Name] = @Original_Name) AND ([Shortname] = @Original_Shortname) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)));
-SELECT Id, Name, Shortname, Email FROM PublishingPlatformUser WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[PublishingPlatformUser] SET [Name] = @Name, [Shortname] = @Shortnam" +
+                "e, [Email] = @Email WHERE (([Id] = @Original_Id))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Shortname", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Shortname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Shortname", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Shortname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Email", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::PromoveoAddin.Properties.Settings.Default.PromoveoDBConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PromoveoDBConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7626,28 +7183,8 @@ SELECT Id, Name, Shortname, Email FROM PublishingPlatformUser WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, string Original_Name, string Original_Shortname, string Original_Email) {
+        public virtual int Delete(int Original_Id) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            if ((Original_Name == null)) {
-                throw new global::System.ArgumentNullException("Original_Name");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Name));
-            }
-            if ((Original_Shortname == null)) {
-                throw new global::System.ArgumentNullException("Original_Shortname");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Shortname));
-            }
-            if ((Original_Email == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Email));
-            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7707,7 +7244,7 @@ SELECT Id, Name, Shortname, Email FROM PublishingPlatformUser WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string Shortname, string Email, int Original_Id, string Original_Name, string Original_Shortname, string Original_Email, int Id) {
+        public virtual int Update(string Name, string Shortname, string Email, int Original_Id) {
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
             }
@@ -7727,27 +7264,6 @@ SELECT Id, Name, Shortname, Email FROM PublishingPlatformUser WHERE (Id = @Id)";
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Email));
             }
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Id));
-            if ((Original_Name == null)) {
-                throw new global::System.ArgumentNullException("Original_Name");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Name));
-            }
-            if ((Original_Shortname == null)) {
-                throw new global::System.ArgumentNullException("Original_Shortname");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Shortname));
-            }
-            if ((Original_Email == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Email));
-            }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7762,14 +7278,6 @@ SELECT Id, Name, Shortname, Email FROM PublishingPlatformUser WHERE (Id = @Id)";
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string Shortname, string Email, int Original_Id, string Original_Name, string Original_Shortname, string Original_Email) {
-            return this.Update(Name, Shortname, Email, Original_Id, Original_Name, Original_Shortname, Original_Email, Original_Id);
         }
     }
     
@@ -7901,37 +7409,33 @@ SELECT Id, Name, Shortname, Email FROM PublishingPlatformUser WHERE (Id = @Id)";
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[PublishingPlatformUser_PublishingPlatformRole] WHERE (([Id] = " +
-                "@Original_Id) AND ([FK_PublishingPlatformRole] = @Original_FK_PublishingPlatform" +
-                "Role) AND ([FK_PublishingPlatformUser] = @Original_FK_PublishingPlatformUser))";
+                "@Original_Id))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_PublishingPlatformRole", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformRole", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_PublishingPlatformUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformUser", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[PublishingPlatformUser_PublishingPlatformRole] ([FK_PublishingPlatformRole], [FK_PublishingPlatformUser]) VALUES (@FK_PublishingPlatformRole, @FK_PublishingPlatformUser);
-SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingPlatformUser_PublishingPlatformRole WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[PublishingPlatformUser_PublishingPlatformRole] ([FK_Publishing" +
+                "PlatformRole], [FK_PublishingPlatformUser]) VALUES (@FK_PublishingPlatformRole, " +
+                "@FK_PublishingPlatformUser)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_PublishingPlatformRole", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformRole", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_PublishingPlatformUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformUser", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[PublishingPlatformUser_PublishingPlatformRole] SET [FK_PublishingPlatformRole] = @FK_PublishingPlatformRole, [FK_PublishingPlatformUser] = @FK_PublishingPlatformUser WHERE (([Id] = @Original_Id) AND ([FK_PublishingPlatformRole] = @Original_FK_PublishingPlatformRole) AND ([FK_PublishingPlatformUser] = @Original_FK_PublishingPlatformUser));
-SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingPlatformUser_PublishingPlatformRole WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[PublishingPlatformUser_PublishingPlatformRole] SET [FK_PublishingPl" +
+                "atformRole] = @FK_PublishingPlatformRole, [FK_PublishingPlatformUser] = @FK_Publ" +
+                "ishingPlatformUser WHERE (([Id] = @Original_Id))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_PublishingPlatformRole", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformRole", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_PublishingPlatformUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformUser", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_PublishingPlatformRole", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformRole", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FK_PublishingPlatformUser", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_PublishingPlatformUser", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::PromoveoAddin.Properties.Settings.Default.PromoveoDBConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PromoveoDBConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8002,10 +7506,8 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, int Original_FK_PublishingPlatformRole, int Original_FK_PublishingPlatformUser) {
+        public virtual int Delete(int Original_Id) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_FK_PublishingPlatformRole));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_FK_PublishingPlatformUser));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8049,13 +7551,10 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int FK_PublishingPlatformRole, int FK_PublishingPlatformUser, int Original_Id, int Original_FK_PublishingPlatformRole, int Original_FK_PublishingPlatformUser, int Id) {
+        public virtual int Update(int FK_PublishingPlatformRole, int FK_PublishingPlatformUser, int Original_Id) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(FK_PublishingPlatformRole));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(FK_PublishingPlatformUser));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_FK_PublishingPlatformRole));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_FK_PublishingPlatformUser));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8071,13 +7570,292 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                 }
             }
         }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class UserToModelUserGroupAssignmentTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public UserToModelUserGroupAssignmentTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "UserToModelUserGroupAssignment";
+            tableMapping.ColumnMappings.Add("Id", "Id");
+            tableMapping.ColumnMappings.Add("FK_User", "FK_User");
+            tableMapping.ColumnMappings.Add("FK_ModelUserGroup", "FK_ModelUserGroup");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[UserToModelUserGroupAssignment] WHERE (([Id] = @Original_Id))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[UserToModelUserGroupAssignment] ([FK_User], [FK_ModelUserGroup" +
+                "]) VALUES (@FK_User, @FK_ModelUserGroup)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_User", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_User", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_ModelUserGroup", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ModelUserGroup", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[UserToModelUserGroupAssignment] SET [FK_User] = @FK_User, [FK_Model" +
+                "UserGroup] = @FK_ModelUserGroup WHERE (([Id] = @Original_Id))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_User", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_User", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FK_ModelUserGroup", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FK_ModelUserGroup", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PromoveoDBConnectionString"].ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT Id, FK_User, FK_ModelUserGroup FROM dbo.UserToModelUserGroupAssignment";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(PromoveoDataSet.UserToModelUserGroupAssignmentDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual PromoveoDataSet.UserToModelUserGroupAssignmentDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            PromoveoDataSet.UserToModelUserGroupAssignmentDataTable dataTable = new PromoveoDataSet.UserToModelUserGroupAssignmentDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(PromoveoDataSet.UserToModelUserGroupAssignmentDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(PromoveoDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "UserToModelUserGroupAssignment");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_Id) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int FK_User, int FK_ModelUserGroup) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(FK_User));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(FK_ModelUserGroup));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int FK_PublishingPlatformRole, int FK_PublishingPlatformUser, int Original_Id, int Original_FK_PublishingPlatformRole, int Original_FK_PublishingPlatformUser) {
-            return this.Update(FK_PublishingPlatformRole, FK_PublishingPlatformUser, Original_Id, Original_FK_PublishingPlatformRole, Original_FK_PublishingPlatformUser, Original_Id);
+        public virtual int Update(int FK_User, int FK_ModelUserGroup, int Original_Id) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(FK_User));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(FK_ModelUserGroup));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Id));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
         }
     }
     
@@ -8093,8 +7871,6 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
         
         private UpdateOrderOption _updateOrder;
         
-        private UserToModelUserGroupAssignmentTableAdapter _userToModelUserGroupAssignmentTableAdapter;
-        
         private ConfigurationTableAdapter _configurationTableAdapter;
         
         private ModelUserGroupTableAdapter _modelUserGroupTableAdapter;
@@ -8109,6 +7885,8 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
         
         private PublishingPlatformUser_PublishingPlatformRoleTableAdapter _publishingPlatformUser_PublishingPlatformRoleTableAdapter;
         
+        private UserToModelUserGroupAssignmentTableAdapter _userToModelUserGroupAssignmentTableAdapter;
+        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -8121,20 +7899,6 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public UserToModelUserGroupAssignmentTableAdapter UserToModelUserGroupAssignmentTableAdapter {
-            get {
-                return this._userToModelUserGroupAssignmentTableAdapter;
-            }
-            set {
-                this._userToModelUserGroupAssignmentTableAdapter = value;
             }
         }
         
@@ -8238,6 +8002,20 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public UserToModelUserGroupAssignmentTableAdapter UserToModelUserGroupAssignmentTableAdapter {
+            get {
+                return this._userToModelUserGroupAssignmentTableAdapter;
+            }
+            set {
+                this._userToModelUserGroupAssignmentTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -8254,10 +8032,6 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
             get {
                 if ((this._connection != null)) {
                     return this._connection;
-                }
-                if (((this._userToModelUserGroupAssignmentTableAdapter != null) 
-                            && (this._userToModelUserGroupAssignmentTableAdapter.Connection != null))) {
-                    return this._userToModelUserGroupAssignmentTableAdapter.Connection;
                 }
                 if (((this._configurationTableAdapter != null) 
                             && (this._configurationTableAdapter.Connection != null))) {
@@ -8287,6 +8061,10 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                             && (this._publishingPlatformUser_PublishingPlatformRoleTableAdapter.Connection != null))) {
                     return this._publishingPlatformUser_PublishingPlatformRoleTableAdapter.Connection;
                 }
+                if (((this._userToModelUserGroupAssignmentTableAdapter != null) 
+                            && (this._userToModelUserGroupAssignmentTableAdapter.Connection != null))) {
+                    return this._userToModelUserGroupAssignmentTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -8300,9 +8078,6 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._configurationTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -8322,6 +8097,9 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                     count = (count + 1);
                 }
                 if ((this._publishingPlatformUser_PublishingPlatformRoleTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -8380,15 +8158,6 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.UserToModelUserGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._userToModelUserGroupAssignmentTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._processModel_PublishingPlatformRoleTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.ProcessModel_PublishingPlatformRole.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -8404,6 +8173,15 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._publishingPlatformUser_PublishingPlatformRoleTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.UserToModelUserGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._userToModelUserGroupAssignmentTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -8457,14 +8235,6 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.UserToModelUserGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._userToModelUserGroupAssignmentTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._processModel_PublishingPlatformRoleTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.ProcessModel_PublishingPlatformRole.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -8481,6 +8251,14 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.UserToModelUserGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._userToModelUserGroupAssignmentTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -8491,6 +8269,14 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(PromoveoDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.UserToModelUserGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._userToModelUserGroupAssignmentTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._publishingPlatformUser_PublishingPlatformRoleTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.PublishingPlatformUser_PublishingPlatformRole.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -8504,14 +8290,6 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._processModel_PublishingPlatformRoleTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.UserToModelUserGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._userToModelUserGroupAssignmentTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -8594,11 +8372,6 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._userToModelUserGroupAssignmentTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._userToModelUserGroupAssignmentTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             if (((this._configurationTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._configurationTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -8634,6 +8407,11 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._userToModelUserGroupAssignmentTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._userToModelUserGroupAssignmentTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -8666,15 +8444,6 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
-                    revertConnections.Add(this._userToModelUserGroupAssignmentTableAdapter, this._userToModelUserGroupAssignmentTableAdapter.Connection);
-                    this._userToModelUserGroupAssignmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._userToModelUserGroupAssignmentTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._userToModelUserGroupAssignmentTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._userToModelUserGroupAssignmentTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._userToModelUserGroupAssignmentTableAdapter.Adapter);
-                    }
-                }
                 if ((this._configurationTableAdapter != null)) {
                     revertConnections.Add(this._configurationTableAdapter, this._configurationTableAdapter.Connection);
                     this._configurationTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -8738,6 +8507,15 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                         adaptersWithAcceptChangesDuringUpdate.Add(this._publishingPlatformUser_PublishingPlatformRoleTableAdapter.Adapter);
                     }
                 }
+                if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
+                    revertConnections.Add(this._userToModelUserGroupAssignmentTableAdapter, this._userToModelUserGroupAssignmentTableAdapter.Connection);
+                    this._userToModelUserGroupAssignmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._userToModelUserGroupAssignmentTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._userToModelUserGroupAssignmentTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._userToModelUserGroupAssignmentTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._userToModelUserGroupAssignmentTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -8796,10 +8574,6 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
-                    this._userToModelUserGroupAssignmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._userToModelUserGroupAssignmentTableAdapter]));
-                    this._userToModelUserGroupAssignmentTableAdapter.Transaction = null;
-                }
                 if ((this._configurationTableAdapter != null)) {
                     this._configurationTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._configurationTableAdapter]));
                     this._configurationTableAdapter.Transaction = null;
@@ -8827,6 +8601,10 @@ SELECT Id, FK_PublishingPlatformRole, FK_PublishingPlatformUser FROM PublishingP
                 if ((this._publishingPlatformUser_PublishingPlatformRoleTableAdapter != null)) {
                     this._publishingPlatformUser_PublishingPlatformRoleTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._publishingPlatformUser_PublishingPlatformRoleTableAdapter]));
                     this._publishingPlatformUser_PublishingPlatformRoleTableAdapter.Transaction = null;
+                }
+                if ((this._userToModelUserGroupAssignmentTableAdapter != null)) {
+                    this._userToModelUserGroupAssignmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._userToModelUserGroupAssignmentTableAdapter]));
+                    this._userToModelUserGroupAssignmentTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

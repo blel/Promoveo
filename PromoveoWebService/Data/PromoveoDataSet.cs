@@ -1,4 +1,5 @@
-﻿namespace PromoveoAddin.Data {
+﻿namespace PromoveoWebService.Data
+{
     
     
     public partial class PromoveoDataSet {

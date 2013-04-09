@@ -6,7 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace PromoveoAddin
+namespace PromoveoWebService.DataAccessLayer
 {
     public abstract class DALBaseClass:IDisposable
     {
@@ -28,7 +28,7 @@ namespace PromoveoAddin
         private void Dispose(bool flag)
         {
             _connection.Dispose();
-            this.Dispose();
+            //this.Dispose(); //TODO: not sure what happens here. When issued as a  web service, this results in a endless loop
         }
 
 
