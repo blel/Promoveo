@@ -259,6 +259,9 @@
       <DependentUpon>frmListWebservice.cs</DependentUpon>
     </Compile>
     <Compile Include="ServiceClient\ListsCommunicator.cs" />
+    <Compile Include="ServiceClient\PromoveoService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ServiceClient\SharepointUser.cs" />
     <Compile Include="ServiceClient\UserGroup.cs" />
     <Compile Include="ServiceClient\UserGroupProxy.cs" />

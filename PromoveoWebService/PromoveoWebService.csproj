@@ -110,6 +110,7 @@
     <Content Include="Data\PromoveoDataSet.xss">
       <DependentUpon>PromoveoDataSet.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\green.ch.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
