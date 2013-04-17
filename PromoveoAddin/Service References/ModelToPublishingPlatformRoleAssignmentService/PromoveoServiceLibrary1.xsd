@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ModelToPublishingPlatformRoleAssignmentDAL.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PromoveoServiceLibrary.DataAccessLayer" />
+  <xs:element name="GetModelsOfRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RoleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetModelsOfRoleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/PromoveoServiceLibrary.DataAccessLayer" minOccurs="0" name="GetModelsOfRoleResult" nillable="true" type="q1:ArrayOfModelToPublishingPlatformRoleAssignment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsChecked">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RoleID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsCheckedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsCheckedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PersistRoleModelAssignment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="RoleID" type="xs:int" />
+        <xs:element minOccurs="0" name="isChecked" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PersistRoleModelAssignmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

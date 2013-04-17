@@ -44,20 +44,22 @@ namespace PromoveoAddin
 
         private void frmPublishDialog_Load(object sender, EventArgs e)
         {
-            this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
+            ConfigurationService.ConfigurationClient configurationClient = new ConfigurationService.ConfigurationClient();
+            this.configurationBindingSource.DataSource = configurationClient.GetConfigurations();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             int configID = Convert.ToInt32(((DataRowView)this.cmbConfiguration.SelectedItem).Row[0]);
-            List<string> newModels;
-            MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
+            
+            ProcessModelService.ProcessModelClient processModelClient = new ProcessModelService.ProcessModelClient();
 
-            bool hasNewModels = processModelDAL.HasNewModels(SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument, configID
-                    , out newModels);
-            if ((hasNewModels && chkAddModels.Checked) || !hasNewModels)
+            string[] allModelNames = SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument.Pages.Cast<Visio.Page>().Select(cc => cc.Name).ToArray();
+
+            string[] newModels = processModelClient.GetNewModelNames(allModelNames, configID);
+            if ((newModels.Count()>0 && chkAddModels.Checked) || newModels.Count() == 0)
             {
-                processModelDAL.AddNewModels(newModels, configID);
+                processModelClient.AddNewModels(newModels, configID);
                 SaveFileDialog fileDialog = new SaveFileDialog();
                 fileDialog.Filter = "Html Page (*.htm, *.html)|*.htm;*html";
                 fileDialog.FileName = System.IO.Path.GetFileNameWithoutExtension(SingletonVisioApp.GetCurrentVisioInstance().VisioApp.ActiveDocument.Name);

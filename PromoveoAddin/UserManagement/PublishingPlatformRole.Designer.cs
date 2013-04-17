@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.bsPublishingRole = new System.Windows.Forms.BindingSource(this.components);
-            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
-            this.publishingPlatformRoleTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.PublishingPlatformRoleTableAdapter();
-            this.bsCbRoles = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnSave = new System.Windows.Forms.Button();
             this.chkModels = new System.Windows.Forms.CheckedListBox();
@@ -41,9 +37,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgdRoles = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FK_Configuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbcSettings = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -58,10 +51,11 @@
             this.cmbConfiguration = new System.Windows.Forms.ComboBox();
             this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
-            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPublishingRole)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCbRoles)).BeginInit();
+            this.roleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fKConfigurationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoleCBBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgdRoles)).BeginInit();
@@ -69,26 +63,9 @@
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roleBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RoleCBBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bsPublishingRole
-            // 
-            this.bsPublishingRole.DataMember = "PublishingPlatformRole";
-            this.bsPublishingRole.DataSource = this.promoveoDataSet;
-            // 
-            // promoveoDataSet
-            // 
-            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
-            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // publishingPlatformRoleTableAdapter
-            // 
-            this.publishingPlatformRoleTableAdapter.ClearBeforeFill = true;
-            // 
-            // bsCbRoles
-            // 
-            this.bsCbRoles.DataMember = "PublishingPlatformRole";
-            this.bsCbRoles.DataSource = this.promoveoDataSet;
             // 
             // tabPage2
             // 
@@ -135,8 +112,7 @@
             // 
             // cbxRole
             // 
-            this.cbxRole.DataSource = this.bsCbRoles;
-            this.cbxRole.DisplayMember = "RoleName";
+            this.cbxRole.DataSource = this.RoleCBBindingSource;
             this.cbxRole.FormattingEnabled = true;
             this.cbxRole.Location = new System.Drawing.Point(106, 3);
             this.cbxRole.Name = "cbxRole";
@@ -170,10 +146,10 @@
             this.dgdRoles.AutoGenerateColumns = false;
             this.dgdRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgdRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.roleNameDataGridViewTextBoxColumn,
-            this.FK_Configuration});
-            this.dgdRoles.DataSource = this.bsPublishingRole;
+            this.fKConfigurationDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn});
+            this.dgdRoles.DataSource = this.roleBindingSource;
             this.dgdRoles.Location = new System.Drawing.Point(4, 4);
             this.dgdRoles.Margin = new System.Windows.Forms.Padding(2);
             this.dgdRoles.Name = "dgdRoles";
@@ -183,28 +159,6 @@
             this.dgdRoles.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgdRoles_DataError);
             this.dgdRoles.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdRoles_RowLeave);
             this.dgdRoles.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdRoles_RowValidated);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // roleNameDataGridViewTextBoxColumn
-            // 
-            this.roleNameDataGridViewTextBoxColumn.DataPropertyName = "RoleName";
-            this.roleNameDataGridViewTextBoxColumn.HeaderText = "RoleName";
-            this.roleNameDataGridViewTextBoxColumn.Name = "roleNameDataGridViewTextBoxColumn";
-            this.roleNameDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // FK_Configuration
-            // 
-            this.FK_Configuration.DataPropertyName = "FK_Configuration";
-            this.FK_Configuration.HeaderText = "FK_Configuration";
-            this.FK_Configuration.Name = "FK_Configuration";
-            this.FK_Configuration.Visible = false;
             // 
             // tbcSettings
             // 
@@ -311,8 +265,7 @@
             // 
             // cmbSelectRole
             // 
-            this.cmbSelectRole.DataSource = this.bsCbRoles;
-            this.cmbSelectRole.DisplayMember = "RoleName";
+            this.cmbSelectRole.DataSource = this.RoleCBBindingSource;
             this.cmbSelectRole.FormattingEnabled = true;
             this.cmbSelectRole.Location = new System.Drawing.Point(75, 6);
             this.cmbSelectRole.Name = "cmbSelectRole";
@@ -344,8 +297,7 @@
             // 
             // configurationBindingSource
             // 
-            this.configurationBindingSource.DataMember = "Configuration";
-            this.configurationBindingSource.DataSource = this.promoveoDataSet;
+            this.configurationBindingSource.DataSource = typeof(PromoveoAddin.ConfigurationService.Configuration);
             // 
             // label6
             // 
@@ -357,9 +309,30 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "Select the configuration:";
             // 
-            // configurationTableAdapter
+            // roleBindingSource
             // 
-            this.configurationTableAdapter.ClearBeforeFill = true;
+            this.roleBindingSource.DataSource = typeof(PromoveoAddin.PublishingPlatformRoleService.Role);
+            // 
+            // fKConfigurationDataGridViewTextBoxColumn
+            // 
+            this.fKConfigurationDataGridViewTextBoxColumn.DataPropertyName = "FK_Configuration";
+            this.fKConfigurationDataGridViewTextBoxColumn.HeaderText = "FK_Configuration";
+            this.fKConfigurationDataGridViewTextBoxColumn.Name = "fKConfigurationDataGridViewTextBoxColumn";
+            this.fKConfigurationDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 250;
             // 
             // PublishingPlatformRole
             // 
@@ -373,9 +346,6 @@
             this.Name = "PublishingPlatformRole";
             this.Text = "PublishingPlatformRole";
             this.Load += new System.EventHandler(this.PublishingPlatformRole_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bsPublishingRole)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCbRoles)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -386,6 +356,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roleBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RoleCBBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,10 +365,6 @@
 
         #endregion
 
-        private System.Windows.Forms.BindingSource bsPublishingRole;
-        private Data.PromoveoDataSet promoveoDataSet;
-        private Data.PromoveoDataSetTableAdapters.PublishingPlatformRoleTableAdapter publishingPlatformRoleTableAdapter;
-        private System.Windows.Forms.BindingSource bsCbRoles;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.CheckedListBox chkModels;
@@ -421,7 +389,10 @@
         private System.Windows.Forms.ComboBox cmbConfiguration;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.BindingSource configurationBindingSource;
-        private Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter configurationTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FK_Configuration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fKConfigurationDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource roleBindingSource;
+        private System.Windows.Forms.BindingSource RoleCBBindingSource;
     }
 }

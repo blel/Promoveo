@@ -134,10 +134,11 @@ namespace PromoveoAddin
         {
             foreach (Visio.Page page in _document.Pages)
             {
-                MasterDataManagement.ProcessModelDAL pmDal = new MasterDataManagement.ProcessModelDAL();
+                ProcessModelService.ProcessModelClient processModelClient = new ProcessModelService.ProcessModelClient();
+                
                 try
                 {
-                    pmDal.SetAcknowledgeState(_configurationID, page.Name, AcknowledgeState.MergedAndPublished);
+                    processModelClient.SetAcknowledgeState(_configurationID, page.Name, ProcessModelService.AcknowledgeState.MergedAndPublished);
                 }
                 catch (Exception ex)
                 {

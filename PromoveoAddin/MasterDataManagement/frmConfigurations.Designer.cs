@@ -33,11 +33,11 @@
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
-            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
+     
+       
             ((System.ComponentModel.ISupportInitialize)(this.dgvConfigurations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
+         
             this.SuspendLayout();
             // 
             // dgvConfigurations
@@ -72,16 +72,15 @@
             // configurationBindingSource
             // 
             this.configurationBindingSource.DataMember = "Configuration";
-            this.configurationBindingSource.DataSource = this.promoveoDataSet;
+      
             // 
             // promoveoDataSet
             // 
-            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
-            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+
             // 
             // configurationTableAdapter
             // 
-            this.configurationTableAdapter.ClearBeforeFill = true;
+
             // 
             // frmConfigurations
             // 
@@ -94,7 +93,7 @@
             this.Load += new System.EventHandler(this.frmConfigurations_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvConfigurations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
+    
             this.ResumeLayout(false);
 
         }
@@ -102,9 +101,9 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvConfigurations;
-        private Data.PromoveoDataSet promoveoDataSet;
+
         private System.Windows.Forms.BindingSource configurationBindingSource;
-        private Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter configurationTableAdapter;
+    
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
     }

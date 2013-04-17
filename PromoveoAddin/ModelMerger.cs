@@ -96,8 +96,8 @@ namespace PromoveoAddin
                 }
             }
 
-            MasterDataManagement.ConfigurationDAL configurationDAL = new MasterDataManagement.ConfigurationDAL();
-            string visioMasterFilename = configurationDAL.GetVisioMasterFileName(_configurationID);
+            ConfigurationService.ConfigurationClient configurationClient = new ConfigurationService.ConfigurationClient();
+            string visioMasterFilename = configurationClient.GetVisioMasterFileName(_configurationID);
             bool abort = false;
             if (!string.IsNullOrWhiteSpace(visioMasterFilename) && visioMasterFilename !=
                 FileHelper.EnsureTailBackslash(_resultDoc.Path) + _resultDoc.Name)
@@ -123,7 +123,7 @@ namespace PromoveoAddin
                 //save the filename to the database if it differs from the current name
                 if (visioMasterFilename != FileHelper.EnsureTailBackslash(_resultDoc.Path) + _resultDoc.Name)
                 {
-                    configurationDAL.SetVisioMasterFileName(_configurationID, FileHelper.EnsureTailBackslash(_resultDoc.Path) + _resultDoc.Name);
+                    configurationClient.SetVisioMasterFileName(_configurationID, FileHelper.EnsureTailBackslash(_resultDoc.Path) + _resultDoc.Name);
                 }
             }
         }
@@ -136,16 +136,16 @@ namespace PromoveoAddin
         {
             bool abort;
             Visio.Document docToMerge = _app.VisioApp.Documents.OpenEx(fileName,(short)Visio.VisOpenSaveArgs.visOpenHidden + (short)Visio.VisOpenSaveArgs.visOpenDontList);
-            MasterDataManagement.ProcessModelDAL pmDal = new MasterDataManagement.ProcessModelDAL();
+            ProcessModelService.ProcessModelClient processModelClient = new ProcessModelService.ProcessModelClient();
             foreach (Visio.Page pageToMerge in docToMerge.Pages)
             {
                 abort = false;
-                if (!pmDal.IsModelOfConfiguration(pageToMerge.Name,_configurationID))
+                if (!processModelClient.IsModelOfConfiguration(pageToMerge.Name, _configurationID))
                 {
                     DialogResult result = MessageBox.Show(string.Format("The model {0} does currently not belong to the configuration. Shall it be added? Yes: add, No: skip", pageToMerge.Name), "Promoveo Addin", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
-                        pmDal.Insert(pageToMerge.Name, _configurationID);
+                        processModelClient.Insert(pageToMerge.Name, _configurationID);
                     }
                     else abort = true;
                 }
@@ -225,10 +225,10 @@ namespace PromoveoAddin
 
         private void SetAcknowledgeState(Visio.Page pageToMerge)
         {
-            MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
+            ProcessModelService.ProcessModelClient processModelClient = new ProcessModelService.ProcessModelClient();
             try
             {
-                processModelDAL.SetAcknowledgeState(_configurationID, pageToMerge.Name, AcknowledgeState.Merged);
+                processModelClient.SetAcknowledgeState(_configurationID, pageToMerge.Name, ProcessModelService.AcknowledgeState.Merged);
             }
             catch (Exception ex)
             {
@@ -240,8 +240,8 @@ namespace PromoveoAddin
         {
             if (_createVersions)
             {
-                MasterDataManagement.ProcessModelDAL processModelDAL = new MasterDataManagement.ProcessModelDAL();
-                processModelDAL.CreateVersion(modelName, _configurationID);
+                ProcessModelService.ProcessModelClient processModelClient = new ProcessModelService.ProcessModelClient();
+                processModelClient.CreateVersion(modelName, _configurationID);
             }
         }
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PromoveoServiceLibrary" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PromoveoServiceLibrary" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="AcknowledgeState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Merged" />
+      <xs:enumeration value="MergedAndPublished" />
+      <xs:enumeration value="Acknowledged" />
+      <xs:enumeration value="None" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AcknowledgeState" nillable="true" type="tns:AcknowledgeState" />
+</xs:schema>

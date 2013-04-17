@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ProcessModelDAL" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/PromoveoServiceLibrary.DataAccessLayer" />
+      <xsd:import schemaLocation="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/PromoveoServiceLibrary" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IProcessModel_AddNewModels_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewModels" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_AddNewModels_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewModelsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_CreateVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateVersion" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_CreateVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_GetModelID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModelID" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_GetModelID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModelIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_GetProcessModels_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessModels" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_GetProcessModels_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessModelsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_GetProcessModelsByConfigID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessModelsByConfigID" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_GetProcessModelsByConfigID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessModelsByConfigIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_GetNewModelNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNewModelNames" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_GetNewModelNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNewModelNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_Insert_InputMessage">
+    <wsdl:part name="parameters" element="tns:Insert" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_Insert_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_IsModelOfConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsModelOfConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_IsModelOfConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsModelOfConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_SetAcknowledgeState_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetAcknowledgeState" />
+  </wsdl:message>
+  <wsdl:message name="IProcessModel_SetAcknowledgeState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetAcknowledgeStateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IProcessModel">
+    <wsdl:operation name="AddNewModels">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcessModel/AddNewModels" message="tns:IProcessModel_AddNewModels_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcessModel/AddNewModelsResponse" message="tns:IProcessModel_AddNewModels_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateVersion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcessModel/CreateVersion" message="tns:IProcessModel_CreateVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcessModel/CreateVersionResponse" message="tns:IProcessModel_CreateVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModelID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcessModel/GetModelID" message="tns:IProcessModel_GetModelID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcessModel/GetModelIDResponse" message="tns:IProcessModel_GetModelID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessModels">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcessModel/GetProcessModels" message="tns:IProcessModel_GetProcessModels_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcessModel/GetProcessModelsResponse" message="tns:IProcessModel_GetProcessModels_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessModelsByConfigID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcessModel/GetProcessModelsByConfigID" message="tns:IProcessModel_GetProcessModelsByConfigID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcessModel/GetProcessModelsByConfigIDResponse" message="tns:IProcessModel_GetProcessModelsByConfigID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcessModel/GetUsers" message="tns:IProcessModel_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcessModel/GetUsersResponse" message="tns:IProcessModel_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNewModelNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcessModel/GetNewModelNames" message="tns:IProcessModel_GetNewModelNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcessModel/GetNewModelNamesResponse" message="tns:IProcessModel_GetNewModelNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcessModel/Insert" message="tns:IProcessModel_Insert_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcessModel/InsertResponse" message="tns:IProcessModel_Insert_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsModelOfConfiguration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcessModel/IsModelOfConfiguration" message="tns:IProcessModel_IsModelOfConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcessModel/IsModelOfConfigurationResponse" message="tns:IProcessModel_IsModelOfConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAcknowledgeState">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcessModel/SetAcknowledgeState" message="tns:IProcessModel_SetAcknowledgeState_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcessModel/SetAcknowledgeStateResponse" message="tns:IProcessModel_SetAcknowledgeState_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IProcessModel" type="tns:IProcessModel">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddNewModels">
+      <soap:operation soapAction="http://tempuri.org/IProcessModel/AddNewModels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateVersion">
+      <soap:operation soapAction="http://tempuri.org/IProcessModel/CreateVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModelID">
+      <soap:operation soapAction="http://tempuri.org/IProcessModel/GetModelID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessModels">
+      <soap:operation soapAction="http://tempuri.org/IProcessModel/GetProcessModels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessModelsByConfigID">
+      <soap:operation soapAction="http://tempuri.org/IProcessModel/GetProcessModelsByConfigID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tempuri.org/IProcessModel/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewModelNames">
+      <soap:operation soapAction="http://tempuri.org/IProcessModel/GetNewModelNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert">
+      <soap:operation soapAction="http://tempuri.org/IProcessModel/Insert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsModelOfConfiguration">
+      <soap:operation soapAction="http://tempuri.org/IProcessModel/IsModelOfConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAcknowledgeState">
+      <soap:operation soapAction="http://tempuri.org/IProcessModel/SetAcknowledgeState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProcessModelDAL">
+    <wsdl:port name="BasicHttpBinding_IProcessModel" binding="tns:BasicHttpBinding_IProcessModel">
+      <soap:address location="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

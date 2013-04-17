@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PromoveoAddin.Data;
-using PromoveoAddin.Data.PromoveoDataSetTableAdapters;
+
 using System.Xml.Serialization;
 using System.IO;
 
@@ -23,15 +22,15 @@ namespace PromoveoAddin.UserManagement
         public void PrepareObjects(int configurationID)
         {
             _modelUsers = new List<SerializableModelUser>();
+            ProcessModelService.ProcessModelClient processModelClient = new ProcessModelService.ProcessModelClient();
 
-            ProcessModelDAL pmDAL = new ProcessModelDAL();
-            Data.PromoveoDataSet.ProcessModelDataTable processModels = pmDAL.GetProcessModels(configurationID);
-            foreach (Data.PromoveoDataSet.ProcessModelRow row in processModels.Rows)
+            IList<ProcessModelService.ProcessModel> processModels = processModelClient.GetProcessModelsByConfigID(configurationID);
+            foreach (ProcessModelService.ProcessModel processModel in processModels)
             {
                 SerializableModelUser modelUser = new SerializableModelUser();
-                modelUser.Model = row.ProcessModel;
+                modelUser.Model = processModel.ModelName;
 
-                foreach (Data.PromoveoDataSet.ProcessModelUsersRow userRow in pmDAL.GetUsers(modelUser.Model).Rows)
+                foreach (ProcessModelService.User userRow in processModelClient.GetUsers(modelUser.Model))
                 {
                     SerializableUser user = new SerializableUser();
                     user.eMail = userRow.Email;

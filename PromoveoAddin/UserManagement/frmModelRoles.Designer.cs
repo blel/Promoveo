@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbConfiguration = new System.Windows.Forms.ComboBox();
-            this.bsConfiguration = new System.Windows.Forms.BindingSource(this.components);
-            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
             this.tbcModelUsers = new System.Windows.Forms.TabControl();
             this.tbpModelRoles = new System.Windows.Forms.TabPage();
             this.dgvModelUserRoles = new System.Windows.Forms.DataGridView();
@@ -46,14 +44,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cmbModelUserRole = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.bsConfiguration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
+            this.bsConfiguration = new System.Windows.Forms.BindingSource(this.components);
+            this.bsModelUserRoles = new System.Windows.Forms.BindingSource(this.components);
             this.tbcModelUsers.SuspendLayout();
             this.tbpModelRoles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModelUserRoles)).BeginInit();
             this.tbpUserAssignment.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConfiguration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsModelUserRoles)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +68,6 @@
             // cmbConfiguration
             // 
             this.cmbConfiguration.DataSource = this.bsConfiguration;
-            this.cmbConfiguration.DisplayMember = "Name";
             this.cmbConfiguration.FormattingEnabled = true;
             this.cmbConfiguration.Location = new System.Drawing.Point(135, 8);
             this.cmbConfiguration.Margin = new System.Windows.Forms.Padding(2);
@@ -78,16 +76,6 @@
             this.cmbConfiguration.TabIndex = 1;
             this.cmbConfiguration.ValueMember = "Id";
             this.cmbConfiguration.SelectedIndexChanged += new System.EventHandler(this.cmbConfiguration_SelectedIndexChanged);
-            // 
-            // bsConfiguration
-            // 
-            this.bsConfiguration.DataMember = "Configuration";
-            this.bsConfiguration.DataSource = this.promoveoDataSet;
-            // 
-            // promoveoDataSet
-            // 
-            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
-            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tbcModelUsers
             // 
@@ -115,7 +103,9 @@
             // 
             // dgvModelUserRoles
             // 
+            this.dgvModelUserRoles.AutoGenerateColumns = false;
             this.dgvModelUserRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvModelUserRoles.DataSource = this.bsModelUserRoles;
             this.dgvModelUserRoles.Location = new System.Drawing.Point(4, 5);
             this.dgvModelUserRoles.Margin = new System.Windows.Forms.Padding(2);
             this.dgvModelUserRoles.Name = "dgvModelUserRoles";
@@ -238,10 +228,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Select Model User Role";
             // 
-            // configurationTableAdapter
-            // 
-            this.configurationTableAdapter.ClearBeforeFill = true;
-            // 
             // frmModelRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,8 +240,6 @@
             this.Name = "frmModelRoles";
             this.Text = "frmModelRoles";
             this.Load += new System.EventHandler(this.frmModelRoles_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bsConfiguration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
             this.tbcModelUsers.ResumeLayout(false);
             this.tbpModelRoles.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvModelUserRoles)).EndInit();
@@ -263,6 +247,8 @@
             this.tbpUserAssignment.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConfiguration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsModelUserRoles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,7 +272,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.BindingSource bsConfiguration;
-        private Data.PromoveoDataSet promoveoDataSet;
-        private Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter configurationTableAdapter;
+        private System.Windows.Forms.BindingSource bsModelUserRoles;
+
     }
 }

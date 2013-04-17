@@ -95,7 +95,8 @@ namespace PromoveoAddin
 
         private void MergeVisioFiles_Load(object sender, EventArgs e)
         {
-            this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
+            ConfigurationService.ConfigurationClient configurationClient = new ConfigurationService.ConfigurationClient();
+            this.configurationBindingSource.DataSource = configurationClient.GetConfigurations();
         }
     }
 }

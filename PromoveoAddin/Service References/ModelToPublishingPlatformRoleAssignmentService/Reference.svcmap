@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c637c7d2-29a6-497e-8001-be409a2a0351" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ModelToPublishingPlatformRoleAssignmentDAL.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PromoveoServiceLibrary.xsd" MetadataType="Schema" ID="931ff4e6-f62e-4cc1-99ab-36a645c10b32" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ModelToPublishingPlatformRoleAssignmentDAL.svc?xsd=xsd1" />
+    <MetadataFile FileName="PromoveoServiceLibrary.disco" MetadataType="Disco" ID="f370c456-bb50-4ada-8af5-bf6b93fd4f95" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ModelToPublishingPlatformRoleAssignmentDAL.svc?disco" />
+    <MetadataFile FileName="PromoveoServiceLibrary1.xsd" MetadataType="Schema" ID="bbf3006f-267f-40ad-9965-602939ee6d00" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ModelToPublishingPlatformRoleAssignmentDAL.svc?xsd=xsd0" />
+    <MetadataFile FileName="ModelToPublishingPlatformRoleAssignmentDAL.wsdl" MetadataType="Wsdl" ID="4eaf1cef-e809-481b-b7b8-7e3ea2b328dd" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ModelToPublishingPlatformRoleAssignmentDAL.svc?wsdl" />
+    <MetadataFile FileName="PromoveoServiceLibrary2.xsd" MetadataType="Schema" ID="fb132b6c-45cb-45d3-a197-14adbf485a47" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ModelToPublishingPlatformRoleAssignmentDAL.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

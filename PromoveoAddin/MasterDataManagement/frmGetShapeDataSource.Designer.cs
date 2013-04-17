@@ -40,10 +40,10 @@
             this.btnGetShapeData = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbConfiguration = new System.Windows.Forms.ComboBox();
-            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
+
             this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
+
+
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,17 +143,16 @@
             // 
             // promoveoDataSet
             // 
-            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
-            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+
             // 
             // configurationBindingSource
             // 
             this.configurationBindingSource.DataMember = "Configuration";
-            this.configurationBindingSource.DataSource = this.promoveoDataSet;
+
             // 
             // configurationTableAdapter
             // 
-            this.configurationTableAdapter.ClearBeforeFill = true;
+
             // 
             // frmGetShapeDataSource
             // 
@@ -174,7 +173,7 @@
             this.Name = "frmGetShapeDataSource";
             this.Text = "frmGetShapeDataSource";
             this.Load += new System.EventHandler(this.frmGetShapeDataSource_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
+
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -194,8 +193,8 @@
         private System.Windows.Forms.Button btnGetShapeData;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbConfiguration;
-        private Data.PromoveoDataSet promoveoDataSet;
+
         private System.Windows.Forms.BindingSource configurationBindingSource;
-        private Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter configurationTableAdapter;
+
     }
 }

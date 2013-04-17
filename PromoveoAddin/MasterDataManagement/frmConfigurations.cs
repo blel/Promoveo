@@ -18,7 +18,8 @@ namespace PromoveoAddin.MasterDataManagement
 
         private void frmConfigurations_Load(object sender, EventArgs e)
         {
-            this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
+            ConfigurationService.ConfigurationClient configurationClient = new ConfigurationService.ConfigurationClient();
+            this.configurationBindingSource.DataSource = configurationClient.GetConfigurations();
 
         }
 
@@ -29,7 +30,7 @@ namespace PromoveoAddin.MasterDataManagement
 
         private void dgvConfigurations_Validated(object sender, EventArgs e)
         {
-            this.configurationTableAdapter.Update(promoveoDataSet);
+            //this.configurationTableAdapter.Update(promoveoDataSet);
         }
     }
 }

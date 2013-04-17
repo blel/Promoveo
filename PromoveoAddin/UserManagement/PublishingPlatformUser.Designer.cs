@@ -32,17 +32,15 @@
             this.tbcUsers = new System.Windows.Forms.TabControl();
             this.tbpUser = new System.Windows.Forms.TabPage();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shortnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsUsers = new System.Windows.Forms.BindingSource(this.components);
-            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
-            this.publishingPlatformUserTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.PublishingPlatformUserTableAdapter();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbcUsers.SuspendLayout();
             this.tbpUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsUsers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tbcUsers
@@ -70,10 +68,11 @@
             this.dgvUsers.AutoGenerateColumns = false;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
-            this.shortnameDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn});
-            this.dgvUsers.DataSource = this.bsUsers;
+            this.dataGridViewTextBoxColumn1,
+            this.idDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.dgvUsers.DataSource = this.userBindingSource;
             this.dgvUsers.Location = new System.Drawing.Point(6, 7);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.Size = new System.Drawing.Size(438, 307);
@@ -81,39 +80,34 @@
             this.dgvUsers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellEndEdit);
             this.dgvUsers.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_RowValidated);
             this.dgvUsers.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvUsers_RowValidating);
-
             // 
-            // nameDataGridViewTextBoxColumn
+            // userBindingSource
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+           
             // 
-            // shortnameDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn1
             // 
-            this.shortnameDataGridViewTextBoxColumn.DataPropertyName = "Shortname";
-            this.shortnameDataGridViewTextBoxColumn.HeaderText = "Shortname";
-            this.shortnameDataGridViewTextBoxColumn.Name = "shortnameDataGridViewTextBoxColumn";
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Email";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Email";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
-            // emailDataGridViewTextBoxColumn
+            // idDataGridViewTextBoxColumn
             // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             // 
-            // bsUsers
+            // dataGridViewTextBoxColumn2
             // 
-            this.bsUsers.DataMember = "PublishingPlatformUser";
-            this.bsUsers.DataSource = this.promoveoDataSet;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
-            // promoveoDataSet
+            // dataGridViewTextBoxColumn3
             // 
-            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
-            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // publishingPlatformUserTableAdapter
-            // 
-            this.publishingPlatformUserTableAdapter.ClearBeforeFill = true;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Shortname";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Shortname";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // PublishingPlatformUser
             // 
@@ -122,13 +116,12 @@
             this.ClientSize = new System.Drawing.Size(483, 370);
             this.Controls.Add(this.tbcUsers);
             this.Name = "PublishingPlatformUser";
-            this.Text = "PublishingPlatformUser";
+            this.Text = "User Administration";
             this.Load += new System.EventHandler(this.PublishingPlatformUser_Load);
             this.tbcUsers.ResumeLayout(false);
             this.tbpUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsUsers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -137,12 +130,15 @@
 
         private System.Windows.Forms.TabControl tbcUsers;
         private System.Windows.Forms.TabPage tbpUser;
-        private System.Windows.Forms.BindingSource bsUsers;
-        private Data.PromoveoDataSet promoveoDataSet;
-        private Data.PromoveoDataSetTableAdapters.PublishingPlatformUserTableAdapter publishingPlatformUserTableAdapter;
+
         private System.Windows.Forms.DataGridView dgvUsers;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn shortnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.BindingSource userBindingSource;
     }
 }

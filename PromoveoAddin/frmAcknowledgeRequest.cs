@@ -25,7 +25,9 @@ namespace PromoveoAddin
 
         private void frmAcknowledgeRequest_Load(object sender, EventArgs e)
         {
-            this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
+            ConfigurationService.ConfigurationClient configurationClient = new ConfigurationService.ConfigurationClient();
+            this.configurationBindingSource.DataSource = configurationClient.GetConfigurations();
+
 
         }
 

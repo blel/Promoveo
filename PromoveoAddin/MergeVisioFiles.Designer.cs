@@ -44,11 +44,8 @@
             this.chkCreateVersions = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbConfiguration = new System.Windows.Forms.ComboBox();
-            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
             this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -206,27 +203,12 @@
             // cmbConfiguration
             // 
             this.cmbConfiguration.DataSource = this.configurationBindingSource;
-            this.cmbConfiguration.DisplayMember = "Name";
             this.cmbConfiguration.FormattingEnabled = true;
             this.cmbConfiguration.Location = new System.Drawing.Point(108, 551);
             this.cmbConfiguration.Name = "cmbConfiguration";
             this.cmbConfiguration.Size = new System.Drawing.Size(240, 21);
             this.cmbConfiguration.TabIndex = 10;
             this.cmbConfiguration.ValueMember = "Id";
-            // 
-            // promoveoDataSet
-            // 
-            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
-            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // configurationBindingSource
-            // 
-            this.configurationBindingSource.DataMember = "Configuration";
-            this.configurationBindingSource.DataSource = this.promoveoDataSet;
-            // 
-            // configurationTableAdapter
-            // 
-            this.configurationTableAdapter.ClearBeforeFill = true;
             // 
             // MergeVisioFiles
             // 
@@ -250,7 +232,6 @@
             this.Load += new System.EventHandler(this.MergeVisioFiles_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -274,8 +255,9 @@
         private System.Windows.Forms.CheckBox chkCreateVersions;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbConfiguration;
-        private Data.PromoveoDataSet promoveoDataSet;
         private System.Windows.Forms.BindingSource configurationBindingSource;
-        private Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter configurationTableAdapter;
+
+
+
     }
 }

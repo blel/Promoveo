@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
+            
             this.label1 = new System.Windows.Forms.Label();
-            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
+            
             this.btnSendRequest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
+            
             this.SuspendLayout();
             // 
             // comboBox1
@@ -53,12 +53,11 @@
             // configurationBindingSource
             // 
             this.configurationBindingSource.DataMember = "Configuration";
-            this.configurationBindingSource.DataSource = this.promoveoDataSet;
+            
             // 
             // promoveoDataSet
             // 
-            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
-            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+    
             // 
             // label1
             // 
@@ -72,7 +71,7 @@
             // 
             // configurationTableAdapter
             // 
-            this.configurationTableAdapter.ClearBeforeFill = true;
+         
             // 
             // btnSendRequest
             // 
@@ -96,7 +95,7 @@
             this.Text = "frmAcknowledgeRequest";
             this.Load += new System.EventHandler(this.frmAcknowledgeRequest_Load);
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
+ 
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,9 +105,9 @@
 
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        private Data.PromoveoDataSet promoveoDataSet;
+        
         private System.Windows.Forms.BindingSource configurationBindingSource;
-        private Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter configurationTableAdapter;
+        
         private System.Windows.Forms.Button btnSendRequest;
     }
 }

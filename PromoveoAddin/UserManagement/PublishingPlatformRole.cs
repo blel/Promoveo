@@ -14,9 +14,7 @@ namespace PromoveoAddin.UserManagement
     {
         private int GetConfigurationID()
         {
-            if (this.cmbConfiguration.Items.Count > 0 && this.cmbConfiguration.SelectedItem != null)
-                return Convert.ToInt32(((DataRowView)this.cmbConfiguration.SelectedItem).Row[0]);
-            return 0;
+            return Convert.ToInt32(this.cmbConfiguration.SelectedItem);
         }
         
         public PublishingPlatformRole()
@@ -24,17 +22,17 @@ namespace PromoveoAddin.UserManagement
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void PublishingPlatformRole_Load(object sender, EventArgs e)
         {
-            this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
-            this.publishingPlatformRoleTableAdapter.Fill(this.promoveoDataSet.PublishingPlatformRole);
-            this.bsPublishingRole.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
-            this.bsCbRoles.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
+            ConfigurationService.ConfigurationClient configurationClient = new ConfigurationService.ConfigurationClient();
+            this.configurationBindingSource.DataSource = configurationClient.GetConfigurations();
+
+            PublishingPlatformRoleService.PublishingPlatformRoleClient publishingPlatformRoleClient = new PublishingPlatformRoleService.PublishingPlatformRoleClient();
+            this.roleBindingSource.DataSource = publishingPlatformRoleClient.GetRoles();
+            this.roleBindingSource.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
+
+            this.RoleCBBindingSource.DataSource = publishingPlatformRoleClient.GetRoles();
+            this.RoleCBBindingSource.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
 
             //set up list boxes for users
             ColumnHeader header = lsvAvailableUsers.Columns.Add("Id");
@@ -47,14 +45,14 @@ namespace PromoveoAddin.UserManagement
             lsvAssignedUsers.Columns.Add("Shortname");
         }
 
-        private void PopulateListView(ListView listView, IEnumerable<Data.PromoveoDataSet.PublishingPlatformUserRow> rows)
+        private void PopulateListView(ListView listView, IList<UserRoleService.User> users)
         {
             listView.Items.Clear();
-            foreach (Data.PromoveoDataSet.PublishingPlatformUserRow row in rows)
+            foreach (UserRoleService.User user in users)
             {
-                ListViewItem item = listView.Items.Add(row.Id.ToString());
-                item.SubItems.Add(row.Name);
-                item.SubItems.Add(row.Shortname);
+                ListViewItem item = listView.Items.Add(user.Id.ToString());
+                item.SubItems.Add(user.Name);
+                item.SubItems.Add(user.Shortname);
             }
 
         }
@@ -83,35 +81,38 @@ namespace PromoveoAddin.UserManagement
                 {
                     roleID = Convert.ToInt32(((DataRowView)this.cmbSelectRole.SelectedValue).Row[0]);
                 }
-                UserRoleDAL userRoleDAL = new UserRoleDAL();
-                PopulateListView(this.lsvAssignedUsers, userRoleDAL.GetAssignedUsers(roleID));
-                PopulateListView(this.lsvAvailableUsers, userRoleDAL.GetUnassignedUsers(roleID));
+                UserRoleService.UserRoleClient UserRoleClient = new UserRoleService.UserRoleClient();
+                PopulateListView(this.lsvAssignedUsers, UserRoleClient.GetAssignedUsers(roleID));
+                PopulateListView(this.lsvAvailableUsers, UserRoleClient.GetUnassignedUsers(roleID));
             }
 
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            RoleModelDAL rmDal = new RoleModelDAL();
+            ModelToPublishingPlatformRoleAssignmentService.ModelToPublishingPlatformRoleAssignmentClient modelRoleClient = new ModelToPublishingPlatformRoleAssignmentService.ModelToPublishingPlatformRoleAssignmentClient();
+
+            
             for (int i = 0; i < this.chkModels.Items.Count; i++)
             {
                 object item = this.chkModels.Items[i];
-                rmDal.PersistRoleModelAssignment(item.ToString(), Convert.ToInt32(((DataRowView)this.cbxRole.SelectedValue).Row[0]),
+                modelRoleClient.PersistRoleModelAssignment(item.ToString(), Convert.ToInt32(((DataRowView)this.cbxRole.SelectedValue).Row[0]),
                     chkModels.GetItemCheckState(chkModels.Items.IndexOf(item)) == System.Windows.Forms.CheckState.Checked);
             }
         }
 
         private void CheckItems()
         {
-            ProcessModelDAL pmDal = new ProcessModelDAL();
-            RoleModelDAL rmDal = new RoleModelDAL();
+            
+            ModelToPublishingPlatformRoleAssignmentService.ModelToPublishingPlatformRoleAssignmentClient modelRoleClient = new ModelToPublishingPlatformRoleAssignmentService.ModelToPublishingPlatformRoleAssignmentClient();
+            ProcessModelService.ProcessModelClient processModelClient = new ProcessModelService.ProcessModelClient();
             this.chkModels.Items.Clear();
-            foreach (DataRow item in pmDal.GetProcessModels().Rows.Cast<Data.PromoveoDataSet.ProcessModelRow>().Where(cc =>cc.FK_Configuration==GetConfigurationID()))
+            foreach (ProcessModelService.ProcessModel  item in processModelClient.GetProcessModels().Where(cc => cc.FK_Configuration == GetConfigurationID()))
             {
-                int newItemID = this.chkModels.Items.Add(item["ProcessModel"]);
+                int newItemID = this.chkModels.Items.Add(item.ModelName);
                 if (this.cbxRole.SelectedValue != null)
                 {
-                    if (rmDal.IsChecked(item["ProcessModel"].ToString(), Convert.ToInt32(((DataRowView)this.cbxRole.SelectedValue).Row[0])))
+                    if (modelRoleClient.IsChecked(item.ModelName, Convert.ToInt32(((DataRowView)this.cbxRole.SelectedValue).Row[0])))
                     {
                         chkModels.SetItemChecked(newItemID, true);
                     }
@@ -126,34 +127,36 @@ namespace PromoveoAddin.UserManagement
 
         private void btnDeleteSelected_Click(object sender, EventArgs e)
         {
-            UserRoleDAL userRoleDAL = new UserRoleDAL();
+            UserRoleService.UserRoleClient userRoleClient = new UserRoleService.UserRoleClient();
+
             int roleID = Convert.ToInt32(((DataRowView)this.cmbSelectRole.SelectedValue).Row[0]);
             foreach (ListViewItem item in lsvAssignedUsers.SelectedItems)
             {
                 int userID = Convert.ToInt32(item.Text);
-                userRoleDAL.RemoveUser(roleID, userID);
+                userRoleClient.RemoveUser(roleID, userID);
             }
-            PopulateListView(this.lsvAssignedUsers, userRoleDAL.GetAssignedUsers(roleID));
-            PopulateListView(this.lsvAvailableUsers, userRoleDAL.GetUnassignedUsers(roleID));
+            PopulateListView(this.lsvAssignedUsers, userRoleClient.GetAssignedUsers(roleID));
+            PopulateListView(this.lsvAvailableUsers, userRoleClient.GetUnassignedUsers(roleID));
         }
 
         private void btnAssignSelected_Click(object sender, EventArgs e)
         {
-            UserRoleDAL userRoleDAL = new UserRoleDAL();
+            UserRoleService.UserRoleClient userRoleClient = new UserRoleService.UserRoleClient();
+            
             int roleID = Convert.ToInt32(((DataRowView)this.cmbSelectRole.SelectedValue).Row[0]);
             foreach (ListViewItem item in lsvAvailableUsers.SelectedItems)
             {
                 int userID = Convert.ToInt32(item.Text);
-                userRoleDAL.AssignUser(roleID, userID);
+                userRoleClient.AssignUser(roleID, userID);
             }
-            PopulateListView(this.lsvAssignedUsers, userRoleDAL.GetAssignedUsers(roleID));
-            PopulateListView(this.lsvAvailableUsers, userRoleDAL.GetUnassignedUsers(roleID));
+            PopulateListView(this.lsvAssignedUsers, userRoleClient.GetAssignedUsers(roleID));
+            PopulateListView(this.lsvAvailableUsers, userRoleClient.GetUnassignedUsers(roleID));
         }
 
         private void cmbConfiguration_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.bsPublishingRole.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
-            this.bsCbRoles.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
+            this.RoleCBBindingSource.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
+            //this.bsCbRoles.Filter = string.Format("FK_Configuration = {0}", GetConfigurationID());
             CheckItems();
         }
 
@@ -162,7 +165,10 @@ namespace PromoveoAddin.UserManagement
         private void dgdRoles_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
             //update the table to the database
-            publishingPlatformRoleTableAdapter.Update(promoveoDataSet.PublishingPlatformRole);
+            PublishingPlatformRoleService.PublishingPlatformRoleClient roleClient = new PublishingPlatformRoleService.PublishingPlatformRoleClient();
+            roleClient.UpdateRole(new PublishingPlatformRoleService.Role() { Id = Convert.ToInt32(dgdRoles[0, e.RowIndex].Value),
+                Name = Convert.ToString(dgdRoles[1, e.RowIndex].Value), FK_Configuration = GetConfigurationID() });
+           
 
         }
 
@@ -173,9 +179,9 @@ namespace PromoveoAddin.UserManagement
             {
                 roleID = Convert.ToInt32(((DataRowView)this.cmbSelectRole.SelectedValue).Row[0]);
             }
-            UserRoleDAL userRoleDAL = new UserRoleDAL();
-            PopulateListView(this.lsvAssignedUsers, userRoleDAL.GetAssignedUsers(roleID));
-            PopulateListView(this.lsvAvailableUsers, userRoleDAL.GetUnassignedUsers(roleID));
+            UserRoleService.UserRoleClient userRoleClient = new UserRoleService.UserRoleClient();
+            PopulateListView(this.lsvAssignedUsers, userRoleClient.GetAssignedUsers(roleID));
+            PopulateListView(this.lsvAvailableUsers, userRoleClient.GetUnassignedUsers(roleID));
         }
 
         private void dgdRoles_DataError(object sender, DataGridViewDataErrorEventArgs e)

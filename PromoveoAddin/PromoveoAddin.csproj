@@ -250,6 +250,41 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ConfigurationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ModelToPublishingPlatformRoleAssignmentService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ModelUserRolesService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ProcessModelService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PublishingPlatformRoleService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\UserService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\UserRoleService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ServiceClient\AbstractBindingFactory.cs" />
     <Compile Include="ServiceClient\BasicHttpBindingFactory.cs" />
     <Compile Include="ServiceClient\frmListWebservice.cs">
@@ -259,9 +294,6 @@
       <DependentUpon>frmListWebservice.cs</DependentUpon>
     </Compile>
     <Compile Include="ServiceClient\ListsCommunicator.cs" />
-    <Compile Include="ServiceClient\PromoveoService.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ServiceClient\SharepointUser.cs" />
     <Compile Include="ServiceClient\UserGroup.cs" />
     <Compile Include="ServiceClient\UserGroupProxy.cs" />
@@ -353,6 +385,9 @@
     </None>
     <None Include="packages.config" />
     <None Include="PromoveoAddin_TemporaryKey.pfx" />
+    <None Include="Properties\DataSources\PromoveoAddin.ConfigurationService.ConfigurationClient.datasource" />
+    <None Include="Properties\DataSources\PromoveoAddin.ConfigurationService.IConfiguration.datasource" />
+    <None Include="Properties\DataSources\PromoveoAddin.ConfigurationService.IConfigurationChannel.datasource" />
     <None Include="Properties\DataSources\PromoveoDBEntities.datasource" />
     <None Include="Properties\DataSources\System.Xml.Linq.XElement.datasource" />
     <None Include="Properties\Settings.settings">
@@ -369,6 +404,109 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <None Include="Service References\ConfigurationService\ConfigurationDAL.wsdl" />
+    <None Include="Service References\ConfigurationService\PromoveoAddin.ConfigurationService.Configuration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ConfigurationService\PromoveoServiceLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ConfigurationService\PromoveoServiceLibrary1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ConfigurationService\PromoveoServiceLibrary2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ModelToPublishingPlatformRoleAssignmentService\ModelToPublishingPlatformRoleAssignmentDAL.wsdl" />
+    <None Include="Service References\ModelToPublishingPlatformRoleAssignmentService\PromoveoAddin.ModelToPublishingPlatformRoleAssignmentService.ModelToPublishingPlatformRoleAssignment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ModelToPublishingPlatformRoleAssignmentService\PromoveoServiceLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ModelToPublishingPlatformRoleAssignmentService\PromoveoServiceLibrary1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ModelToPublishingPlatformRoleAssignmentService\PromoveoServiceLibrary2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ModelUserRolesService\ModelUserRolesDAL.wsdl" />
+    <None Include="Service References\ModelUserRolesService\PromoveoAddin.ModelUserRolesService.Role.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ModelUserRolesService\PromoveoAddin.ModelUserRolesService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ModelUserRolesService\PromoveoServiceLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ModelUserRolesService\PromoveoServiceLibrary1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ModelUserRolesService\PromoveoServiceLibrary2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProcessModelService\ProcessModelDAL.wsdl" />
+    <None Include="Service References\ProcessModelService\PromoveoAddin.ProcessModelService.ProcessModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProcessModelService\PromoveoAddin.ProcessModelService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProcessModelService\PromoveoServiceLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProcessModelService\PromoveoServiceLibrary1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProcessModelService\PromoveoServiceLibrary2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProcessModelService\PromoveoServiceLibrary3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProcessModelService\PromoveoServiceLibrary4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PublishingPlatformRoleService\PromoveoAddin.PublishingPlatformRoleService.Role.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PublishingPlatformRoleService\PromoveoServiceLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PublishingPlatformRoleService\PromoveoServiceLibrary1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PublishingPlatformRoleService\PromoveoServiceLibrary2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PublishingPlatformRoleService\PublishingPlatformRoleDAL.wsdl" />
+    <None Include="Service References\UserService\PromoveoAddin.UserService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UserService\PromoveoServiceLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserService\PromoveoServiceLibrary1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserService\PromoveoServiceLibrary2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserService\UserDAL.wsdl" />
+    <None Include="Service References\UserRoleService\PromoveoAddin.UserRoleService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UserRoleService\PromoveoServiceLibrary.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserRoleService\PromoveoServiceLibrary1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserRoleService\PromoveoServiceLibrary2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserRoleService\UserRoleDAL.wsdl" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>
@@ -400,6 +538,120 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\print_icon_tcm46-328106.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ConfigurationService\" />
+    <WCFMetadataStorage Include="Service References\ModelToPublishingPlatformRoleAssignmentService\" />
+    <WCFMetadataStorage Include="Service References\ModelUserRolesService\" />
+    <WCFMetadataStorage Include="Service References\ProcessModelService\" />
+    <WCFMetadataStorage Include="Service References\PublishingPlatformRoleService\" />
+    <WCFMetadataStorage Include="Service References\UserService\" />
+    <WCFMetadataStorage Include="Service References\UserRoleService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserService\PromoveoServiceLibrary.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserRoleService\PromoveoServiceLibrary.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserRoleService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserRoleService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UserRoleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ModelUserRolesService\PromoveoServiceLibrary.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ModelUserRolesService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ModelUserRolesService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ModelUserRolesService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ModelToPublishingPlatformRoleAssignmentService\PromoveoServiceLibrary.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ModelToPublishingPlatformRoleAssignmentService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ModelToPublishingPlatformRoleAssignmentService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ModelToPublishingPlatformRoleAssignmentService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ConfigurationService\PromoveoServiceLibrary.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ConfigurationService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ConfigurationService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ConfigurationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PublishingPlatformRoleService\PromoveoServiceLibrary.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PublishingPlatformRoleService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PublishingPlatformRoleService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PublishingPlatformRoleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProcessModelService\PromoveoServiceLibrary.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProcessModelService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProcessModelService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProcessModelService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c4c2a649-a67a-4e3c-b623-3b1b0332fade" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PromoveoServiceLibrary.disco" MetadataType="Disco" ID="91b2c5f9-7f1e-4fcb-b21a-3c84e0240517" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?disco" />
+    <MetadataFile FileName="ProcessModelDAL.wsdl" MetadataType="Wsdl" ID="00d7742b-93c0-43a4-9e94-6041e75c0db7" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?wsdl" />
+    <MetadataFile FileName="PromoveoServiceLibrary.xsd" MetadataType="Schema" ID="d1314b27-0c64-44e3-a589-62ca17bec12f" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?xsd=xsd2" />
+    <MetadataFile FileName="PromoveoServiceLibrary1.xsd" MetadataType="Schema" ID="ad208b83-a5a7-4685-ab20-27be4ddd8cae" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?xsd=xsd0" />
+    <MetadataFile FileName="PromoveoServiceLibrary2.xsd" MetadataType="Schema" ID="bafe46da-35ba-42e2-b7f0-f3ab20e71870" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?xsd=xsd4" />
+    <MetadataFile FileName="PromoveoServiceLibrary3.xsd" MetadataType="Schema" ID="5a9089a2-224b-461e-aa11-57185f41d4cb" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?xsd=xsd1" />
+    <MetadataFile FileName="PromoveoServiceLibrary4.xsd" MetadataType="Schema" ID="c94d831f-aaad-4d97-a935-4a892e00af08" SourceId="1" SourceUrl="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ProcessModelDAL.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

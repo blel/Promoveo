@@ -32,14 +32,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cmbConfiguration = new System.Windows.Forms.ComboBox();
             this.configurationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.promoveoDataSet = new PromoveoAddin.Data.PromoveoDataSet();
-            this.configurationTableAdapter = new PromoveoAddin.Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter();
+
             this.chkAddModels = new System.Windows.Forms.CheckBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.pgbProgress = new System.Windows.Forms.ProgressBar();
             this.bgrWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).BeginInit();
+
             this.SuspendLayout();
             // 
             // textBox1
@@ -67,17 +66,16 @@
             // 
             // configurationBindingSource
             // 
-            this.configurationBindingSource.DataMember = "Configuration";
-            this.configurationBindingSource.DataSource = this.promoveoDataSet;
+
+
             // 
             // promoveoDataSet
             // 
-            this.promoveoDataSet.DataSetName = "PromoveoDataSet";
-            this.promoveoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+
             // 
             // configurationTableAdapter
             // 
-            this.configurationTableAdapter.ClearBeforeFill = true;
+
             // 
             // chkAddModels
             // 
@@ -120,7 +118,7 @@
             this.Text = "frmPublishDialog";
             this.Load += new System.EventHandler(this.frmPublishDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.configurationBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.promoveoDataSet)).EndInit();
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,9 +128,9 @@
 
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cmbConfiguration;
-        private Data.PromoveoDataSet promoveoDataSet;
+
         private System.Windows.Forms.BindingSource configurationBindingSource;
-        private Data.PromoveoDataSetTableAdapters.ConfigurationTableAdapter configurationTableAdapter;
+
         private System.Windows.Forms.CheckBox chkAddModels;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.ProgressBar pgbProgress;

@@ -21,20 +21,22 @@ namespace PromoveoAddin
 
         public void SendAcknowledgeRequest()
         {
-            MasterDataManagement.ProcessModelDAL pmDal = new MasterDataManagement.ProcessModelDAL();
+            ProcessModelService.ProcessModelClient processModelClient = new ProcessModelService.ProcessModelClient();
+            
             ServiceClient.UserGroupProxy proxy = new ServiceClient.UserGroupProxy();
             ServiceClient.ListsCommunicator listCommunicator = new ServiceClient.ListsCommunicator();
             foreach (Visio.Page page in _master.Pages)
             {
-                Data.PromoveoDataSet.ProcessModelRow processModel = pmDal.GetProcessModels(_configurationID).Where(cc => cc.ProcessModel == page.Name && (cc.AcknowledgeState ==null || cc.AcknowledgeState==AcknowledgeState.MergedAndPublished.ToString())).FirstOrDefault();
+                ProcessModelService.ProcessModel processModel = processModelClient.GetProcessModelsByConfigID(_configurationID).Where(cc => cc.ModelName == page.Name && (cc.AcknowledgeState == null || cc.AcknowledgeState == AcknowledgeState.MergedAndPublished.ToString())).FirstOrDefault();
                 if (processModel != null)
                 {
                     List<string> users = GetUsers(page);
                     List<ServiceClient.SharepointUser> spUsers = proxy.GetSharepointUsers(users, "zenon5000");
                     listCommunicator.AddTask(spUsers, string.Format("Please acknowledge model {0}. Goto {1}?page={0}.", page.Name, landingPage), "Tasks");
                     processModel.AcknowledgeState = AcknowledgeState.Acknowledged.ToString();
-                    Data.PromoveoDataSetTableAdapters.ProcessModelTableAdapter adapter = new Data.PromoveoDataSetTableAdapters.ProcessModelTableAdapter();
-                    adapter.Update(processModel);
+                    //TODO: Update
+                    //Data.PromoveoDataSetTableAdapters.ProcessModelTableAdapter adapter = new Data.PromoveoDataSetTableAdapters.ProcessModelTableAdapter();
+                    //adapter.Update(processModel);
                 }
             }
         }

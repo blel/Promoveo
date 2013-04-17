@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ConfigurationDAL" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ConfigurationDAL.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ConfigurationDAL.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ConfigurationDAL.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PromoveoServiceLibrary.DataAccessLayer" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IConfiguration_GetVisioMasterFileName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVisioMasterFileName" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_GetVisioMasterFileName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVisioMasterFileNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_SetVisioMasterFileName_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetVisioMasterFileName" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_SetVisioMasterFileName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetVisioMasterFileNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_GetConfigurations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigurations" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_GetConfigurations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigurationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_CreateConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_CreateConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_UpdateConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_UpdateConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_DeleteConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_DeleteConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IConfiguration">
+    <wsdl:operation name="GetVisioMasterFileName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IConfiguration/GetVisioMasterFileName" message="tns:IConfiguration_GetVisioMasterFileName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IConfiguration/GetVisioMasterFileNameResponse" message="tns:IConfiguration_GetVisioMasterFileName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetVisioMasterFileName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IConfiguration/SetVisioMasterFileName" message="tns:IConfiguration_SetVisioMasterFileName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IConfiguration/SetVisioMasterFileNameResponse" message="tns:IConfiguration_SetVisioMasterFileName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigurations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IConfiguration/GetConfigurations" message="tns:IConfiguration_GetConfigurations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IConfiguration/GetConfigurationsResponse" message="tns:IConfiguration_GetConfigurations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateConfiguration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IConfiguration/CreateConfiguration" message="tns:IConfiguration_CreateConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IConfiguration/CreateConfigurationResponse" message="tns:IConfiguration_CreateConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateConfiguration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IConfiguration/UpdateConfiguration" message="tns:IConfiguration_UpdateConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IConfiguration/UpdateConfigurationResponse" message="tns:IConfiguration_UpdateConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConfiguration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IConfiguration/DeleteConfiguration" message="tns:IConfiguration_DeleteConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IConfiguration/DeleteConfigurationResponse" message="tns:IConfiguration_DeleteConfiguration_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IConfiguration" type="tns:IConfiguration">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVisioMasterFileName">
+      <soap:operation soapAction="http://tempuri.org/IConfiguration/GetVisioMasterFileName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetVisioMasterFileName">
+      <soap:operation soapAction="http://tempuri.org/IConfiguration/SetVisioMasterFileName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigurations">
+      <soap:operation soapAction="http://tempuri.org/IConfiguration/GetConfigurations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateConfiguration">
+      <soap:operation soapAction="http://tempuri.org/IConfiguration/CreateConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateConfiguration">
+      <soap:operation soapAction="http://tempuri.org/IConfiguration/UpdateConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConfiguration">
+      <soap:operation soapAction="http://tempuri.org/IConfiguration/DeleteConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConfigurationDAL">
+    <wsdl:port name="BasicHttpBinding_IConfiguration" binding="tns:BasicHttpBinding_IConfiguration">
+      <soap:address location="http://www.ebalit.ch/PromoveoServiceLibrary.DataAccessLayer.ConfigurationDAL.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

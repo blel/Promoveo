@@ -38,14 +38,17 @@ namespace PromoveoAddin.UserManagement
         private void frmModelRoles_Load(object sender, EventArgs e)
         {
             //Configuration Combobox Datasource
-            this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
+            ConfigurationService.ConfigurationClient configurationClient = new ConfigurationService.ConfigurationClient();
+            this.bsConfiguration.DataSource = configurationClient.GetConfigurations();
+            
 
             //
             if (this.cmbConfiguration.Items.Count > 0)
             {
                 //Fill DataGridView. Instead of using the dal, a simple filter could be applied...
                 _bsModelUserRoles = new BindingSource();
-                _bsModelUserRoles.DataSource = new ModelUserRolesDAL().GetModelUserRoles(Convert.ToInt32(this.cmbConfiguration.SelectedValue));
+                ModelUserRolesService.ModelUserRolesClient modelUserRolesClient = new ModelUserRolesService.ModelUserRolesClient();
+                _bsModelUserRoles.DataSource = modelUserRolesClient.GetModelUserRoles(Convert.ToInt32(this.cmbConfiguration.SelectedValue));
                 this.dgvModelUserRoles.DataSource = _bsModelUserRoles;
                 //dont show technical keys (but keep them in the table)
                 dgvModelUserRoles.Columns["Id"].Visible = false ;
@@ -64,10 +67,10 @@ namespace PromoveoAddin.UserManagement
         private void dgvModelUserRoles_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
             //row is validated, so do the update to the database.
-            ModelUserRolesDAL modelUserDAL = new ModelUserRolesDAL();
+            ModelUserRolesService.ModelUserRolesClient modelUserRolesClient = new ModelUserRolesService.ModelUserRolesClient();
             DataView bsDataView = (DataView)_bsModelUserRoles.List;
-            Data.PromoveoDataSet.ModelUserGroupDataTable bsmodelUserGroupTable = (Data.PromoveoDataSet.ModelUserGroupDataTable)bsDataView.Table;   
-            modelUserDAL.Update(bsmodelUserGroupTable);
+            //Data.PromoveoDataSet.ModelUserGroupDataTable bsmodelUserGroupTable = (Data.PromoveoDataSet.ModelUserGroupDataTable)bsDataView.Table;
+            //modelUserRolesClient.Update(bsmodelUserGroupTable);
         }
 
         /// <summary>
@@ -75,10 +78,10 @@ namespace PromoveoAddin.UserManagement
         /// </summary>
         private void RefreshRoleAssignmentTab()
         {
-            ModelUserRolesDAL modelUserRoleDAL = new ModelUserRolesDAL();
-            this.cmbModelUserRole.DataSource = modelUserRoleDAL.GetModelUserRoles(Convert.ToInt32(this.cmbConfiguration.SelectedValue));
-            PopulateListView(lsvAssignedUsers, modelUserRoleDAL.GetAssignedUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
-            PopulateListView(lsvAvailableUsers, modelUserRoleDAL.GetAvailableUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
+            ModelUserRolesService.ModelUserRolesClient modelUserRolesClient = new ModelUserRolesService.ModelUserRolesClient();
+            this.cmbModelUserRole.DataSource = modelUserRolesClient.GetModelUserRoles(Convert.ToInt32(this.cmbConfiguration.SelectedValue));
+            PopulateListView(lsvAssignedUsers, modelUserRolesClient.GetAssignedUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
+            PopulateListView(lsvAvailableUsers, modelUserRolesClient.GetAvailableUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
         }
 
         /// <summary>
@@ -86,14 +89,14 @@ namespace PromoveoAddin.UserManagement
         /// </summary>
         /// <param name="listView"></param>
         /// <param name="rows"></param>
-        private void PopulateListView(ListView listView, Data.PromoveoDataSet.PublishingPlatformUserDataTable rows)
+        private void PopulateListView(ListView listView, IList<ModelUserRolesService.User> users)
         {
             listView.Items.Clear();
-            foreach (Data.PromoveoDataSet.PublishingPlatformUserRow row in rows.Rows)
+            foreach (ModelUserRolesService.User  user in users)
             {
-                ListViewItem item = listView.Items.Add(row.Id.ToString());
-                item.SubItems.Add(row.Name);
-                item.SubItems.Add(row.Shortname);
+                ListViewItem item = listView.Items.Add(user.Id.ToString());
+                item.SubItems.Add(user.Name);
+                item.SubItems.Add(user.Shortname);
             }
         }
 
@@ -104,14 +107,14 @@ namespace PromoveoAddin.UserManagement
         /// <param name="e"></param>
         private void btnAssignSelected_Click(object sender, EventArgs e)
         {
-            ModelUserRolesDAL modelUserRolesDAL = new ModelUserRolesDAL();
+            ModelUserRolesService.ModelUserRolesClient modelUserRolesClient = new ModelUserRolesService.ModelUserRolesClient();
             foreach (ListViewItem item in lsvAvailableUsers.SelectedItems)
             {
                 int userID = Convert.ToInt32(item.Text);
-                modelUserRolesDAL.AssignUser(Convert.ToInt32(this.cmbConfiguration.SelectedValue), Convert.ToInt32(this.cmbModelUserRole.SelectedValue), userID);
+                modelUserRolesClient.AssignUser(Convert.ToInt32(this.cmbConfiguration.SelectedValue), Convert.ToInt32(this.cmbModelUserRole.SelectedValue), userID);
             }
-            PopulateListView(lsvAssignedUsers, modelUserRolesDAL.GetAssignedUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
-            PopulateListView(lsvAvailableUsers, modelUserRolesDAL.GetAvailableUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
+            PopulateListView(lsvAssignedUsers, modelUserRolesClient.GetAssignedUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
+            PopulateListView(lsvAvailableUsers, modelUserRolesClient.GetAvailableUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
         }
 
 
@@ -122,14 +125,14 @@ namespace PromoveoAddin.UserManagement
         /// <param name="e"></param>
         private void btnDeleteSelected_Click(object sender, EventArgs e)
         {
-            ModelUserRolesDAL modelUserRolesDAL = new ModelUserRolesDAL();
+            ModelUserRolesService.ModelUserRolesClient modelUserRolesClient = new ModelUserRolesService.ModelUserRolesClient();
             foreach (ListViewItem item in lsvAssignedUsers.SelectedItems)
             {
                 int userID = Convert.ToInt32(item.Text);
-                modelUserRolesDAL.RemoveUser(Convert.ToInt32(this.cmbConfiguration.SelectedValue), Convert.ToInt32(this.cmbModelUserRole.SelectedValue), userID);
+                modelUserRolesClient.RemoveUser(Convert.ToInt32(this.cmbConfiguration.SelectedValue), Convert.ToInt32(this.cmbModelUserRole.SelectedValue), userID);
             }
-            PopulateListView(lsvAssignedUsers, modelUserRolesDAL.GetAssignedUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
-            PopulateListView(lsvAvailableUsers, modelUserRolesDAL.GetAvailableUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
+            PopulateListView(lsvAssignedUsers, modelUserRolesClient.GetAssignedUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
+            PopulateListView(lsvAvailableUsers, modelUserRolesClient.GetAvailableUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
         }
 
         /// <summary>
@@ -139,9 +142,9 @@ namespace PromoveoAddin.UserManagement
         /// <param name="e"></param>
         private void cmbModelUserRole_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ModelUserRolesDAL modelUserRoleDAL = new ModelUserRolesDAL();
-            PopulateListView(lsvAssignedUsers, modelUserRoleDAL.GetAssignedUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
-            PopulateListView(lsvAvailableUsers, modelUserRoleDAL.GetAvailableUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
+            ModelUserRolesService.ModelUserRolesClient modelUserRolesClient = new ModelUserRolesService.ModelUserRolesClient();
+            PopulateListView(lsvAssignedUsers, modelUserRolesClient.GetAssignedUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
+            PopulateListView(lsvAvailableUsers, modelUserRolesClient.GetAvailableUser(Convert.ToInt32(this.cmbModelUserRole.SelectedValue), Convert.ToInt32(this.cmbConfiguration.SelectedValue)));
         }
 
         /// <summary>
@@ -151,7 +154,8 @@ namespace PromoveoAddin.UserManagement
         /// <param name="e"></param>
         private void cmbConfiguration_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _bsModelUserRoles.DataSource = new ModelUserRolesDAL().GetModelUserRoles(Convert.ToInt32(this.cmbConfiguration.SelectedValue));
+            ModelUserRolesService.ModelUserRolesClient modelUserRolesClient = new ModelUserRolesService.ModelUserRolesClient();
+            _bsModelUserRoles.DataSource = modelUserRolesClient.GetModelUserRoles(Convert.ToInt32(this.cmbConfiguration.SelectedValue));
             RefreshRoleAssignmentTab();
         }
 

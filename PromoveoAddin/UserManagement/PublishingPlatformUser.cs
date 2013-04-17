@@ -19,7 +19,9 @@ namespace PromoveoAddin.UserManagement
 
         private void PublishingPlatformUser_Load(object sender, EventArgs e)
         {
-            this.publishingPlatformUserTableAdapter.Fill(this.promoveoDataSet.PublishingPlatformUser);
+            UserService.UserClient userClient = new UserService.UserClient();
+           
+
         }
 
         private void dgvUsers_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -30,20 +32,20 @@ namespace PromoveoAddin.UserManagement
 
 
 
-        private void PopulateListView(ListView listView, IEnumerable<Data.PromoveoDataSet.PublishingPlatformUserRow> rows)
-        {
-            listView.Items.Clear();
-            foreach (Data.PromoveoDataSet.PublishingPlatformUserRow row in rows)
-            {
-                ListViewItem item = listView.Items.Add(row.Id.ToString());
-                item.SubItems.Add(row.Name);
-                item.SubItems.Add(row.Shortname);
-            }
-        }
+        //private void PopulateListView(ListView listView, IEnumerable<Data.PromoveoDataSet.PublishingPlatformUserRow> rows)
+        //{
+        //    listView.Items.Clear();
+        //    foreach (Data.PromoveoDataSet.PublishingPlatformUserRow row in rows)
+        //    {
+        //        ListViewItem item = listView.Items.Add(row.Id.ToString());
+        //        item.SubItems.Add(row.Name);
+        //        item.SubItems.Add(row.Shortname);
+        //    }
+        //}
 
         private void dgvUsers_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-            publishingPlatformUserTableAdapter.Update(promoveoDataSet.PublishingPlatformUser);
+          //  publishingPlatformUserTableAdapter.Update(promoveoDataSet.PublishingPlatformUser);
         }
 
         private void dgvUsers_RowValidating(object sender, DataGridViewCellCancelEventArgs e)

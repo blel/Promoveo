@@ -84,7 +84,8 @@ namespace PromoveoAddin.MasterDataManagement
 
         private void frmGetShapeDataSource_Load(object sender, EventArgs e)
         {
-            this.configurationTableAdapter.Fill(this.promoveoDataSet.Configuration);
+            ConfigurationService.ConfigurationClient configurationClient = new ConfigurationService.ConfigurationClient();
+            this.configurationBindingSource.DataSource = configurationClient.GetConfigurations();
 
         }
 
